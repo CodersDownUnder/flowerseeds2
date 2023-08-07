@@ -1,0 +1,15 @@
+{
+  "parent": "minecraft:block/allium",
+  "render_type": "minecraft:cutout_mipped",
+  "textures": {
+    "cross": "minecraft:block/allium",
+    "particle": "minecraft:block/allium"
+  },
+  "transform": {
+    "translation": [
+      -0.23,
+      -0.1,
+      0.23
+    ]
+  }
+}

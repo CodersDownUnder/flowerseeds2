@@ -1,22 +1,30 @@
-# eclipse
-bin
-*.launch
-.settings
-.metadata
-.classpath
-.project
-
-# idea
-out
+build
+output
+.idea
+*.iml
 *.ipr
 *.iws
-*.iml
-.idea
+out
 
-# gradle
-build
-.gradle
+Mekanism*.jar
+MDK.zip
+/run
+/runGameTests
+/.gradle
+*.classpath
+*.project
+.settings
+/eclipse
+*.txt
+*.launch
 
-# other
-eclipse
-run
+*.blend1
+*.blend2
+/bin
+/logs
+/src/datagen/*/resources
+/src/datagen/*/annotation_generated
+!/src/datagen/main/resources/PersistingMekanismDatagenCache.js
+!/src/datagen/main/resources/META-INF/coremods.json
+/annotation-processor/bin
+libs/

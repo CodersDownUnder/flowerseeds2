@@ -1,0 +1,41 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "botanypots"
+        }
+      ],
+      "recipe": {
+        "type": "botanypots:crop",
+        "categories": [
+          "dirt"
+        ],
+        "display": {
+          "type": "botanypots:aging",
+          "block": "flowerseeds:white_tulip_seed"
+        },
+        "drops": [
+          {
+            "chance": 1.0,
+            "output": {
+              "item": "minecraft:white_tulip"
+            }
+          },
+          {
+            "chance": 1.0,
+            "output": {
+              "item": "flowerseeds:white_tulip_seed"
+            }
+          }
+        ],
+        "growthTicks": 150,
+        "seed": {
+          "item": "flowerseeds:white_tulip_seed"
+        }
+      }
+    }
+  ]
+}

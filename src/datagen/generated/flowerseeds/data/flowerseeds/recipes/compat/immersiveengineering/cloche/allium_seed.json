@@ -1,0 +1,35 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "immersiveengineering"
+        }
+      ],
+      "recipe": {
+        "type": "immersiveengineering:cloche",
+        "input": {
+          "item": "flowerseeds:allium_seed"
+        },
+        "render": {
+          "type": "crop",
+          "block": "flowerseeds:allium_seed"
+        },
+        "results": [
+          {
+            "item": "minecraft:allium"
+          },
+          {
+            "item": "flowerseeds:allium_seed"
+          }
+        ],
+        "soil": {
+          "item": "minecraft:dirt"
+        },
+        "time": 240
+      }
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "botanypots"
+        }
+      ],
+      "recipe": {
+        "type": "botanypots:crop",
+        "categories": [
+          "dirt"
+        ],
+        "display": {
+          "type": "botanypots:aging",
+          "block": "flowerseeds:poppy_seed"
+        },
+        "drops": [
+          {
+            "chance": 1.0,
+            "output": {
+              "item": "minecraft:poppy"
+            }
+          },
+          {
+            "chance": 1.0,
+            "output": {
+              "item": "flowerseeds:poppy_seed"
+            }
+          }
+        ],
+        "growthTicks": 150,
+        "seed": {
+          "item": "flowerseeds:poppy_seed"
+        }
+      }
+    }
+  ]
+}

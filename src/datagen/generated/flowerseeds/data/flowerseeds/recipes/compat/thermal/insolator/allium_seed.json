@@ -1,0 +1,30 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "thermal"
+        }
+      ],
+      "recipe": {
+        "type": "thermal:insolator",
+        "ingredient": {
+          "item": "flowerseeds:allium_seed"
+        },
+        "output": [
+          {
+            "chance": 4.0,
+            "count": 2,
+            "item": "minecraft:allium"
+          },
+          {
+            "chance": 2.0,
+            "item": "flowerseeds:allium_seed"
+          }
+        ]
+      }
+    }
+  ]
+}

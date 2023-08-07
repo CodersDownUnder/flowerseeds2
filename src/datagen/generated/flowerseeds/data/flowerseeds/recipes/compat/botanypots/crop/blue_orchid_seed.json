@@ -1,0 +1,41 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "botanypots"
+        }
+      ],
+      "recipe": {
+        "type": "botanypots:crop",
+        "categories": [
+          "dirt"
+        ],
+        "display": {
+          "type": "botanypots:aging",
+          "block": "flowerseeds:blue_orchid_seed"
+        },
+        "drops": [
+          {
+            "chance": 1.0,
+            "output": {
+              "item": "minecraft:blue_orchid"
+            }
+          },
+          {
+            "chance": 1.0,
+            "output": {
+              "item": "flowerseeds:blue_orchid_seed"
+            }
+          }
+        ],
+        "growthTicks": 150,
+        "seed": {
+          "item": "flowerseeds:blue_orchid_seed"
+        }
+      }
+    }
+  ]
+}

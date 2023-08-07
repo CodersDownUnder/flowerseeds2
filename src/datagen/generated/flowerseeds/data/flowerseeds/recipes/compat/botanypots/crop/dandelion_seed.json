@@ -1,0 +1,41 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "botanypots"
+        }
+      ],
+      "recipe": {
+        "type": "botanypots:crop",
+        "categories": [
+          "dirt"
+        ],
+        "display": {
+          "type": "botanypots:aging",
+          "block": "flowerseeds:dandelion_seed"
+        },
+        "drops": [
+          {
+            "chance": 1.0,
+            "output": {
+              "item": "minecraft:dandelion"
+            }
+          },
+          {
+            "chance": 1.0,
+            "output": {
+              "item": "flowerseeds:dandelion_seed"
+            }
+          }
+        ],
+        "growthTicks": 150,
+        "seed": {
+          "item": "flowerseeds:dandelion_seed"
+        }
+      }
+    }
+  ]
+}

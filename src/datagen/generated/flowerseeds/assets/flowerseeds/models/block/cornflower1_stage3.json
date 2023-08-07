@@ -1,0 +1,15 @@
+{
+  "parent": "minecraft:block/cornflower",
+  "render_type": "minecraft:cutout_mipped",
+  "textures": {
+    "cross": "minecraft:block/cornflower",
+    "particle": "minecraft:block/cornflower"
+  },
+  "transform": {
+    "translation": [
+      -0.23,
+      -0.1,
+      0.23
+    ]
+  }
+}

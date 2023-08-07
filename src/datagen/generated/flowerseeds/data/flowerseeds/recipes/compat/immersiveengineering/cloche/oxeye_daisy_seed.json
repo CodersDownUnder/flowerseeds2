@@ -1,0 +1,35 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "immersiveengineering"
+        }
+      ],
+      "recipe": {
+        "type": "immersiveengineering:cloche",
+        "input": {
+          "item": "flowerseeds:oxeye_daisy_seed"
+        },
+        "render": {
+          "type": "crop",
+          "block": "flowerseeds:oxeye_daisy_seed"
+        },
+        "results": [
+          {
+            "item": "minecraft:oxeye_daisy"
+          },
+          {
+            "item": "flowerseeds:oxeye_daisy_seed"
+          }
+        ],
+        "soil": {
+          "item": "minecraft:dirt"
+        },
+        "time": 240
+      }
+    }
+  ]
+}
