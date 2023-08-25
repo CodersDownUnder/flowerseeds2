@@ -1,0 +1,15 @@
+{
+  "parent": "roses:block/rose",
+  "render_type": "minecraft:cutout_mipped",
+  "textures": {
+    "cross": "roses:block/rose",
+    "particle": "roses:block/rose"
+  },
+  "transform": {
+    "translation": [
+      -0.23,
+      -0.1,
+      -0.23
+    ]
+  }
+}

@@ -1,6 +1,7 @@
 package flowerseeds.server.tags;
 
 import flowerseeds.FlowerSeeds;
+import flowerseeds.data.tags.FlowerSeedsItemTagsProvider;
 import flowerseeds.init.BlockInit;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -14,7 +15,7 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import javax.annotation.Nullable;
 import java.util.concurrent.CompletableFuture;
 
-public class MainItemTagProvider extends ItemTagsProvider {
+public class MainItemTagProvider extends FlowerSeedsItemTagsProvider {
     public MainItemTagProvider(PackOutput p_275343_, CompletableFuture<HolderLookup.Provider> p_275729_,
                                CompletableFuture<TagLookup<Block>> p_275322_, @Nullable ExistingFileHelper existingFileHelper) {
         super(p_275343_, p_275729_, p_275322_, FlowerSeeds.MODID, existingFileHelper);
@@ -38,14 +39,4 @@ public class MainItemTagProvider extends ItemTagsProvider {
                 BlockInit.ALLIUM_SEED.get().asItem());
     }
 
-    protected void tagSet(Item... items) {
-        tag(ItemTags.VILLAGER_PLANTABLE_SEEDS)
-                .add(items);
-
-        tag(Tags.Items.SEEDS)
-                .add(items);
-
-        tag(Tags.Items.CROPS)
-                .add(items);
-    }
 }

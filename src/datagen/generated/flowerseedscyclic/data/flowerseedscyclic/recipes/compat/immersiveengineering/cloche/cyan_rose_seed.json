@@ -1,0 +1,35 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "immersiveengineering"
+        }
+      ],
+      "recipe": {
+        "type": "immersiveengineering:cloche",
+        "input": {
+          "item": "flowerseedscyclic:cyan_rose_seed"
+        },
+        "render": {
+          "type": "crop",
+          "block": "flowerseedscyclic:cyan_rose_seed"
+        },
+        "results": [
+          {
+            "item": "cyclic:flower_cyan"
+          },
+          {
+            "item": "flowerseedscyclic:cyan_rose_seed"
+          }
+        ],
+        "soil": {
+          "item": "minecraft:dirt"
+        },
+        "time": 240
+      }
+    }
+  ]
+}

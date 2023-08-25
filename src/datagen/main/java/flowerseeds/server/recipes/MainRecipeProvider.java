@@ -6,9 +6,11 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.common.Tags;
+import net.minecraftforge.common.crafting.ConditionalRecipe;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 
 import java.util.function.Consumer;
@@ -18,6 +20,8 @@ public class MainRecipeProvider  extends RecipeProvider implements IConditionBui
     public MainRecipeProvider(PackOutput pOutput) {
         super(pOutput);
     }
+
+
 
     @Override
     protected void buildRecipes(Consumer<FinishedRecipe> pWriter) {
@@ -42,6 +46,19 @@ public class MainRecipeProvider  extends RecipeProvider implements IConditionBui
                 .requires(Tags.Items.SEEDS)
                 .unlockedBy(getHasName(flower), has(flower))
                 .save(pFinishedRecipeConsumer);
+    }
+
+    public void flowerSeedRecipe(Item flowerSeed, Item flower, Consumer<FinishedRecipe> pFinishedRecipeConsumer, String modid) {
+        ConditionalRecipe.builder()
+                .addCondition(and(modLoaded(modid), not(FALSE())))
+                .addRecipe(
+                ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, flowerSeed, 2)
+                .requires(flower)
+                .requires(Tags.Items.SEEDS)
+                .unlockedBy(getHasName(flower), has(flower))::save)
+                .generateAdvancement()
+                .build(pFinishedRecipeConsumer, new ResourceLocation(getHasName(flowerSeed)));
+
     }
 
 }

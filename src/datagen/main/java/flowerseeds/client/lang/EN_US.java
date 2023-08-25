@@ -46,7 +46,7 @@ public class EN_US extends LanguageProvider
             add(BlockInit.ALLIUM_SEED.get(), "Allium");
             add(BlockInit.ALLIUM_SEED.get().asItem(), "Allium Seed");
 
-            add("text.packmeta.description", "Flower Seeds Resource And Datapacks");
+            add("text.packmeta.description", "Flower Seeds 2 Resource And Datapacks");
             add("flowerseeds.creativetab.name", "Flower Seeds");
         }
 }

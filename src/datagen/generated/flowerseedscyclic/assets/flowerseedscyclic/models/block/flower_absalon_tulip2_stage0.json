@@ -1,0 +1,15 @@
+{
+  "parent": "flowerseeds:block/cross_stage0",
+  "render_type": "minecraft:cutout_mipped",
+  "textures": {
+    "cross": "cyclic:block/flower_absalon_tulip",
+    "particle": "cyclic:block/flower_absalon_tulip"
+  },
+  "transform": {
+    "translation": [
+      -0.23,
+      -0.1,
+      -0.23
+    ]
+  }
+}

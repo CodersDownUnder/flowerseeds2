@@ -1,9 +1,11 @@
 package flowerseeds.server;
 
 import flowerseeds.FlowerSeeds;
+import flowerseeds.FlowerSeedsAPI;
 import flowerseeds.client.lang.EN_US;
 import flowerseeds.client.models.MainBlockStateProvider;
 import flowerseeds.client.models.MainItemModelProvider;
+import flowerseeds.server.compat.MainCompatDataProvider;
 import flowerseeds.server.loot.MainLootTableProvider;
 import flowerseeds.server.recipes.MainRecipeProvider;
 import flowerseeds.server.tags.MainBlockTagProvider;
@@ -29,7 +31,7 @@ import java.util.stream.Collectors;
 
 @Mod.EventBusSubscriber(modid = FlowerSeeds.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DataGenerators {
-    private static final String MODID = FlowerSeeds.MODID;
+    private static final String MODID = FlowerSeedsAPI.FLOWERSEEDS_MODID;
 
     @SubscribeEvent
     public static void gatherData(GatherDataEvent event) {
@@ -58,7 +60,7 @@ public class DataGenerators {
                 new MainBlockTagProvider(packOutput, lookupProvider, existingFileHelper));
         generator.addProvider(event.includeServer(), new MainItemTagProvider(packOutput, lookupProvider, blockTagGenerator.contentsGetter(), existingFileHelper));
 
-        generator.addProvider(event.includeServer(), new MainCompatDataProvider(event));
-        new MainCompatDataProvider(event);
+        generator.addProvider(event.includeServer(), new MainCompatDataProvider(MODID, event));
+        new MainCompatDataProvider(MODID, event);
     }
 }

@@ -1,20 +1,16 @@
 package flowerseeds.server.tags;
 
-import biomesoplenty.init.ModTags;
 import flowerseeds.FlowerSeeds;
+import flowerseeds.data.tags.FlowerSeedsBlockTagsProvider;
 import flowerseeds.init.BlockInit;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.world.level.block.Block;
-import net.minecraftforge.common.Tags;
-import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 import javax.annotation.Nullable;
 import java.util.concurrent.CompletableFuture;
 
-public class MainBlockTagProvider extends BlockTagsProvider {
+public class MainBlockTagProvider extends FlowerSeedsBlockTagsProvider {
     public MainBlockTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
         super(output, lookupProvider, FlowerSeeds.MODID, existingFileHelper);
     }
@@ -37,12 +33,4 @@ public class MainBlockTagProvider extends BlockTagsProvider {
                 BlockInit.ALLIUM_SEED.get());
     }
 
-
-    protected void tagSet(Block... block) {
-        this.tag(BlockTags.CROPS)
-                .add(block);
-
-        this.tag(BlockTags.BEE_GROWABLES)
-                .add(block);
-    }
 }

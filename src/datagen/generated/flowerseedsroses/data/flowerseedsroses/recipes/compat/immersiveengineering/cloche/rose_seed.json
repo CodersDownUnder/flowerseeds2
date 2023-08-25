@@ -1,0 +1,35 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "immersiveengineering"
+        }
+      ],
+      "recipe": {
+        "type": "immersiveengineering:cloche",
+        "input": {
+          "item": "flowerseedsroses:rose_seed"
+        },
+        "render": {
+          "type": "crop",
+          "block": "flowerseedsroses:rose_seed"
+        },
+        "results": [
+          {
+            "item": "roses:rose"
+          },
+          {
+            "item": "flowerseedsroses:rose_seed"
+          }
+        ],
+        "soil": {
+          "item": "minecraft:dirt"
+        },
+        "time": 240
+      }
+    }
+  ]
+}

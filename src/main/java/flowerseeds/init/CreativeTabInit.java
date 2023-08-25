@@ -14,9 +14,10 @@ public class CreativeTabInit {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, FlowerSeeds.MODID);
 
-    public static final RegistryObject<CreativeModeTab> TUTORIAL_TAB = CREATIVE_MODE_TABS.register("tutorial_tab",
+    public static final RegistryObject<CreativeModeTab> FLOWER_SEEDS_TAB = CREATIVE_MODE_TABS.register("flower_seeds_tab",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(BlockInit.DANDELION_SEED.get()))
                     .title(Component.translatable("flowerseeds.creativetab.name"))
+                    .withSearchBar()
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(BlockInit.DANDELION_SEED.get());
                         pOutput.accept(BlockInit.ALLIUM_SEED.get());

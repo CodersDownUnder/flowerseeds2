@@ -1,0 +1,41 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "botanypots"
+        }
+      ],
+      "recipe": {
+        "type": "botanypots:crop",
+        "categories": [
+          "dirt"
+        ],
+        "display": {
+          "type": "botanypots:aging",
+          "block": "flowerseedscyclic:lime_carnation_seed"
+        },
+        "drops": [
+          {
+            "chance": 1.0,
+            "output": {
+              "item": "cyclic:flower_lime_carnation"
+            }
+          },
+          {
+            "chance": 1.0,
+            "output": {
+              "item": "flowerseedscyclic:lime_carnation_seed"
+            }
+          }
+        ],
+        "growthTicks": 150,
+        "seed": {
+          "item": "flowerseedscyclic:lime_carnation_seed"
+        }
+      }
+    }
+  ]
+}

@@ -17,7 +17,7 @@ license="${mod_license}"
 # The modid of the mod
 modId="flowerseedscyclic" #mandatory
 # The version number of the mod
-version="${mod_version}" #mandatory
+version="${cyclic_addon_version}" #mandatory
 # A display name for the mod
 displayName="Flower Seeds 2 Cyclic Addon" #mandatory
 # A URL to query for updates for this mod. See the JSON update specification https://docs.neoforged.net/docs/misc/updatechecker/
@@ -67,9 +67,17 @@ description=''''''
     modId="flowerseeds"
     mandatory=true
     # This version range declares a minimum of the current minecraft version up to but not including the next major version
-    versionRange="[1.0.0,)"
+    versionRange="${mod_version}"
     ordering="AFTER"
     side="BOTH"
+
+[[dependencies.flowerseedscyclic]]
+modId="cyclic"
+mandatory=true
+# This version range declares a minimum of the current minecraft version up to but not including the next major version
+versionRange="${cyclic_version}"
+ordering="AFTER"
+side="BOTH"
 
 # Features are specific properties of the game environment, that you may want to declare you require. This example declares
 # that your mod requires GL version 3.2 or higher. Other features will be added. They are side aware so declaring this won't
