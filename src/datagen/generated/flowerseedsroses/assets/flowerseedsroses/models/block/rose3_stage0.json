@@ -2,8 +2,7 @@
   "parent": "flowerseeds:block/cross_stage0",
   "render_type": "minecraft:cutout_mipped",
   "textures": {
-    "cross": "roses:block/rose",
-    "particle": "roses:block/rose"
+    "cross": "roses:block/rose"
   },
   "transform": {
     "translation": [

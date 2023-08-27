@@ -3,10 +3,6 @@
     "flower0": {
       "parent": "cyclic:block/flower_purple_tulip",
       "render_type": "minecraft:cutout_mipped",
-      "textures": {
-        "cross": "cyclic:block/flower_purple_tulip",
-        "particle": "cyclic:block/flower_purple_tulip"
-      },
       "transform": {
         "translation": [
           0.23,
@@ -18,10 +14,6 @@
     "flower1": {
       "parent": "cyclic:block/flower_purple_tulip",
       "render_type": "minecraft:cutout_mipped",
-      "textures": {
-        "cross": "cyclic:block/flower_purple_tulip",
-        "particle": "cyclic:block/flower_purple_tulip"
-      },
       "transform": {
         "translation": [
           -0.23,
@@ -33,10 +25,6 @@
     "flower2": {
       "parent": "cyclic:block/flower_purple_tulip",
       "render_type": "minecraft:cutout_mipped",
-      "textures": {
-        "cross": "cyclic:block/flower_purple_tulip",
-        "particle": "cyclic:block/flower_purple_tulip"
-      },
       "transform": {
         "translation": [
           -0.23,
@@ -48,10 +36,6 @@
     "flower3": {
       "parent": "cyclic:block/flower_purple_tulip",
       "render_type": "minecraft:cutout_mipped",
-      "textures": {
-        "cross": "cyclic:block/flower_purple_tulip",
-        "particle": "cyclic:block/flower_purple_tulip"
-      },
       "transform": {
         "translation": [
           0.23,
@@ -67,5 +51,8 @@
     "flower2",
     "flower3"
   ],
-  "loader": "forge:composite"
+  "loader": "forge:composite",
+  "textures": {
+    "particle": "cyclic:block/flower_purple_tulip"
+  }
 }

@@ -1,10 +1,6 @@
 {
   "parent": "cyclic:block/flower_lime_carnation",
   "render_type": "minecraft:cutout_mipped",
-  "textures": {
-    "cross": "cyclic:block/flower_lime_carnation",
-    "particle": "cyclic:block/flower_lime_carnation"
-  },
   "transform": {
     "translation": [
       0.23,

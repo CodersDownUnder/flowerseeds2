@@ -3,10 +3,6 @@
     "flower0": {
       "parent": "roses:block/cyan_flower",
       "render_type": "minecraft:cutout_mipped",
-      "textures": {
-        "cross": "roses:block/cyan_flower",
-        "particle": "roses:block/cyan_flower"
-      },
       "transform": {
         "translation": [
           0.23,
@@ -18,10 +14,6 @@
     "flower1": {
       "parent": "roses:block/cyan_flower",
       "render_type": "minecraft:cutout_mipped",
-      "textures": {
-        "cross": "roses:block/cyan_flower",
-        "particle": "roses:block/cyan_flower"
-      },
       "transform": {
         "translation": [
           -0.23,
@@ -33,10 +25,6 @@
     "flower2": {
       "parent": "roses:block/cyan_flower",
       "render_type": "minecraft:cutout_mipped",
-      "textures": {
-        "cross": "roses:block/cyan_flower",
-        "particle": "roses:block/cyan_flower"
-      },
       "transform": {
         "translation": [
           -0.23,
@@ -48,10 +36,6 @@
     "flower3": {
       "parent": "roses:block/cyan_flower",
       "render_type": "minecraft:cutout_mipped",
-      "textures": {
-        "cross": "roses:block/cyan_flower",
-        "particle": "roses:block/cyan_flower"
-      },
       "transform": {
         "translation": [
           0.23,
@@ -67,5 +51,8 @@
     "flower2",
     "flower3"
   ],
-  "loader": "forge:composite"
+  "loader": "forge:composite",
+  "textures": {
+    "particle": "roses:block/cyan_flower"
+  }
 }

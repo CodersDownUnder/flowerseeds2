@@ -1,10 +1,6 @@
 {
   "parent": "minecraft:block/red_tulip",
   "render_type": "minecraft:cutout_mipped",
-  "textures": {
-    "cross": "minecraft:block/red_tulip",
-    "particle": "minecraft:block/red_tulip"
-  },
   "transform": {
     "translation": [
       0.23,

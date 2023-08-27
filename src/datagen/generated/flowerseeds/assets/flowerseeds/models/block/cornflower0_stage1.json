@@ -2,8 +2,7 @@
   "parent": "flowerseeds:block/cross_stage1",
   "render_type": "minecraft:cutout_mipped",
   "textures": {
-    "cross": "minecraft:block/cornflower",
-    "particle": "minecraft:block/cornflower"
+    "cross": "minecraft:block/cornflower"
   },
   "transform": {
     "translation": [

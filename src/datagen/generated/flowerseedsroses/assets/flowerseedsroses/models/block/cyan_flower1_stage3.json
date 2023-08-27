@@ -1,10 +1,6 @@
 {
   "parent": "roses:block/cyan_flower",
   "render_type": "minecraft:cutout_mipped",
-  "textures": {
-    "cross": "roses:block/cyan_flower",
-    "particle": "roses:block/cyan_flower"
-  },
   "transform": {
     "translation": [
       -0.23,

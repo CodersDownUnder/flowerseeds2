@@ -1,10 +1,6 @@
 {
   "parent": "minecraft:block/dandelion",
   "render_type": "minecraft:cutout_mipped",
-  "textures": {
-    "cross": "minecraft:block/dandelion",
-    "particle": "minecraft:block/dandelion"
-  },
   "transform": {
     "translation": [
       0.23,

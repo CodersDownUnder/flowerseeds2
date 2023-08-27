@@ -1,10 +1,6 @@
 {
   "parent": "minecraft:block/white_tulip",
   "render_type": "minecraft:cutout_mipped",
-  "textures": {
-    "cross": "minecraft:block/white_tulip",
-    "particle": "minecraft:block/white_tulip"
-  },
   "transform": {
     "translation": [
       0.23,

@@ -3,10 +3,6 @@
     "flower0": {
       "parent": "minecraft:block/wither_rose",
       "render_type": "minecraft:cutout_mipped",
-      "textures": {
-        "cross": "minecraft:block/wither_rose",
-        "particle": "minecraft:block/wither_rose"
-      },
       "transform": {
         "translation": [
           0.23,
@@ -18,10 +14,6 @@
     "flower1": {
       "parent": "minecraft:block/wither_rose",
       "render_type": "minecraft:cutout_mipped",
-      "textures": {
-        "cross": "minecraft:block/wither_rose",
-        "particle": "minecraft:block/wither_rose"
-      },
       "transform": {
         "translation": [
           -0.23,
@@ -33,10 +25,6 @@
     "flower2": {
       "parent": "minecraft:block/wither_rose",
       "render_type": "minecraft:cutout_mipped",
-      "textures": {
-        "cross": "minecraft:block/wither_rose",
-        "particle": "minecraft:block/wither_rose"
-      },
       "transform": {
         "translation": [
           -0.23,
@@ -48,10 +36,6 @@
     "flower3": {
       "parent": "minecraft:block/wither_rose",
       "render_type": "minecraft:cutout_mipped",
-      "textures": {
-        "cross": "minecraft:block/wither_rose",
-        "particle": "minecraft:block/wither_rose"
-      },
       "transform": {
         "translation": [
           0.23,
@@ -67,5 +51,9 @@
     "flower2",
     "flower3"
   ],
-  "loader": "forge:composite"
+  "loader": "forge:composite",
+  "textures": {
+    "cross": "minecraft:block/wither_rose",
+    "particle": "minecraft:block/wither_rose"
+  }
 }

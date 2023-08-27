@@ -1,11 +1,10 @@
 {
   "children": {
     "flower0": {
-      "parent": "flowerseeds:block/cross_stage1",
+      "parent": "flowerseeds:block/cross_stage0",
       "render_type": "minecraft:cutout_mipped",
       "textures": {
-        "cross": "roses:block/cyan_flower",
-        "particle": "roses:block/cyan_flower"
+        "cross": "cyclic:block/flower_cyan"
       },
       "transform": {
         "translation": [
@@ -16,11 +15,10 @@
       }
     },
     "flower1": {
-      "parent": "flowerseeds:block/cross_stage1",
+      "parent": "flowerseeds:block/cross_stage0",
       "render_type": "minecraft:cutout_mipped",
       "textures": {
-        "cross": "roses:block/cyan_flower",
-        "particle": "roses:block/cyan_flower"
+        "cross": "cyclic:block/flower_cyan"
       },
       "transform": {
         "translation": [
@@ -31,11 +29,10 @@
       }
     },
     "flower2": {
-      "parent": "flowerseeds:block/cross_stage1",
+      "parent": "flowerseeds:block/cross_stage0",
       "render_type": "minecraft:cutout_mipped",
       "textures": {
-        "cross": "roses:block/cyan_flower",
-        "particle": "roses:block/cyan_flower"
+        "cross": "cyclic:block/flower_cyan"
       },
       "transform": {
         "translation": [
@@ -46,11 +43,10 @@
       }
     },
     "flower3": {
-      "parent": "flowerseeds:block/cross_stage1",
+      "parent": "flowerseeds:block/cross_stage0",
       "render_type": "minecraft:cutout_mipped",
       "textures": {
-        "cross": "roses:block/cyan_flower",
-        "particle": "roses:block/cyan_flower"
+        "cross": "cyclic:block/flower_cyan"
       },
       "transform": {
         "translation": [
@@ -67,5 +63,9 @@
     "flower2",
     "flower3"
   ],
-  "loader": "forge:composite"
+  "loader": "forge:composite",
+  "textures": {
+    "cross": "cyclic:block/flower_cyan",
+    "particle": "cyclic:block/flower_cyan"
+  }
 }

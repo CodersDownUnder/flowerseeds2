@@ -2,8 +2,7 @@
   "parent": "flowerseeds:block/cross_stage2",
   "render_type": "minecraft:cutout_mipped",
   "textures": {
-    "cross": "minecraft:block/pink_tulip",
-    "particle": "minecraft:block/pink_tulip"
+    "cross": "minecraft:block/pink_tulip"
   },
   "transform": {
     "translation": [

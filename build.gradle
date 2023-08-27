@@ -45,9 +45,10 @@ ext {
                          "loader_version_range": loader_version_range, "byg_version": byg_version_range, "bop_version": bop_version_range,
                          "cyclic_version": cyclic_version_range, "roses_version": roses_version_range, "mod_license": mod_license, "mod_authors": mod_authors,
                          "neo_version_range": neo_version_range, "minecraft_version_range": minecraft_version_range, "mod_id": mod_id, "mod_version": mod_version,
-                         "roses_addon_version": roses_version, "cyclic_addon_version": cyclic_version, "bop_addon_version": bop_version, "byg_addon_version": byg_version]
+                         "roses_addon_version": roses_version, "cyclic_addon_version": cyclic_version, "bop_addon_version": bop_version, "byg_addon_version": byg_version,
+                         "ff_version": ff_version, "ff_version_range": ff_version_range]
     jsonPatterns = ["**/*.json", "**/*.mcmeta"]
-    secondaryModules = ['byg', 'cyclic', 'bop', 'roses']
+    secondaryModules = ['byg', 'cyclic', 'bop', 'roses', 'ff']
     extraTypes = ['datagen', 'gameTest']
 }
 
@@ -294,7 +295,11 @@ minecraft {
                 def modName = "flowerseeds${name}"
                 def extra = getExtraSourceSet(name, 'datagen')
                 mods.named(modName).configure { source(extra) }
-                args '--mod', modName, '--existing', file("src/${name}/resources/"), '--existing-mod', "roses", '--existing-mod', "cyclic"
+                args '--mod', modName, '--existing', file("src/${name}/resources/"),
+                        '--existing-mod', "roses",
+                        '--existing-mod', "cyclic",
+                        '--existing-mod', "biomesoplenty",
+                        '--existing-mod', "fabulous_flowers"
             }
         }
     }
@@ -307,7 +312,7 @@ def setupRunConfig(RunConfig runConfig, boolean supportsGameTests, String direct
     runConfig.property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
     if (supportsGameTests) {
         //Specify all our mods as domains to look for game tests
-        runConfig.property 'forge.enabledGameTestNamespaces', 'flowerseeds,flowerseedsbyg,flowerseedscyclic,flowerseedsbop,flowerseedsroses'
+        runConfig.property 'forge.enabledGameTestNamespaces', 'flowerseeds,flowerseedsbyg,flowerseedscyclic,flowerseedsbop,flowerseedsroses,flowerseedsff'
     }
 
     if (project.hasProperty('forge_force_ansi')) {
@@ -365,6 +370,10 @@ repositories { RepositoryHandler handler ->
     exclusiveRepo(handler, 'https://minecraftschurli.ddns.net/repository/maven-public/', filter -> {
         filter.includeGroup 'com.github.minecraftschurlimods'
     })
+
+    flatDir {
+        dir 'libs'
+    }
 }
 
 test {
@@ -407,20 +416,26 @@ dependencies {
 //    compileOnly fg.deobf("curse.maven:opencomputers2-437654:${oc2_id}")
 
     //Dependencies for data generators for mod compat reference
+
+    implementation fg.deobf("curse.maven:terrablender-563928:${terrablender_id}")
+    implementation fg.deobf("curse.maven:flib-661261:${flib_id}")
+    implementation fg.deobf("curse.maven:data-trades-890866:${dt_id}")
+
+
+    //For compat
+    //implementation fg.deobf("curse.maven:fabulous-flowers-871259:${ff_id}")
     implementation fg.deobf("curse.maven:roses-forge-470482:${roses_id}")
     implementation fg.deobf("curse.maven:biomes-o-plenty-api-220318:${biomesoplenty_api_id}")
     implementation fg.deobf("curse.maven:biomes-o-plenty-220318:${biomesoplenty_id}")
-    implementation fg.deobf("curse.maven:terrablender-563928:${terrablender_id}")
     implementation fg.deobf("curse.maven:cyclic-239286:${cyclic_id}")
-    implementation fg.deobf("curse.maven:flib-661261:${flib_id}")
-    implementation fg.deobf("curse.maven:data-trades-890866:${dt_id}")
-    //datagenMainCompileOnly fg.deobf("curse.maven:biomes-youll-go-247560:${byg_id}")
-
+    //implementation fg.deobf("curse.maven:biomes-youll-go-247560:${byg_id}")
+    implementation fg.deobf('com.ff:fabulous_flowers:1.1.0')
 
     //for testing
     runtimeOnly fg.deobf("curse.maven:industrial-foregoing-266515:${foregoing_id}")
     runtimeOnly fg.deobf("curse.maven:titanium-287342:${titanium_id}")
     runtimeOnly fg.deobf("curse.maven:tagtooltips-899941:${tips_id}")
+
 
 }
 
@@ -444,10 +459,10 @@ tasks.named('jar', Jar).configure {
 }
 
 tasks.named('sourcesJar', Jar).configure {
-    dependsOn(classes, apiClasses, cyclicClasses, bopClasses, bygClasses, rosesClasses)
+    dependsOn(classes, apiClasses, cyclicClasses, bopClasses, bygClasses, rosesClasses, ffClasses)
     duplicatesStrategy(DuplicatesStrategy.FAIL)
     //Note: Already contains main source set's sources by default
-    from(sourceSets.api.allJava, sourceSets.cyclic.allJava, sourceSets.bop.allJava, sourceSets.byg.allJava, sourceSets.roses.allJava)
+    from(sourceSets.api.allJava, sourceSets.cyclic.allJava, sourceSets.bop.allJava, sourceSets.byg.allJava, sourceSets.roses.allJava, sourceSets.ff.allJava)
     manifest.attributes(getManifestAttributes("FlowerSeeds"))
 }
 
@@ -466,16 +481,17 @@ def secondaryJar(SourceSet sourceSet, String title) {
 def apiJar = secondaryJar(sourceSets.api, '')
 def cyclicJar = secondaryJar(sourceSets.cyclic, 'FlowerSeeds2-Cyclic')
 def bygJar = secondaryJar(sourceSets.byg, 'FlowerSeeds2-BYG')
-def bopJar = secondaryJar(sourceSets.bop, 'FlowerSeeds2-BOP')
+def bopJar = secondaryJar(sourceSets.bop, 'FlowerSeeds2-Biomes-O-Plenty')
 def rosesJar = secondaryJar(sourceSets.roses, 'FlowerSeeds2-Roses')
+def ffJar = secondaryJar(sourceSets.ff, 'FlowerSeeds2-Fabulous-Flowers')
 
 def allJar = tasks.register('allJar', Jar, {
-    dependsOn(classes, apiClasses, cyclicClasses, bygClasses, bopClasses, rosesClasses)
+    dependsOn(classes, apiClasses, cyclicClasses, bygClasses, bopClasses, rosesClasses, ffClasses)
     mustRunAfter(clean)
     duplicatesStrategy(DuplicatesStrategy.FAIL)
     archiveClassifier.set("all")
     manifest.attributes(getManifestAttributes("FlowerSeedsAll"))
-    def combineSets = [sourceSets.main, sourceSets.cyclic, sourceSets.byg, sourceSets.bop, sourceSets.roses]
+    def combineSets = [sourceSets.main, sourceSets.cyclic, sourceSets.byg, sourceSets.bop, sourceSets.roses, sourceSets.ff]
     doFirst {
         //Start by generating the merged data
         MergeJars.merge(project, combineSets)
@@ -530,6 +546,7 @@ artifacts {
     archives bopJar
     archives bygJar
     archives rosesJar
+    archives ffJar
     archives sourcesJar
 }
 
@@ -577,7 +594,7 @@ tasks.register('optimizePng').configure {
         //Ensure the logo is minimized (we add this file to each jar)
         minimizePNGFile(file("${projectDir}/logo.png"))
         //Minimize any PNGs in the source sets
-        def sourceSets = [sourceSets.main, sourceSets.cyclic, sourceSets.bop, sourceSets.byg, sourceSets.roses]
+        def sourceSets = [sourceSets.main, sourceSets.cyclic, sourceSets.bop, sourceSets.byg, sourceSets.roses, sourceSets.ff]
         for (def sourceSet : sourceSets) {
             for (dir in sourceSet.resources.srcDirs) {
                 fileTree(dir: dir, includes: pngPatterns).each { minimizePNGFile(it) }
