@@ -1,0 +1,35 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "immersiveengineering"
+        }
+      ],
+      "recipe": {
+        "type": "immersiveengineering:cloche",
+        "input": {
+          "item": "flowerseedsfabulousflowers:black_tulip_seed"
+        },
+        "render": {
+          "type": "crop",
+          "block": "flowerseedsfabulousflowers:black_tulip_seed"
+        },
+        "results": [
+          {
+            "item": "fabulous_flowers:black_tulip"
+          },
+          {
+            "item": "flowerseedsfabulousflowers:black_tulip_seed"
+          }
+        ],
+        "soil": {
+          "item": "minecraft:dirt"
+        },
+        "time": 240
+      }
+    }
+  ]
+}

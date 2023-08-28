@@ -1,0 +1,14 @@
+{
+  "parent": "flowerseeds:block/cross_stage1",
+  "render_type": "minecraft:cutout_mipped",
+  "textures": {
+    "cross": "fabulous_flowers:block/yellow_poppy"
+  },
+  "transform": {
+    "translation": [
+      0.23,
+      -0.1,
+      -0.23
+    ]
+  }
+}

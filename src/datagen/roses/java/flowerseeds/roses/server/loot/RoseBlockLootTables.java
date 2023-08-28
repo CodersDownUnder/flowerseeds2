@@ -1,6 +1,6 @@
 package flowerseeds.roses.server.loot;
 
-import flowerseeds.roses.init.BlockInit;
+import flowerseeds.roses.FlowerSeedsRoses;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
@@ -30,8 +30,8 @@ public class RoseBlockLootTables extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
-        add(BlockInit.ROSE_SEED.get(), FlowerLootTableBuilder(BlockInit.ROSE_SEED.get(), RosesBlocks.ROSE.get().asItem()));
-        add(BlockInit.CYAN_FLOWER_SEED.get(), FlowerLootTableBuilder(BlockInit.CYAN_FLOWER_SEED.get(), RosesBlocks.CYAN_FLOWER.get().asItem()));
+        add(FlowerSeedsRoses.ROSE_SEED.get(), FlowerLootTableBuilder(FlowerSeedsRoses.ROSE_SEED.get(), RosesBlocks.ROSE.get().asItem()));
+        add(FlowerSeedsRoses.CYAN_FLOWER_SEED.get(), FlowerLootTableBuilder(FlowerSeedsRoses.CYAN_FLOWER_SEED.get(), RosesBlocks.CYAN_FLOWER.get().asItem()));
     }
 
     protected LootTable.Builder FlowerLootTableBuilder(Block pCropBlock, Item pGrownCropItem) {
@@ -48,6 +48,6 @@ public class RoseBlockLootTables extends BlockLootSubProvider {
 
     @Override
     protected @NotNull Iterable<Block> getKnownBlocks() {
-        return BlockInit.BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;
+        return FlowerSeedsRoses.BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;
     }
 }

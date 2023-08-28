@@ -1,6 +1,6 @@
 package flowerseeds.roses.server.compat;
 
-import flowerseeds.roses.init.BlockInit;
+import flowerseeds.roses.FlowerSeedsRoses;
 import flowerseeds.server.compat.MainCompatDataProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -19,8 +19,8 @@ public class RosesCompatDataProvider extends MainCompatDataProvider {
     @Override
     protected @NotNull CompletableFuture<?> generate() {
 
-        basicFlowerProcessing(BlockInit.ROSE_SEED.get(), RosesBlocks.ROSE.get().asItem());
-        basicFlowerProcessing(BlockInit.CYAN_FLOWER_SEED.get(), RosesBlocks.CYAN_FLOWER.get().asItem());
+        basicFlowerProcessing(FlowerSeedsRoses.ROSE_SEED.get(), RosesBlocks.ROSE.get().asItem());
+        basicFlowerProcessing(FlowerSeedsRoses.CYAN_FLOWER_SEED.get(), RosesBlocks.CYAN_FLOWER.get().asItem());
 
        
        //This is here to force it to generate all the files, otherwise the last few files don't get generated for some reason or other.

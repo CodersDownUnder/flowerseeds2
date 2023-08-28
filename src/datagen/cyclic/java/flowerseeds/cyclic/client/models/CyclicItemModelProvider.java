@@ -1,6 +1,6 @@
 package flowerseeds.cyclic.client.models;
 
-import flowerseeds.cyclic.init.ItemInit;
+import flowerseeds.cyclic.FlowerSeedsCyclic;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -27,7 +27,7 @@ public class CyclicItemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
 
-        for (RegistryObject<Item> item : ItemInit.ITEMS.getEntries()) {
+        for (RegistryObject<Item> item : FlowerSeedsCyclic.ITEMS.getEntries()) {
             oneLayerItem(item.get());
         }
     }

@@ -1,6 +1,6 @@
 package flowerseeds.roses.server.recipes;
 
-import flowerseeds.roses.init.BlockInit;
+import flowerseeds.roses.FlowerSeedsRoses;
 import flowerseeds.server.recipes.MainRecipeProvider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -22,8 +22,8 @@ public class RosesRecipeProvider extends MainRecipeProvider implements IConditio
 
     @Override
     protected void buildRecipes(Consumer<FinishedRecipe> pWriter) {
-        flowerSeedRecipe(BlockInit.ROSE_SEED.get().asItem(), RosesBlocks.ROSE.get().asItem(), pWriter, "roses");
-        flowerSeedRecipe(BlockInit.CYAN_FLOWER_SEED.get().asItem(), RosesBlocks.CYAN_FLOWER.get().asItem(), pWriter, "roses");
+        flowerSeedRecipe(FlowerSeedsRoses.ROSE_SEED.get().asItem(), RosesBlocks.ROSE.get().asItem(), pWriter, "roses");
+        flowerSeedRecipe(FlowerSeedsRoses.CYAN_FLOWER_SEED.get().asItem(), RosesBlocks.CYAN_FLOWER.get().asItem(), pWriter, "roses");
     }
 
 

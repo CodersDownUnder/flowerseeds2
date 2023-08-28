@@ -1,14 +1,13 @@
 package flowerseeds.cyclic.server.compat;
 
 import com.lothrazar.cyclic.registry.BlockRegistry;
-import flowerseeds.cyclic.init.BlockInit;
+import flowerseeds.cyclic.FlowerSeedsCyclic;
 import flowerseeds.server.compat.MainCompatDataProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.data.event.GatherDataEvent;
 import org.jetbrains.annotations.NotNull;
-import willatendo.roses.server.block.RosesBlocks;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -21,10 +20,10 @@ public class CyclicCompatDataProvider extends MainCompatDataProvider {
     @Override
     protected @NotNull CompletableFuture<?> generate() {
 
-        basicFlowerProcessing(BlockInit.ABSALON_TULIP_SEED.get(), BlockRegistry.FLOWER_ABSALON_TULIP.get().asItem());
-        basicFlowerProcessing(BlockInit.LIME_CARNATION_SEED.get(), BlockRegistry.FLOWER_LIME_CARNATION.get().asItem());
-        basicFlowerProcessing(BlockInit.PURPLE_TULIP_SEED.get(), BlockRegistry.FLOWER_PURPLE_TULIP.get().asItem());
-        basicFlowerProcessing(BlockInit.CYAN_ROSE_SEED.get(), BlockRegistry.FLOWER_CYAN.get().asItem());
+        basicFlowerProcessing(FlowerSeedsCyclic.ABSALON_TULIP_SEED.get(), BlockRegistry.FLOWER_ABSALON_TULIP.get().asItem());
+        basicFlowerProcessing(FlowerSeedsCyclic.LIME_CARNATION_SEED.get(), BlockRegistry.FLOWER_LIME_CARNATION.get().asItem());
+        basicFlowerProcessing(FlowerSeedsCyclic.PURPLE_TULIP_SEED.get(), BlockRegistry.FLOWER_PURPLE_TULIP.get().asItem());
+        basicFlowerProcessing(FlowerSeedsCyclic.CYAN_ROSE_SEED.get(), BlockRegistry.FLOWER_CYAN.get().asItem());
 
        
        //This is here to force it to generate all the files, otherwise the last few files don't get generated for some reason or other.
@@ -36,7 +35,7 @@ public class CyclicCompatDataProvider extends MainCompatDataProvider {
 
     @Override
     public String getName() {
-        return "Flower Seeds 2 Roses Compat data Provider";
+        return "Flower Seeds 2 Cyclic Compat data Provider";
     }
 
 }

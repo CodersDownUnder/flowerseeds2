@@ -11,11 +11,14 @@
       "recipe": {
         "type": "botanypots:crop",
         "categories": [
-          "dirt"
+          "dirt",
+          "farmland"
         ],
         "display": {
-          "type": "botanypots:aging",
-          "block": "flowerseeds:red_tulip_seed"
+          "block": "flowerseeds:red_tulip_seed",
+          "properties": {
+            "age": 7
+          }
         },
         "drops": [
           {
@@ -31,7 +34,7 @@
             }
           }
         ],
-        "growthTicks": 150,
+        "growthTicks": 1200,
         "seed": {
           "item": "flowerseeds:red_tulip_seed"
         }

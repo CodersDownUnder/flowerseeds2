@@ -1,0 +1,30 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "thermal"
+        }
+      ],
+      "recipe": {
+        "type": "thermal:insolator",
+        "ingredient": {
+          "item": "flowerseeds:oxeye_daisy_seed"
+        },
+        "output": [
+          {
+            "chance": 4.0,
+            "count": 2,
+            "item": "minecraft:oxeye_daisy"
+          },
+          {
+            "chance": 2.0,
+            "item": "flowerseeds:oxeye_daisy_seed"
+          }
+        ]
+      }
+    }
+  ]
+}

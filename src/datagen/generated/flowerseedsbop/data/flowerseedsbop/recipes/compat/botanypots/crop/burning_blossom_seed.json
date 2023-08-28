@@ -1,0 +1,44 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "botanypots"
+        }
+      ],
+      "recipe": {
+        "type": "botanypots:crop",
+        "categories": [
+          "netherrack",
+          "nether"
+        ],
+        "display": {
+          "block": "flowerseedsbop:burning_blossom_seed",
+          "properties": {
+            "age": 7
+          }
+        },
+        "drops": [
+          {
+            "chance": 1.0,
+            "output": {
+              "item": "biomesoplenty:burning_blossom"
+            }
+          },
+          {
+            "chance": 1.0,
+            "output": {
+              "item": "flowerseedsbop:burning_blossom_seed"
+            }
+          }
+        ],
+        "growthTicks": 1200,
+        "seed": {
+          "item": "flowerseedsbop:burning_blossom_seed"
+        }
+      }
+    }
+  ]
+}

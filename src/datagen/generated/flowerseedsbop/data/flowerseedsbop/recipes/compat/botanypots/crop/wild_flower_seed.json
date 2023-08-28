@@ -1,0 +1,44 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "botanypots"
+        }
+      ],
+      "recipe": {
+        "type": "botanypots:crop",
+        "categories": [
+          "dirt",
+          "farmland"
+        ],
+        "display": {
+          "block": "flowerseedsbop:wild_flower_seed",
+          "properties": {
+            "age": 7
+          }
+        },
+        "drops": [
+          {
+            "chance": 1.0,
+            "output": {
+              "item": "biomesoplenty:wildflower"
+            }
+          },
+          {
+            "chance": 1.0,
+            "output": {
+              "item": "flowerseedsbop:wild_flower_seed"
+            }
+          }
+        ],
+        "growthTicks": 1200,
+        "seed": {
+          "item": "flowerseedsbop:wild_flower_seed"
+        }
+      }
+    }
+  ]
+}

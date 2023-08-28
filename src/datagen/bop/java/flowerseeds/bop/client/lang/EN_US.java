@@ -2,17 +2,37 @@ package flowerseeds.bop.client.lang;
 
 import flowerseeds.bop.FlowerSeedsBop;
 import net.minecraft.data.PackOutput;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.LanguageProvider;
 
 public class EN_US extends LanguageProvider
     {
-        public EN_US(PackOutput gen)
+        public EN_US(PackOutput gen, String modid)
         {
-            super(gen, FlowerSeedsBop.MODID, "en_us");
+            super(gen, modid, "en_us");
+        }
+
+        @Override
+        public String getName() {
+            return "Flower Seeds 2 Biomes o Plenty EN_US Lang Provider";
         }
 
         @Override
         protected void addTranslations() {
-            add("text.packmeta.description", "Flower Seeds Biomes o Plenty Addon, Resource And Datapacks");
+
+            addBlockTranslation(FlowerSeedsBop.ROSE_SEED.get(), "Rose");
+            addBlockTranslation(FlowerSeedsBop.WILD_FLOWER_SEED.get(), "Wild Flower");
+            addBlockTranslation(FlowerSeedsBop.ORANGE_COSMOS_SEED.get(), "Orange Cosmos");
+            addBlockTranslation(FlowerSeedsBop.PINK_DAFFODIL_SEED.get(), "Pink Daffodil");
+            addBlockTranslation(FlowerSeedsBop.GLOW_FLOWER_SEED.get(), "Glow Flower");
+            addBlockTranslation(FlowerSeedsBop.WILTED_LILY_SEED.get(), "Wilted Lily");
+            addBlockTranslation(FlowerSeedsBop.BURNING_BLOSSOM_SEED.get(), "Burning Blossom");
+
+            add("text.packmeta.description", "Flower Seeds 2 Biomes o Plenty Resource And Datapacks");
+        }
+
+        protected void addBlockTranslation(Block block, String name) {
+            add(block, name);
+            add(block.asItem(), name + " Seed");
         }
 }

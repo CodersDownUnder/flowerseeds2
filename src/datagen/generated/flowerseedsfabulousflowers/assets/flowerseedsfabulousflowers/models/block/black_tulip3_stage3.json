@@ -1,0 +1,11 @@
+{
+  "parent": "fabulous_flowers:block/black_tulip",
+  "render_type": "minecraft:cutout_mipped",
+  "transform": {
+    "translation": [
+      0.23,
+      -0.1,
+      -0.23
+    ]
+  }
+}

@@ -4,6 +4,8 @@ import com.github.minecraftschurlimods.easydatagenlib.CompatDataProvider;
 import com.github.minecraftschurlimods.easydatagenlib.util.botanypots.DisplayState;
 import com.github.minecraftschurlimods.easydatagenlib.util.immersiveengineering.ClocheRenderType;
 import flowerseeds.FlowerSeeds;
+import flowerseeds.blocks.CustomBurningCropBlock;
+import flowerseeds.blocks.CustomCropBlock;
 import flowerseeds.init.BlockInit;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -39,7 +41,7 @@ public class MainCompatDataProvider extends CompatDataProvider{
         basicFlowerProcessing(BlockInit.RED_TULIP_SEED.get(), Items.RED_TULIP);
         basicFlowerProcessing(BlockInit.OXEYE_DAISY_SEED.get(), Items.OXEYE_DAISY);
         basicFlowerProcessing(BlockInit.WHITE_TULIP_SEED.get(), Items.WHITE_TULIP);
-        basicFlowerProcessing(BlockInit.WITHER_ROSE_SEED.get(), Items.WITHER_ROSE);
+        basicWitherFlowerProcessing(BlockInit.WITHER_ROSE_SEED.get(), Items.WITHER_ROSE);
        
        //This is here to force it to generate all the files, otherwise the last few files don't get generated for some reason or other.
         //TODO: fix this in future (somehow?)
@@ -53,14 +55,15 @@ public class MainCompatDataProvider extends CompatDataProvider{
         return "Flower Seeds 2 Compat data Provider";
     }
 
-    protected void basicFlowerProcessing(Block seed, Item flower) {
+    protected void basicFlowerProcessing(@NotNull Block seed, Item flower) {
         
 
             Ingredient ingredient = Ingredient.of(seed.asItem());
 
-            BOTANY_POTS_CROP.builder(toName(seed.asItem()), ingredient, 150)
+            BOTANY_POTS_CROP.builder(toName(seed.asItem()), ingredient, 1200)
                     .addCategory("dirt")
-                    .addDisplay(new DisplayState.Aging(seed))
+                    .addCategory("farmland")
+                    .addDisplay(new DisplayState.Simple(seed.defaultBlockState().setValue(CustomCropBlock.AGE, 7)))
                     .addOutput(flower)
                     .addOutput(seed.asItem()).build();
 
@@ -76,6 +79,62 @@ public class MainCompatDataProvider extends CompatDataProvider{
             MEKANISM_CRUSHING.builder(toName(seed.asItem()), ingredient, BIO_FUEL, 2).build();
 
             MEKANISM_CRUSHING.builder(toName(Blocks.AIR), Ingredient.of(Blocks.AIR.asItem()), new ResourceLocation("minecraft:air"), 0);
+
+    }
+
+    protected void basicWitherFlowerProcessing(@NotNull Block seed, Item flower) {
+
+
+        Ingredient ingredient = Ingredient.of(seed.asItem());
+
+        BOTANY_POTS_CROP.builder(toName(seed.asItem()), ingredient, 1200)
+                .addCategory("soul_sand")
+                .addCategory("netherrack")
+                .addCategory("dirt")
+                .addCategory("farmland")
+                .addDisplay(new DisplayState.Simple(seed.defaultBlockState().setValue(CustomCropBlock.AGE, 7)))
+                .addOutput(flower)
+                .addOutput(seed.asItem()).build();
+
+        THERMAL_INSOLATING.builder(toName(seed.asItem()))
+                .addInput(ingredient)
+                .addOutputItem(flower, 2, 4f)
+                .addOutputItem(seed.asItem(), 1, 2f).build();
+
+        IMMERSIVE_ENGINEERING_CLOCHE.builder(toName(seed.asItem()), 240, ingredient, Ingredient.of(Blocks.SOUL_SAND), ClocheRenderType.CROP, blockId(seed))
+                .addOutput(Ingredient.of(flower))
+                .addOutput(ingredient).build();
+
+        MEKANISM_CRUSHING.builder(toName(seed.asItem()), ingredient, BIO_FUEL, 2).build();
+
+        MEKANISM_CRUSHING.builder(toName(Blocks.AIR), Ingredient.of(Blocks.AIR.asItem()), new ResourceLocation("minecraft:air"), 0);
+
+    }
+
+    protected void basicNetherFlowerProcessing(@NotNull Block seed, Item flower) {
+
+
+        Ingredient ingredient = Ingredient.of(seed.asItem());
+
+        BOTANY_POTS_CROP.builder(toName(seed.asItem()), ingredient, 1200)
+                .addCategory("netherrack")
+                .addCategory("nether")
+                .addDisplay(new DisplayState.Simple(seed.defaultBlockState().setValue(CustomBurningCropBlock.AGE, 7)))
+                .addOutput(flower)
+                .addOutput(seed.asItem()).build();
+
+        THERMAL_INSOLATING.builder(toName(seed.asItem()))
+                .addInput(ingredient)
+                .addOutputItem(flower, 2, 4f)
+                .addOutputItem(seed.asItem(), 1, 2f).build();
+
+        IMMERSIVE_ENGINEERING_CLOCHE.builder(toName(seed.asItem()), 240, ingredient, Ingredient.of(Blocks.NETHERRACK), ClocheRenderType.CROP, blockId(seed))
+                .addOutput(Ingredient.of(flower))
+                .addOutput(ingredient).build();
+
+        MEKANISM_CRUSHING.builder(toName(seed.asItem()), ingredient, BIO_FUEL, 2).build();
+
+        MEKANISM_CRUSHING.builder(toName(Blocks.AIR), Ingredient.of(Blocks.AIR.asItem()), new ResourceLocation("minecraft:air"), 0);
 
     }
 

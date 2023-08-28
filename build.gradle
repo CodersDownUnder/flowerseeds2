@@ -46,9 +46,9 @@ ext {
                          "cyclic_version": cyclic_version_range, "roses_version": roses_version_range, "mod_license": mod_license, "mod_authors": mod_authors,
                          "neo_version_range": neo_version_range, "minecraft_version_range": minecraft_version_range, "mod_id": mod_id, "mod_version": mod_version,
                          "roses_addon_version": roses_version, "cyclic_addon_version": cyclic_version, "bop_addon_version": bop_version, "byg_addon_version": byg_version,
-                         "ff_version": ff_version, "ff_version_range": ff_version_range]
+                         "ff_addon_version": ff_version, "ff_version_range": ff_version_range]
     jsonPatterns = ["**/*.json", "**/*.mcmeta"]
-    secondaryModules = ['byg', 'cyclic', 'bop', 'roses', 'ff']
+    secondaryModules = ['byg', 'cyclic', 'bop', 'roses', 'fabulousflowers']
     extraTypes = ['datagen', 'gameTest']
 }
 
@@ -244,9 +244,8 @@ def setupTasks(SourceSet sourceSet) {
 }
 
 group = "flowerseeds"
-def basicVersion = "${mod_version}." + (System.env.BUILD_NUMBER ?: "homebaked")
-version = "${minecraft_version}-${basicVersion}"
-archivesBaseName = "FlowerSeeds"
+version = "${minecraft_version}-${mod_version}"
+archivesBaseName = "FlowerSeeds2"
 java {
     toolchain.languageVersion = JavaLanguageVersion.of("${java_version}")
     withSourcesJar()
@@ -312,7 +311,7 @@ def setupRunConfig(RunConfig runConfig, boolean supportsGameTests, String direct
     runConfig.property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
     if (supportsGameTests) {
         //Specify all our mods as domains to look for game tests
-        runConfig.property 'forge.enabledGameTestNamespaces', 'flowerseeds,flowerseedsbyg,flowerseedscyclic,flowerseedsbop,flowerseedsroses,flowerseedsff'
+        runConfig.property 'forge.enabledGameTestNamespaces', 'flowerseeds,flowerseedsbyg,flowerseedscyclic,flowerseedsbop,flowerseedsroses,flowerseedsfabulousflowers'
     }
 
     if (project.hasProperty('forge_force_ansi')) {
@@ -429,12 +428,14 @@ dependencies {
     implementation fg.deobf("curse.maven:biomes-o-plenty-220318:${biomesoplenty_id}")
     implementation fg.deobf("curse.maven:cyclic-239286:${cyclic_id}")
     //implementation fg.deobf("curse.maven:biomes-youll-go-247560:${byg_id}")
-    implementation fg.deobf('com.ff:fabulous_flowers:1.1.0')
+    implementation fg.deobf('com.fabulousflowers:fabulous_flowers:1.1.0')
 
     //for testing
     runtimeOnly fg.deobf("curse.maven:industrial-foregoing-266515:${foregoing_id}")
     runtimeOnly fg.deobf("curse.maven:titanium-287342:${titanium_id}")
     runtimeOnly fg.deobf("curse.maven:tagtooltips-899941:${tips_id}")
+    runtimeOnly fg.deobf("curse.maven:botany-pots-353928:${botanypots_id}")
+    runtimeOnly fg.deobf("curse.maven:bookshelf-228525:${bookshelf_id}")
 
 
 }
@@ -442,11 +443,11 @@ dependencies {
 def getManifestAttributes(String title) {
     return [
             "Specification-Title"     : title,
-            "Specification-Vendor"    : "FlowerSeeds",
+            "Specification-Vendor"    : "FlowerSeeds2",
             "Specification-Version"   : "${project.mod_version}",
             "Implementation-Title"    : title,
             "Implementation-Version"  : "${project.mod_version}",
-            "Implementation-Vendor"   : "FlowerSeeds",
+            "Implementation-Vendor"   : "FlowerSeeds2",
             "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
             "Automatic-Module-Name"   : title.toLowerCase(Locale.ROOT)
     ]
@@ -455,15 +456,15 @@ def getManifestAttributes(String title) {
 tasks.named('jar', Jar).configure {
     duplicatesStrategy(DuplicatesStrategy.FAIL)
     from([sourceSets.api.output, sourceSets.main.output])
-    manifest.attributes(getManifestAttributes("FlowerSeeds"))
+    manifest.attributes(getManifestAttributes("FlowerSeeds2"))
 }
 
 tasks.named('sourcesJar', Jar).configure {
-    dependsOn(classes, apiClasses, cyclicClasses, bopClasses, bygClasses, rosesClasses, ffClasses)
+    dependsOn(classes, apiClasses, cyclicClasses, bopClasses, bygClasses, rosesClasses, fabulousflowersClasses)
     duplicatesStrategy(DuplicatesStrategy.FAIL)
     //Note: Already contains main source set's sources by default
-    from(sourceSets.api.allJava, sourceSets.cyclic.allJava, sourceSets.bop.allJava, sourceSets.byg.allJava, sourceSets.roses.allJava, sourceSets.ff.allJava)
-    manifest.attributes(getManifestAttributes("FlowerSeeds"))
+    from(sourceSets.api.allJava, sourceSets.cyclic.allJava, sourceSets.bop.allJava, sourceSets.byg.allJava, sourceSets.roses.allJava, sourceSets.fabulousflowers.allJava)
+    manifest.attributes(getManifestAttributes("FlowerSeeds2"))
 }
 
 def secondaryJar(SourceSet sourceSet, String title) {
@@ -474,7 +475,7 @@ def secondaryJar(SourceSet sourceSet, String title) {
         if (!title.isEmpty()) {
             archiveFileName.set("${title}-${project.version}.jar")
         }
-        manifest.attributes(getManifestAttributes(title.isEmpty() ? "FlowerSeeds" : title))
+        manifest.attributes(getManifestAttributes(title.isEmpty() ? "FlowerSeeds2" : title))
     })
 }
 
@@ -483,15 +484,15 @@ def cyclicJar = secondaryJar(sourceSets.cyclic, 'FlowerSeeds2-Cyclic')
 def bygJar = secondaryJar(sourceSets.byg, 'FlowerSeeds2-BYG')
 def bopJar = secondaryJar(sourceSets.bop, 'FlowerSeeds2-Biomes-O-Plenty')
 def rosesJar = secondaryJar(sourceSets.roses, 'FlowerSeeds2-Roses')
-def ffJar = secondaryJar(sourceSets.ff, 'FlowerSeeds2-Fabulous-Flowers')
+def fabulousflowersJar = secondaryJar(sourceSets.fabulousflowers, 'FlowerSeeds2-Fabulous-Flowers')
 
 def allJar = tasks.register('allJar', Jar, {
-    dependsOn(classes, apiClasses, cyclicClasses, bygClasses, bopClasses, rosesClasses, ffClasses)
+    dependsOn(classes, apiClasses, cyclicClasses, bygClasses, bopClasses, rosesClasses, fabulousflowersClasses)
     mustRunAfter(clean)
     duplicatesStrategy(DuplicatesStrategy.FAIL)
     archiveClassifier.set("all")
     manifest.attributes(getManifestAttributes("FlowerSeedsAll"))
-    def combineSets = [sourceSets.main, sourceSets.cyclic, sourceSets.byg, sourceSets.bop, sourceSets.roses, sourceSets.ff]
+    def combineSets = [sourceSets.main, sourceSets.cyclic, sourceSets.byg, sourceSets.bop, sourceSets.roses, sourceSets.fabulousflowers]
     doFirst {
         //Start by generating the merged data
         MergeJars.merge(project, combineSets)
@@ -546,7 +547,7 @@ artifacts {
     archives bopJar
     archives bygJar
     archives rosesJar
-    archives ffJar
+    archives fabulousflowersJar
     archives sourcesJar
 }
 
@@ -594,7 +595,7 @@ tasks.register('optimizePng').configure {
         //Ensure the logo is minimized (we add this file to each jar)
         minimizePNGFile(file("${projectDir}/logo.png"))
         //Minimize any PNGs in the source sets
-        def sourceSets = [sourceSets.main, sourceSets.cyclic, sourceSets.bop, sourceSets.byg, sourceSets.roses, sourceSets.ff]
+        def sourceSets = [sourceSets.main, sourceSets.cyclic, sourceSets.bop, sourceSets.byg, sourceSets.roses, sourceSets.fabulousflowers]
         for (def sourceSet : sourceSets) {
             for (dir in sourceSet.resources.srcDirs) {
                 fileTree(dir: dir, includes: pngPatterns).each { minimizePNGFile(it) }

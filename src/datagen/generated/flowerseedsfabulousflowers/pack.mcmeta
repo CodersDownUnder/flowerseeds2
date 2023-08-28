@@ -1,0 +1,8 @@
+{
+  "pack": {
+    "description": {
+      "translate": "text.packmeta.description"
+    },
+    "pack_format": 15
+  }
+}

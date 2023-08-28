@@ -1,0 +1,25 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "mekanism"
+        }
+      ],
+      "recipe": {
+        "type": "mekanism:crushing",
+        "input": {
+          "ingredient": {
+            "item": "flowerseedsbop:glow_flower_seed"
+          }
+        },
+        "output": {
+          "count": 2,
+          "item": "mekanism:bio_fuel"
+        }
+      }
+    }
+  ]
+}

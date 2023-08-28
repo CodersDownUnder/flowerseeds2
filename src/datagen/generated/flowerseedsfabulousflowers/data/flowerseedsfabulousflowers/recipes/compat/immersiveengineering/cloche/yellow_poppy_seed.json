@@ -1,0 +1,35 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "immersiveengineering"
+        }
+      ],
+      "recipe": {
+        "type": "immersiveengineering:cloche",
+        "input": {
+          "item": "flowerseedsfabulousflowers:yellow_poppy_seed"
+        },
+        "render": {
+          "type": "crop",
+          "block": "flowerseedsfabulousflowers:yellow_poppy_seed"
+        },
+        "results": [
+          {
+            "item": "fabulous_flowers:yellow_poppy"
+          },
+          {
+            "item": "flowerseedsfabulousflowers:yellow_poppy_seed"
+          }
+        ],
+        "soil": {
+          "item": "minecraft:dirt"
+        },
+        "time": 240
+      }
+    }
+  ]
+}

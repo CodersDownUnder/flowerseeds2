@@ -1,7 +1,7 @@
 package flowerseeds.cyclic.server.loot;
 
 import com.lothrazar.cyclic.registry.BlockRegistry;
-import flowerseeds.cyclic.init.BlockInit;
+import flowerseeds.cyclic.FlowerSeedsCyclic;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
@@ -17,7 +17,6 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePrope
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.NotNull;
-import willatendo.roses.server.block.RosesBlocks;
 
 import java.util.Set;
 
@@ -26,15 +25,12 @@ public class CyclicBlockLootTables extends BlockLootSubProvider {
         super(Set.of(), FeatureFlags.REGISTRY.allFlags());
     }
 
-
-
-
     @Override
     protected void generate() {
-        createLootTable(BlockInit.ABSALON_TULIP_SEED.get(), BlockRegistry.FLOWER_ABSALON_TULIP.get());
-        createLootTable(BlockInit.PURPLE_TULIP_SEED.get(), BlockRegistry.FLOWER_PURPLE_TULIP.get());
-        createLootTable(BlockInit.LIME_CARNATION_SEED.get(), BlockRegistry.FLOWER_LIME_CARNATION.get());
-        createLootTable(BlockInit.CYAN_ROSE_SEED.get(), BlockRegistry.FLOWER_CYAN.get());
+        createLootTable(FlowerSeedsCyclic.ABSALON_TULIP_SEED.get(), BlockRegistry.FLOWER_ABSALON_TULIP.get());
+        createLootTable(FlowerSeedsCyclic.PURPLE_TULIP_SEED.get(), BlockRegistry.FLOWER_PURPLE_TULIP.get());
+        createLootTable(FlowerSeedsCyclic.LIME_CARNATION_SEED.get(), BlockRegistry.FLOWER_LIME_CARNATION.get());
+        createLootTable(FlowerSeedsCyclic.CYAN_ROSE_SEED.get(), BlockRegistry.FLOWER_CYAN.get());
     }
 
     protected void createLootTable(Block block, Block block2) {
@@ -55,6 +51,6 @@ public class CyclicBlockLootTables extends BlockLootSubProvider {
 
     @Override
     protected @NotNull Iterable<Block> getKnownBlocks() {
-        return BlockInit.BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;
+        return FlowerSeedsCyclic.BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;
     }
 }

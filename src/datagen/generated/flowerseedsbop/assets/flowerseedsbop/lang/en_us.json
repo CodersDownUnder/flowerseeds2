@@ -1,3 +1,17 @@
 {
-  "text.packmeta.description": "Flower Seeds Biomes o Plenty Addon, Resource And Datapacks"
+  "block.flowerseedsbop.burning_blossom_seed": "Burning Blossom",
+  "block.flowerseedsbop.glow_flower_seed": "Glow Flower",
+  "block.flowerseedsbop.orange_cosmos_seed": "Orange Cosmos",
+  "block.flowerseedsbop.pink_daffodil_seed": "Pink Daffodil",
+  "block.flowerseedsbop.rose_seed": "Rose",
+  "block.flowerseedsbop.wild_flower_seed": "Wild Flower",
+  "block.flowerseedsbop.wilted_lily_seed": "Wilted Lily",
+  "item.flowerseedsbop.burning_blossom_seed": "Burning Blossom Seed",
+  "item.flowerseedsbop.glow_flower_seed": "Glow Flower Seed",
+  "item.flowerseedsbop.orange_cosmos_seed": "Orange Cosmos Seed",
+  "item.flowerseedsbop.pink_daffodil_seed": "Pink Daffodil Seed",
+  "item.flowerseedsbop.rose_seed": "Rose Seed",
+  "item.flowerseedsbop.wild_flower_seed": "Wild Flower Seed",
+  "item.flowerseedsbop.wilted_lily_seed": "Wilted Lily Seed",
+  "text.packmeta.description": "Flower Seeds 2 Biomes o Plenty Resource And Datapacks"
 }

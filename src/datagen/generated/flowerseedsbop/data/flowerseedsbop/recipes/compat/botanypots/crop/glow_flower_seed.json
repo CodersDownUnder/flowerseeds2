@@ -1,0 +1,44 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "botanypots"
+        }
+      ],
+      "recipe": {
+        "type": "botanypots:crop",
+        "categories": [
+          "dirt",
+          "farmland"
+        ],
+        "display": {
+          "block": "flowerseedsbop:glow_flower_seed",
+          "properties": {
+            "age": 7
+          }
+        },
+        "drops": [
+          {
+            "chance": 1.0,
+            "output": {
+              "item": "biomesoplenty:glowflower"
+            }
+          },
+          {
+            "chance": 1.0,
+            "output": {
+              "item": "flowerseedsbop:glow_flower_seed"
+            }
+          }
+        ],
+        "growthTicks": 1200,
+        "seed": {
+          "item": "flowerseedsbop:glow_flower_seed"
+        }
+      }
+    }
+  ]
+}

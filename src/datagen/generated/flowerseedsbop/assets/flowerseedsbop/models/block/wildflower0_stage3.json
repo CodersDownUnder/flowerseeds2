@@ -1,0 +1,11 @@
+{
+  "parent": "biomesoplenty:block/wildflower",
+  "render_type": "minecraft:cutout_mipped",
+  "transform": {
+    "translation": [
+      0.23,
+      -0.1,
+      0.23
+    ]
+  }
+}

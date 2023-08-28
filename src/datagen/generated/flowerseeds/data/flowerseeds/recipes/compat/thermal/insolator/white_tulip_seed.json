@@ -1,0 +1,30 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "thermal"
+        }
+      ],
+      "recipe": {
+        "type": "thermal:insolator",
+        "ingredient": {
+          "item": "flowerseeds:white_tulip_seed"
+        },
+        "output": [
+          {
+            "chance": 4.0,
+            "count": 2,
+            "item": "minecraft:white_tulip"
+          },
+          {
+            "chance": 2.0,
+            "item": "flowerseeds:white_tulip_seed"
+          }
+        ]
+      }
+    }
+  ]
+}

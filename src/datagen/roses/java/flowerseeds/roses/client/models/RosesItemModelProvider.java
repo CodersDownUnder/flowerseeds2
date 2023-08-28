@@ -1,6 +1,6 @@
 package flowerseeds.roses.client.models;
 
-import flowerseeds.roses.init.BlockInit;
+import flowerseeds.roses.FlowerSeedsRoses;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -26,8 +26,8 @@ public class RosesItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        oneLayerItem(BlockInit.ROSE_SEED.get().asItem());
-        oneLayerItem(BlockInit.CYAN_FLOWER_SEED.get().asItem());
+        oneLayerItem(FlowerSeedsRoses.ROSE_SEED.get().asItem());
+        oneLayerItem(FlowerSeedsRoses.CYAN_FLOWER_SEED.get().asItem());
     }
 
     private void oneLayerItem(final Item item) {

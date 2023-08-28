@@ -1,8 +1,14 @@
 package flowerseeds.bop.server;
 
-import flowerseeds.FlowerSeeds;
 import flowerseeds.bop.FlowerSeedsBop;
 import flowerseeds.bop.client.lang.EN_US;
+import flowerseeds.bop.client.models.BopBlockStateProvider;
+import flowerseeds.bop.client.models.BopItemModelProvider;
+import flowerseeds.bop.server.compat.BopCompatDataProvider;
+import flowerseeds.bop.server.loot.BopLootTableProvider;
+import flowerseeds.bop.server.recipes.BopRecipeProvider;
+import flowerseeds.bop.server.tags.BopBlockTagProvider;
+import flowerseeds.bop.server.tags.BopItemTagProvider;
 import net.minecraft.DetectedVersion;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
@@ -29,6 +35,7 @@ public class DataGenerators {
         PackOutput packOutput = generator.getPackOutput();
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
+        String MODID = FlowerSeedsBop.MODID;
 
         generator.addProvider(true, new PackMetadataGenerator(packOutput)
                 .add(PackMetadataSection.TYPE, new PackMetadataSection(
@@ -37,15 +44,18 @@ public class DataGenerators {
                         Arrays.stream(PackType.values()).collect(Collectors.toMap(Function.identity(), DetectedVersion.BUILT_IN::getPackVersion))
                 ))
         );
-        generator.addProvider(event.includeClient(), new EN_US(packOutput));
-        //generator.addProvider(event.includeServer(), new ModRecipeProvider(packOutput));
-        //generator.addProvider(event.includeServer(), ModLootTableProvider.create(packOutput));
+        generator.addProvider(event.includeClient(), new EN_US(packOutput, MODID));
+        generator.addProvider(event.includeServer(), new BopRecipeProvider(packOutput));
+        generator.addProvider(event.includeServer(), BopLootTableProvider.create(packOutput));
 
-        //generator.addProvider(event.includeClient(), new ModBlockStateProvider(packOutput, existingFileHelper));
-        //generator.addProvider(event.includeClient(), new ModItemModelProvider(packOutput, existingFileHelper));
+        generator.addProvider(event.includeClient(), new BopBlockStateProvider(packOutput, MODID, existingFileHelper));
+        generator.addProvider(event.includeClient(), new BopItemModelProvider(packOutput, MODID, existingFileHelper));
 
-        //ModBlockTagGenerator blockTagGenerator = generator.addProvider(event.includeServer(),
-        //        new ModBlockTagGenerator(packOutput, lookupProvider, existingFileHelper));
-        //generator.addProvider(event.includeServer(), new ModItemTagGenerator(packOutput, lookupProvider, blockTagGenerator.contentsGetter(), existingFileHelper));
+        BopBlockTagProvider blockTagGenerator = generator.addProvider(event.includeServer(),
+               new BopBlockTagProvider(packOutput, lookupProvider, existingFileHelper, MODID));
+        generator.addProvider(event.includeServer(), new BopItemTagProvider(packOutput, lookupProvider, blockTagGenerator.contentsGetter(), existingFileHelper, MODID));
+
+        generator.addProvider(event.includeServer(), new BopCompatDataProvider(MODID, event));
+        new BopCompatDataProvider(MODID, event);
     }
 }

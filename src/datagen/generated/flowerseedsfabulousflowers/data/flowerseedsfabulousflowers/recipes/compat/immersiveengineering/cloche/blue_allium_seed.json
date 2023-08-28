@@ -1,0 +1,35 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "immersiveengineering"
+        }
+      ],
+      "recipe": {
+        "type": "immersiveengineering:cloche",
+        "input": {
+          "item": "flowerseedsfabulousflowers:blue_allium_seed"
+        },
+        "render": {
+          "type": "crop",
+          "block": "flowerseedsfabulousflowers:blue_allium_seed"
+        },
+        "results": [
+          {
+            "item": "fabulous_flowers:blue_allium"
+          },
+          {
+            "item": "flowerseedsfabulousflowers:blue_allium_seed"
+          }
+        ],
+        "soil": {
+          "item": "minecraft:dirt"
+        },
+        "time": 240
+      }
+    }
+  ]
+}

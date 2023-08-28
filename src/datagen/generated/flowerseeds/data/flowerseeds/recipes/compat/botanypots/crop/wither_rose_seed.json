@@ -11,11 +11,16 @@
       "recipe": {
         "type": "botanypots:crop",
         "categories": [
-          "dirt"
+          "soul_sand",
+          "netherrack",
+          "dirt",
+          "farmland"
         ],
         "display": {
-          "type": "botanypots:aging",
-          "block": "flowerseeds:wither_rose_seed"
+          "block": "flowerseeds:wither_rose_seed",
+          "properties": {
+            "age": 7
+          }
         },
         "drops": [
           {
@@ -31,7 +36,7 @@
             }
           }
         ],
-        "growthTicks": 150,
+        "growthTicks": 1200,
         "seed": {
           "item": "flowerseeds:wither_rose_seed"
         }

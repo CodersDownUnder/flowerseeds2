@@ -1,6 +1,6 @@
 package flowerseeds.cyclic.server.tags;
 
-import flowerseeds.cyclic.init.BlockInit;
+import flowerseeds.cyclic.FlowerSeedsCyclic;
 import flowerseeds.data.tags.FlowerSeedsBlockTagsProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -21,10 +21,10 @@ public class CyclicBlockTagProvider extends FlowerSeedsBlockTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
-        tagSet(BlockInit.CYAN_ROSE_SEED.get(),
-                BlockInit.LIME_CARNATION_SEED.get(),
-                BlockInit.PURPLE_TULIP_SEED.get(),
-                BlockInit.ABSALON_TULIP_SEED.get());
+        tagSet(FlowerSeedsCyclic.CYAN_ROSE_SEED.get(),
+                FlowerSeedsCyclic.LIME_CARNATION_SEED.get(),
+                FlowerSeedsCyclic.PURPLE_TULIP_SEED.get(),
+                FlowerSeedsCyclic.ABSALON_TULIP_SEED.get());
     }
 
 }

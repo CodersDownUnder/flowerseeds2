@@ -2,7 +2,6 @@ package flowerseeds.roses.server.tags;
 
 import flowerseeds.data.tags.FlowerSeedsItemTagsProvider;
 import flowerseeds.roses.FlowerSeedsRoses;
-import flowerseeds.roses.init.BlockInit;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.Block;
@@ -24,7 +23,7 @@ public class RosesItemTagProvider extends FlowerSeedsItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
-        tagSet(flowerseeds.roses.init.BlockInit.ROSE_SEED.get().asItem(), BlockInit.CYAN_FLOWER_SEED.get().asItem());
+        tagSet(FlowerSeedsRoses.ROSE_SEED.get().asItem(),FlowerSeedsRoses.CYAN_FLOWER_SEED.get().asItem());
     }
 
 }

@@ -1,0 +1,40 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:and",
+          "values": [
+            {
+              "type": "forge:mod_loaded",
+              "modid": "biomesoplenty"
+            },
+            {
+              "type": "forge:not",
+              "value": {
+                "type": "forge:false"
+              }
+            }
+          ]
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shapeless",
+        "category": "misc",
+        "ingredients": [
+          {
+            "item": "biomesoplenty:burning_blossom"
+          },
+          {
+            "tag": "forge:seeds"
+          }
+        ],
+        "result": {
+          "count": 2,
+          "item": "flowerseedsbop:burning_blossom_seed"
+        }
+      }
+    }
+  ]
+}

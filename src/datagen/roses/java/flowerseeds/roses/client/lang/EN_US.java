@@ -1,7 +1,7 @@
 package flowerseeds.roses.client.lang;
 
 
-import flowerseeds.roses.init.BlockInit;
+import flowerseeds.roses.FlowerSeedsRoses;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.LanguageProvider;
 
@@ -19,10 +19,10 @@ public class EN_US extends LanguageProvider
 
         @Override
         protected void addTranslations() {
-            add(BlockInit.ROSE_SEED.get(), "Rose");
-            add(BlockInit.ROSE_SEED.get().asItem(), "Rose Seed");
-            add(BlockInit.CYAN_FLOWER_SEED.get(), "Cyan Flower");
-            add(BlockInit.CYAN_FLOWER_SEED.get().asItem(), "Cyan Flower Seed");
+            add(FlowerSeedsRoses.ROSE_SEED.get(), "Rose");
+            add(FlowerSeedsRoses.ROSE_SEED.get().asItem(), "Rose Seed");
+            add(FlowerSeedsRoses.CYAN_FLOWER_SEED.get(), "Cyan Flower");
+            add(FlowerSeedsRoses.CYAN_FLOWER_SEED.get().asItem(), "Cyan Flower Seed");
 
             add("text.packmeta.description", "Flower Seeds 2 Roses Resource And Datapacks");
         }
