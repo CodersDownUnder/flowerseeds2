@@ -480,11 +480,11 @@ def secondaryJar(SourceSet sourceSet, String title) {
 }
 
 def apiJar = secondaryJar(sourceSets.api, '')
-def cyclicJar = secondaryJar(sourceSets.cyclic, 'FlowerSeeds2-Cyclic')
-def bygJar = secondaryJar(sourceSets.byg, 'FlowerSeeds2-BYG')
-def bopJar = secondaryJar(sourceSets.bop, 'FlowerSeeds2-Biomes-O-Plenty')
-def rosesJar = secondaryJar(sourceSets.roses, 'FlowerSeeds2-Roses')
-def fabulousflowersJar = secondaryJar(sourceSets.fabulousflowers, 'FlowerSeeds2-Fabulous-Flowers')
+def cyclicJar = secondaryJar(sourceSets.cyclic, 'FlowerSeeds2Cyclic')
+def bygJar = secondaryJar(sourceSets.byg, 'FlowerSeeds2BYG')
+def bopJar = secondaryJar(sourceSets.bop, 'FlowerSeeds2BiomesOPlenty')
+def rosesJar = secondaryJar(sourceSets.roses, 'FlowerSeeds2Roses')
+def fabulousflowersJar = secondaryJar(sourceSets.fabulousflowers, 'FlowerSeeds2FabulousFlowers')
 
 def allJar = tasks.register('allJar', Jar, {
     dependsOn(classes, apiClasses, cyclicClasses, bygClasses, bopClasses, rosesClasses, fabulousflowersClasses)
