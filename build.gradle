@@ -1,11 +1,14 @@
 //import com.modrinth.minotaur.TaskModrinthUpload
 //import com.modrinth.minotaur.dependencies.ModDependency
 //import com.modrinth.minotaur.dependencies.VersionDependency
+import com.modrinth.minotaur.TaskModrinthUpload
+import com.modrinth.minotaur.dependencies.ModDependency
+import com.modrinth.minotaur.dependencies.VersionDependency
 import groovy.json.JsonOutput
 import groovy.json.JsonSlurper
 import flowerseeds.MergeJars
-//import net.darkhax.curseforgegradle.TaskPublishCurseForge
-//import net.darkhax.curseforgegradle.UploadArtifact
+import net.darkhax.curseforgegradle.TaskPublishCurseForge
+import net.darkhax.curseforgegradle.UploadArtifact
 import net.minecraftforge.gradle.common.util.RunConfig
 import net.minecraftforge.gradle.userdev.tasks.RenameJarInPlace
 
@@ -13,8 +16,8 @@ import java.util.function.Consumer
 
 plugins {
     id 'org.ajoberstar.grgit.service' version '5.2.0'
-    //id 'net.darkhax.curseforgegradle' version '1.1.16'
-    //id "com.modrinth.minotaur" version "2.+"
+    id 'net.darkhax.curseforgegradle' version '1.1.16'
+    id "com.modrinth.minotaur" version "2.+"
     id 'java'
     id 'eclipse'
     id 'idea'
@@ -440,6 +443,7 @@ dependencies {
 
 }
 
+
 def getManifestAttributes(String title) {
     return [
             "Specification-Title"     : title,
@@ -612,7 +616,7 @@ tasks.withType(GenerateModuleMetadata).configureEach {
 //properties to put in $HOME/.gradle/gradle.properties
 //def MAVEN_PASSWORD_PROPERTY_NAME = 'mekanismMavenPassword'
 //def MODMAVEN_PW = System.getenv('MEK_MAVEN_PW') ?: (String)project.findProperty(MAVEN_PASSWORD_PROPERTY_NAME)
-//
+
 //publishing {
 //    publications { PublicationContainer publicationContainer ->
 //        publicationContainer.register("maven", MavenPublication) { MavenPublication publication ->
@@ -675,195 +679,184 @@ tasks.withType(GenerateModuleMetadata).configureEach {
 //        }
 //    }
 //}
-//
-//def resolvedChangelog = null
-//
-////closure to generate the changelog once, and only when needed by CurseGradle or Modrinth
-//def changeLogResolver = { ->
-//    if (resolvedChangelog != null) {
-//        println "Using cached changelog"
-//        return resolvedChangelog
-//    }
-//    def generatedChangelog = "Unable to generate changelog :("
-//    def currentCommit = System.getenv("GIT_COMMIT")
-//    def prevCommit = System.getenv("GIT_PREVIOUS_SUCCESSFUL_COMMIT") ?: System.getenv("GIT_PREVIOUS_COMMIT")
-//
-//    if (currentCommit != null && prevCommit != null) {
-//        generatedChangelog = ""
-//        //Use the service to avoid eagerly instantiating the grgit instance, and only do so when we actually need it
-//        // for usage in generating the changelog for either CF or Modrinth
-//        grgitService.service.get().grgit.log {
-//            range(prevCommit, currentCommit)
-//        }.reverse().each { commit ->
-//            //Use full message rather than short message to get any new lines, and trim it so that any trailing new lines
-//            // get removed so that we don't end up with extra spaces
-//            String message = commit.fullMessage.trim()
-//            if (!message.startsWith("Merge branch") && !message.startsWith("Merge pull request") && !message.contains("[no-changelog]")) {
-//                //Ignore Merges and PR Merges
-//                message = message.replaceAll("#(\\d+)", { match ->//turn issues/prs into links (github currently supports prs being linked as issues)
-//                    return "<a href=\"https://github.com/mekanism/Mekanism/issues/${match[1]}\">${match[0]}</a>"
-//                }).replaceAll("\\n", "<br>&emsp;")//convert new lines that are part of a commit message into actual new lines and a tab
-//                if (generatedChangelog != "") {
-//                    //If this isn't the first commit prepend an extra newline
-//                    generatedChangelog += "<br>"
-//                }
-//                generatedChangelog += "<a href=\"https://github.com/mekanism/Mekanism/commit/${commit.id}\">${commit.getAbbreviatedId()}</a> - ${message}"
-//            }
-//        }
-//        println "Changelog generated"
-//    }
-//
-//    def releaseNotesFile = project.file("docs/release_${mod_version}.html")
-//    if (releaseNotesFile.exists()) {
-//        //Add any version specific changelog stuff
-//        def releaseNotes = releaseNotesFile.getText()
-//        generatedChangelog = "$releaseNotes<br> $generatedChangelog"
-//    }
-//
-//    if (release_type == "alpha") {
-//        //Add a warning at the top about what an alpha build means
-//        generatedChangelog = "Warning: Mekanism is currently in alpha, and is not recommended for widespread use in modpacks. There are likely to be game breaking bugs, " +
-//                "and updating from one alpha to the next may cause various mekanism blocks to disappear/void their contents. While we will try to not have this happen/keep " +
-//                "it to a minimum make sure to make backups. You can read more about the alpha state of this project <a href=\"https://github.com/mekanism/Mekanism#alpha-status\">here</a>." +
-//                "<br> $generatedChangelog"
-//    }
-//    resolvedChangelog = generatedChangelog
-//    return generatedChangelog
-//}
-//
-//tasks.register('outputChangelog') {
-//    doLast {
-//        project.file("build/changelog.html").text = changeLogResolver.call()
-//    }
-//}
-//
-//if (System.getenv("CURSEFORGE_KEY") != null || project.hasProperty('curseforgeKey')) {
-//    println "Enabling Curseforge config"
-//    tasks.register("curseforge", TaskPublishCurseForge, { task ->
-//        setGroup("publishing")
-//        setDescription("Upload Mekanism to CurseForge")
-//
-//        apiToken = System.getenv("CURSEFORGE_KEY") ?: project.findProperty("curseforgeKey")
-//
-//        def changelog = changeLogResolver.call()
-//
-//        //Main Mekanism Project
-//        task.upload(268560, jar) { main ->
-//            setGenericCurseArtifactData(main, changelog)
-//            //Include the API jar as a secondary file to the main file
-//            withAdditionalFile(apiJar)
-//            //Add optional deps
-//            addOptional(
-//                    //Computers
-//                    'cc-tweaked', 'oc2',
-//                    //Looking at mods
-//                    'jade', 'the-one-probe', 'wthit-forge',
-//                    //Tweakers
-//                    'crafttweaker', 'jeitweaker',
-//                    //World gen
-//                    'biomes-o-plenty', 'oh-the-biomes-youll-go',
-//                    //Wood types
-//                    'i-like-wood', 'i-like-wood-biomes-o-plenty-plugin', 'i-like-wood-oh-the-biomes-youll-go-plugin',
-//                    //Misc
-//                    'applied-energistics-2', 'ctm', 'curios', 'dark-mode-everywhere', 'farmers-delight', 'female-gender-forge', 'flux-networks',
-//                    'jei', 'json-things', 'perviaminvenire', 'projecte', 'recipe-stages'
-//            )
-//        }
-//
-//        //Secondary modules/projects
-//        uploadSecondaryCurseProject(task, 345425, changelog, additionsJar)
-//        //uploadSecondaryCurseProject(task, 376939, changelog, defenseJar)
-//        uploadSecondaryCurseProject(task, 268566, changelog, generatorsJar)
-//        uploadSecondaryCurseProject(task, 268567, changelog, toolsJar)
-//    })
-//}
-//
-//void setGenericCurseArtifactData(UploadArtifact artifact, String changelog) {
-//    artifact.changelog = changelog
-//    artifact.changelogType = 'html'
-//    artifact.releaseType = "${release_type}"
-//    //Add that we support forge for now as we currently support both Forge and NeoForge. NeoForge is detected automatically from the gradle plugin
-//    artifact.addModLoader("Forge")
-//}
-//
-//void uploadSecondaryCurseProject(TaskPublishCurseForge task, long projectId, String changelog, TaskProvider<Jar> sourceSetJar) {
-//    task.upload(projectId, sourceSetJar) { artifact ->
-//        setGenericCurseArtifactData(artifact, changelog)
-//        addRequirement('mekanism')
-//    }
-//}
-//
-//if (System.getenv("MODRINTH_TOKEN") != null || project.hasProperty('modrinthToken')) {
-//    println "Enabling Modrinth config"
-//    def additionsModrinth = createSecondaryModrinthUpload("additions", "a6F3uASn", additionsJar)
-//    //def defenseModrinth = createSecondaryModrinthUpload("defense", "", defenseJar)
-//    def generatorsModrinth = createSecondaryModrinthUpload("generators", "OFVYKsAk", generatorsJar)
-//    def toolsModrinth = createSecondaryModrinthUpload("tools", "tqQpq1lt", toolsJar)
-//    tasks.named('modrinth').configure {
-//        dependsOn(jar, apiJar)
-//        finalizedBy(additionsModrinth, /*defenseModrinth,*/ generatorsModrinth, toolsModrinth)
-//    }
-//
-//    modrinth {
-//        if (System.getenv("MODRINTH_TOKEN") == null) {
-//            //Defaults to MODRINTH_TOKEN so we only have to check for a token via gradle properties if there isn't a system property
-//            getToken().value((String) project.findProperty("modrinthToken"))
-//        } else {
-//            token = System.getenv("MODRINTH_TOKEN")
-//        }
-//        projectId = "Ce6I4WUE"
-//        //Use the full "basic" version number rather than just mod version number so that if multiple releases end up happening due to bugs
-//        // then we don't run into conflicts in uploading
-//        //Note: The versionName is set to the versionNumber automatically
-//        versionNumber = "${basicVersion}"
-//        versionType = "${release_type}"
-//        changelog = changeLogResolver.call()
-//        uploadFile = jar
-//        //Add that we support forge for now as we currently support both Forge and NeoForge
-//        // Note: Once we no longer support forge we can just remove the line as NeoForge will be able to be detected automatically
-//        // Currently we can't as Minotaur only detects loaders if none are set
-//        loaders.addAll("forge", "neoforge")
-//
-//        getAdditionalFiles().value([apiJar.get()])
-//        //Note: Can't use nested dependency configuration as we have no way to clear it for the secondary uploads
-//        getDependencies().value([
-//                new ModDependency("XxWD5pD3", "optional"),//AE2
-//                new ModDependency("gu7yAYhd", "optional"),//CC: Tweaked
-//                new ModDependency("Xg35A4rS", "optional"),//CraftTweaker
-//                new ModDependency("vvuO3ImH", "optional"),//Curios
-//                new ModDependency("R2OftAxM", "optional"),//Farmer's Delight
-//                new ModDependency("nvQzSEkH", "optional"),//Jade
-//                new ModDependency("EiEOyeoL", "optional"),//JEI Tweaker
-//                new ModDependency("uE1WpIAk", "optional"),//Oh the Biomes You'll Go
-//                new ModDependency("qXkLFB0L", "optional"),//Recipe Stages
-//                new ModDependency("Eyw0UxEx", "optional"),//The One Probe
-//                new ModDependency("bcOsQHnC", "optional"),//Wildfire's Female Gender Mod
-//                new ModDependency("6AQIaxuO", "optional"),//WTHIT
-//        ])
-//    }
-//}
-//
-//def createSecondaryModrinthUpload(String output, String targetProjectId, TaskProvider<Jar> sourceSetJar) {
-//    return tasks.register("${output}Modrinth", TaskModrinthUpload, {
-//        setGroup("publishing")
-//        setDescription("Upload Mekanism ${output} to Modrinth")
-//        dependsOn(tasks.named("modrinth"), sourceSetJar)
-//        doFirst {
-//            //Run in do first to change the configured extension values before it starts applying
-//            modrinth {
-//                projectId = targetProjectId
-//                uploadFile = sourceSetJar.get()
-//                //Clear additional upload files as this is a modification of what things are set to from before
-//                getAdditionalFiles().empty()
-//                //Mark that the addon requires the build of Mekanism that we just uploaded (and override it to clear all optional dependencies)
-//                if (tasks.modrinth.newVersion == null || tasks.modrinth.newVersion.getId() == null) {
-//                    //If we failed to find the upload version just set it to Mekanism in general
-//                    getDependencies().value([new ModDependency("Ce6I4WUE", "required")])
-//                } else {
-//                    getDependencies().value([new VersionDependency(tasks.modrinth.newVersion.getId(), "required")])
-//                }
-//            }
-//            println "Updated Modrinth extension"
-//        }
-//    })
-//}
+
+def resolvedChangelog = null
+
+//closure to generate the changelog once, and only when needed by CurseGradle or Modrinth
+def changeLogResolver = { ->
+    if (resolvedChangelog != null) {
+        println "Using cached changelog"
+        return resolvedChangelog
+    }
+    def generatedChangelog = "Unable to generate changelog :("
+    def currentCommit = System.getenv("GIT_COMMIT")
+    def prevCommit = System.getenv("GIT_PREVIOUS_SUCCESSFUL_COMMIT") ?: System.getenv("GIT_PREVIOUS_COMMIT")
+
+    if (currentCommit != null && prevCommit != null) {
+        generatedChangelog = ""
+        //Use the service to avoid eagerly instantiating the grgit instance, and only do so when we actually need it
+        // for usage in generating the changelog for either CF or Modrinth
+        grgitService.service.get().grgit.log {
+            range(prevCommit, currentCommit)
+        }.reverse().each { commit ->
+            //Use full message rather than short message to get any new lines, and trim it so that any trailing new lines
+            // get removed so that we don't end up with extra spaces
+            String message = commit.fullMessage.trim()
+            if (!message.startsWith("Merge branch") && !message.startsWith("Merge pull request") && !message.contains("[no-changelog]")) {
+                //Ignore Merges and PR Merges
+                message = message.replaceAll("#(\\d+)", { match ->//turn issues/prs into links (github currently supports prs being linked as issues)
+                    return "<a href=\"https://github.com/CodersDownUnder/flowerseeds2/issues/${match[1]}\">${match[0]}</a>"
+                }).replaceAll("\\n", "<br>&emsp;")//convert new lines that are part of a commit message into actual new lines and a tab
+                if (generatedChangelog != "") {
+                    //If this isn't the first commit prepend an extra newline
+                    generatedChangelog += "<br>"
+                }
+                generatedChangelog += "<a href=\"https://github.com/CodersDownUnder/flowerseeds2/commit/${commit.id}\">${commit.getAbbreviatedId()}</a> - ${message}"
+            }
+        }
+        println "Changelog generated"
+    }
+
+    def releaseNotesFile = project.file("docs/release_${mod_version}.html")
+    if (releaseNotesFile.exists()) {
+        //Add any version specific changelog stuff
+        def releaseNotes = releaseNotesFile.getText()
+        generatedChangelog = "$releaseNotes<br> $generatedChangelog"
+    }
+
+    if (release_type == "alpha") {
+        //Add a warning at the top about what an alpha build means
+        generatedChangelog = "Warning: Mekanism is currently in alpha, and is not recommended for widespread use in modpacks. There are likely to be game breaking bugs, " +
+                "and updating from one alpha to the next may cause various mekanism blocks to disappear/void their contents. While we will try to not have this happen/keep " +
+                "it to a minimum make sure to make backups. You can read more about the alpha state of this project <a href=\"https://github.com/mekanism/Mekanism#alpha-status\">here</a>." +
+                "<br> $generatedChangelog"
+    }
+    resolvedChangelog = generatedChangelog
+    return generatedChangelog
+}
+
+tasks.register('outputChangelog') {
+    doLast {
+        project.file("build/changelog.html").text = changeLogResolver.call()
+    }
+}
+
+if (System.getenv("curseforge_token") != null || project.hasProperty('curseforge_token')) {
+    println "Enabling Curseforge config"
+    tasks.register("curseforge", TaskPublishCurseForge, { task ->
+        setGroup("publishing")
+        setDescription("Upload FlowerSeeds 2 to CurseForge")
+
+        apiToken = System.getenv("curseforge_token") ?: project.findProperty("curseforge_token")
+
+        def changelog = changeLogResolver.call()
+
+
+        task.upload(System.getenv("flowerseeds2_cfid") ?: project.findProperty("flowerseeds2_cfid"), jar) { main ->
+            setGenericCurseArtifactData(main)
+            //Include the API jar as a secondary file to the main file
+            //withAdditionalFile(apiJar)
+            //Add optional deps
+            addOptional(
+                    'botany-pots',
+                    'thermal-expansion',
+                    'immersive-engineering',
+                    'mekanism'
+            )
+        }
+
+        //Secondary modules/projects
+        uploadSecondaryCurseProject(task, System.getenv("flowerseeds2_cyclic_cfid") ?: project.findProperty("flowerseeds2_cyclic_cfid"), cyclicJar, 'cyclic')
+        uploadSecondaryCurseProject(task, System.getenv("flowerseeds2_roses_cfid") ?: project.findProperty("flowerseeds2_roses_cfid"), rosesJar, 'roses-forge')
+        uploadSecondaryCurseProject(task, System.getenv("flowerseeds2_ff_cfid") ?: project.findProperty("flowerseeds2_ff_cfid"), fabulousflowersJar, 'fabulous-flowers')
+        uploadSecondaryCurseProject(task, System.getenv("flowerseeds2_bop_cfid") ?: project.findProperty("flowerseeds2_bop_cfid"), bopJar, 'biomes-o-plenty')
+    })
+}
+
+void setGenericCurseArtifactData(UploadArtifact artifact) {
+    artifact.changelog = file('changelog.md')
+    artifact.changelogType = 'markdown'
+    artifact.releaseType = "${release_type}"
+    //Add that we support forge for now as we currently support both Forge and NeoForge. NeoForge is detected automatically from the gradle plugin
+    artifact.addModLoader("Forge")
+}
+
+void uploadSecondaryCurseProject(TaskPublishCurseForge task, String projectId, TaskProvider<Jar> sourceSetJar, String dependency) {
+    task.upload(projectId.toLong(), sourceSetJar) { artifact ->
+        setGenericCurseArtifactData(artifact)
+        addRequirement("flower-seeds")
+        addRequirement(dependency)
+    }
+}
+
+if (System.getenv("modrinth_token") != null || project.hasProperty('modrinth_token')) {
+    println "Enabling Modrinth config"
+
+    def cyclicModrinth = createSecondaryModrinthUpload("Cyclic", System.getenv("flowerseeds2_cyclic_modrinthid") ?: project.findProperty("flowerseeds2_cyclic_modrinthid"), cyclicJar)
+    def rosesModrinth = createSecondaryModrinthUpload("Roses", System.getenv("flowerseeds2_roses_modrinthid") ?: project.findProperty("flowerseeds2_roses_modrinthid"), rosesJar)
+    def ffModrinth = createSecondaryModrinthUpload("Fabulous Flowers", System.getenv("flowerseeds2_ff_modrinthid") ?: project.findProperty("flowerseeds2_ff_modrinthid"), fabulousflowersJar)
+    def bopModrinth = createSecondaryModrinthUpload("Biomes O Plenty", System.getenv("flowerseeds2_bop_modrinthid") ?: project.findProperty("flowerseeds2_bop_modrinthid"), bopJar)
+
+    tasks.named('modrinth').configure {
+        dependsOn(jar)
+        finalizedBy(cyclicModrinth, rosesModrinth, ffModrinth, bopModrinth)
+    }
+
+    modrinth {
+        if (System.getenv("modrinth_token") == null) {
+            //Defaults to MODRINTH_TOKEN so we only have to check for a token via gradle properties if there isn't a system property
+            getToken().value((String) project.findProperty("modrinth_token"))
+        } else {
+            token = System.getenv("modrinth_token")
+        }
+        debugMode = false
+        projectId = System.getenv("flowerseeds2_modrinthid") ?: project.findProperty("flowerseeds2_modrinthid")
+        //Use the full "basic" version number rather than just mod version number so that if multiple releases end up happening due to bugs
+        // then we don't run into conflicts in uploading
+        //Note: The versionName is set to the versionNumber automatically
+        versionNumber = "${mod_version}"
+        versionType = "${release_type}"
+        changelog = file("changelog.md").getText()
+        uploadFile = jar
+        versionName = "FlowerSeeds 2 ${minecraft_version} V${mod_version}"
+        //Add that we support forge for now as we currently support both Forge and NeoForge
+        // Note: Once we no longer support forge we can just remove the line as NeoForge will be able to be detected automatically
+        // Currently we can't as Minotaur only detects loaders if none are set
+        loaders.addAll("forge", "neoforge")
+
+        //getAdditionalFiles().value([apiJar.get()])
+        //Note: Can't use nested dependency configuration as we have no way to clear it for the secondary uploads
+        getDependencies().value([
+                new ModDependency("U6BUTZ7K", "optional"),// botany pots
+                new ModDependency("tIm2nV03", "optional"),
+                new ModDependency("hmD6rrUJ", "optional"),
+                new ModDependency("Ce6I4WUE", "optional")
+        ])
+    }
+}
+
+def createSecondaryModrinthUpload(String output, String targetProjectId, TaskProvider<Jar> sourceSetJar) {
+    return tasks.register("${output}Modrinth", TaskModrinthUpload, {
+        setGroup("publishing")
+        setDescription("Upload Flower Seeds 2 ${output} to Modrinth")
+        dependsOn(tasks.named("modrinth"), sourceSetJar)
+        doFirst {
+            //Run in do first to change the configured extension values before it starts applying
+            modrinth {
+                projectId = targetProjectId
+                versionName = "Flower Seeds 2 ${output} ${minecraft_version} V${mod_version}"
+                //uploadFile = sourceSetJar.get()
+                //Clear additional upload files as this is a modification of what things are set to from before
+                getAdditionalFiles().empty()
+                //Mark that the addon requires the build of FlowerSeeds 2 that we just uploaded (and override it to clear all optional dependencies)
+                if (tasks.modrinth.newVersion == null || tasks.modrinth.newVersion.getId() == null) {
+                    //If we failed to find the upload version just set it to general
+                    getDependencies().value([new ModDependency(System.getenv("flowerseeds2_modrinthid") ?: project.findProperty("flowerseeds2_modrinthid"), "required")])
+                } else {
+                    getDependencies().value([new VersionDependency(tasks.modrinth.newVersion.getId(), "required")])
+                }
+            }
+            println "Updated Modrinth extension"
+        }
+    })
+}

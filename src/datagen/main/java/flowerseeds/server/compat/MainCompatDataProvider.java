@@ -42,12 +42,11 @@ public class MainCompatDataProvider extends CompatDataProvider{
         basicFlowerProcessing(BlockInit.OXEYE_DAISY_SEED.get(), Items.OXEYE_DAISY);
         basicFlowerProcessing(BlockInit.WHITE_TULIP_SEED.get(), Items.WHITE_TULIP);
         basicWitherFlowerProcessing(BlockInit.WITHER_ROSE_SEED.get(), Items.WITHER_ROSE);
-       
-       //This is here to force it to generate all the files, otherwise the last few files don't get generated for some reason or other.
+        //This is here to force it to generate all the files, otherwise the last few files don't get generated for some reason or other.
         //TODO: fix this in future (somehow?)
-       MEKANISM_CRUSHING.builder(toName(Blocks.AIR), Ingredient.of(Blocks.AIR.asItem()), new ResourceLocation("minecraft:air"), 0);
+        MEKANISM_CRUSHING.builder(toName(Blocks.AIR), Ingredient.of(Blocks.AIR.asItem()), new ResourceLocation("minecraft:air"), 0);
 
-       return CompletableFuture.completedFuture(null);
+        return CompletableFuture.completedFuture(null);
     }
 
     @Override

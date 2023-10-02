@@ -68,7 +68,7 @@ public class FlowerSeedsCyclic
     }
 
     private static <T extends Block> void registerBlockItem(String name, RegistryObject<T> block) {
-       ITEMS.register(name, () -> new ItemNameBlockItem(block.get(), new Item.Properties()));
+        ITEMS.register(name, () -> new ItemNameBlockItem(block.get(), new Item.Properties()));
     }
 
     public FlowerSeedsCyclic()
@@ -94,7 +94,6 @@ public class FlowerSeedsCyclic
             for (RegistryObject<Block> block : BLOCKS.getEntries()) {
                 FlowerSeeds.compostable(block.get());
             }
-
         });
 
     }

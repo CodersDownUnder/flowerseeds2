@@ -34,10 +34,16 @@ public class VillagerTradesEventHandler {
             }
 
             if (Config.allowWitherRoseTrading) {
-                trades.get(5).add((trader, rand) -> addTrade(BlockInit.WITHER_ROSE_SEED.get()));
+                trades.get(Config.witherRoseTradeLevel).add((trader, rand) -> addTrade(BlockInit.WITHER_ROSE_SEED.get()));
             }
+        }
 
+        if (pEvent.getType().equals(VillagerProfession.CLERIC)) {
+            Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = pEvent.getTrades();
 
+            if (Config.allowWitherRoseTradingCleric) {
+                trades.get(Config.witherRoseTradeLevelCleric).add((trader, rand) -> addTrade(BlockInit.WITHER_ROSE_SEED.get()));
+            }
         }
     }
 

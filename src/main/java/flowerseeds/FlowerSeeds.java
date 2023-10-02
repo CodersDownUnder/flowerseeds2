@@ -50,21 +50,12 @@ public class FlowerSeeds
 
     private void commonSetup(final FMLCommonSetupEvent event)
     {
-            event.enqueueWork(() -> {
-                compostable(BlockInit.DANDELION_SEED.get());
-                compostable(BlockInit.ALLIUM_SEED.get());
-                compostable(BlockInit.AZURE_BLUET_SEED.get());
-                compostable(BlockInit.CORNFLOWER_SEED.get());
-                compostable(BlockInit.BLUE_ORCHID_SEED.get());
-                compostable(BlockInit.LILY_OF_THE_VALLEY_SEED.get());
-                compostable(BlockInit.ORANGE_TULIP_SEED.get());
-                compostable(BlockInit.PINK_TULIP_SEED.get());
-                compostable(BlockInit.POPPY_SEED.get());
-                compostable(BlockInit.RED_TULIP_SEED.get());
-                compostable(BlockInit.OXEYE_DAISY_SEED.get());
-                compostable(BlockInit.WHITE_TULIP_SEED.get());
-                compostable(BlockInit.WITHER_ROSE_SEED.get());
+            LogFilter.apply();
 
+            event.enqueueWork(() -> {
+                for (RegistryObject<Block> block : BlockInit.BLOCKS.getEntries()) {
+                    FlowerSeeds.compostable(block.get());
+                }
             });
     }
 
@@ -82,6 +73,8 @@ public class FlowerSeeds
             }
         }
     }
+
+
 
 
 
