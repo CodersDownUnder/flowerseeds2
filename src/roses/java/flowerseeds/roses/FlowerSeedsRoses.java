@@ -47,10 +47,10 @@ public class FlowerSeedsRoses
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
 
     public static final RegistryObject<Block> ROSE_SEED = registerBlock("rose_seed",
-            () -> new CustomCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).sound(SoundType.CROP), SeedColour.RED.get()));
+            () -> new CustomCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).sound(SoundType.CROP), SeedColour.RED));
 
     public static final RegistryObject<Block> CYAN_FLOWER_SEED = registerBlock("cyan_flower_seed",
-            () -> new CustomCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).sound(SoundType.CROP), SeedColour.CYAN.get()));
+            () -> new CustomCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).sound(SoundType.CROP), SeedColour.CYAN));
 
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
@@ -111,7 +111,7 @@ public class FlowerSeedsRoses
         public static void registerItemColor(RegisterColorHandlersEvent.Item event) {
             for (RegistryObject<Block> block : BLOCKS.getEntries()) {
                 CustomCropBlock item = (CustomCropBlock) block.get();
-                event.register(item.getColour(), item.asItem());
+                event.register(item.getColour().get(), item.asItem());
             }
         }
     }

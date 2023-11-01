@@ -4,26 +4,34 @@ import flowerseeds.events.SeedColour;
 import flowerseeds.init.BlockInit;
 import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.common.PlantType;
+import org.jetbrains.annotations.NotNull;
 
 public class CustomCropBlock extends CropBlock implements IPlantable {
 
-    private final ItemColor colour;
-    public CustomCropBlock(Properties pProperties, ItemColor colour) {
+    private final SeedColour colour;
+    public CustomCropBlock(Properties pProperties, SeedColour colour) {
         super(pProperties);
         this.colour = colour;
 
     }
 
-    public ItemColor getColour() {
+    public SeedColour getColour() {
         return colour;
     }
 
+    @Override
+    public @NotNull ItemStack getCloneItemStack(BlockGetter pLevel, BlockPos pPos, BlockState pState) {
+        return this.asItem().getDefaultInstance();
+    }
 
     @Override
     public boolean canSurvive(BlockState pState, LevelReader pLevel, BlockPos pPos) {

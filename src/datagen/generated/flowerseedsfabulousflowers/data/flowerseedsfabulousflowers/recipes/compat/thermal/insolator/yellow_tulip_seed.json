@@ -11,17 +11,17 @@
       "recipe": {
         "type": "thermal:insolator",
         "ingredient": {
-          "item": "flowerseedsbop:wild_flower_seed"
+          "item": "flowerseedsfabulousflowers:yellow_tulip_seed"
         },
         "output": [
           {
             "chance": 4.0,
             "count": 2,
-            "item": "biomesoplenty:wildflower"
+            "item": "fabulous_flowers:yellow_tulip"
           },
           {
             "chance": 2.0,
-            "item": "flowerseedsbop:wild_flower_seed"
+            "item": "flowerseedsfabulousflowers:yellow_tulip_seed"
           }
         ]
       }

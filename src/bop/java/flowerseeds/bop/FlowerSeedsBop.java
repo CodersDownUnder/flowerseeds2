@@ -60,31 +60,31 @@ public class FlowerSeedsBop {
 
     public static final RegistryObject<Block> ROSE_SEED = registerBlock("rose_seed",
                 () -> new CustomCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).sound(SoundType.CROP),
-                        SeedColour.RED.get()));
+                        SeedColour.RED));
 
     public static final RegistryObject<Block> WILD_FLOWER_SEED = registerBlock("wild_flower_seed",
                 () -> new CustomCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).sound(SoundType.CROP),
-                        SeedColour.MAGENTA.get()));
+                        SeedColour.MAGENTA));
 
     public static final RegistryObject<Block> ORANGE_COSMOS_SEED = registerBlock("orange_cosmos_seed",
                 () -> new CustomCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).sound(SoundType.CROP),
-                        SeedColour.ORANGE.get()));
+                        SeedColour.ORANGE));
 
     public static final RegistryObject<Block> PINK_DAFFODIL_SEED = registerBlock("pink_daffodil_seed",
                 () -> new CustomCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).sound(SoundType.CROP),
-                        SeedColour.PINK.get()));
+                        SeedColour.PINK));
 
     public static final RegistryObject<Block> GLOW_FLOWER_SEED = registerBlock("glow_flower_seed",
                 () -> new CustomCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).sound(SoundType.CROP).lightLevel((state) -> {return 9;}),
-                        SeedColour.CYAN.get()));
+                        SeedColour.CYAN));
 
     public static final RegistryObject<Block> WILTED_LILY_SEED = registerBlock("wilted_lily_seed",
                 () -> new CustomCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).sound(SoundType.CROP),
-                        SeedColour.GREY.get()));
+                        SeedColour.GREY));
     
     public static final RegistryObject<Block> BURNING_BLOSSOM_SEED = registerBlock("burning_blossom_seed",
                 () -> new CustomBurningCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).sound(SoundType.CROP).lightLevel((state) -> {return 7;}),
-                        SeedColour.ORANGE.get()));
+                        SeedColour.ORANGE));
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
@@ -143,12 +143,12 @@ public class FlowerSeedsBop {
             for (RegistryObject<Block> block : BLOCKS.getEntries()) {
                 if (block.get() instanceof CustomBurningCropBlock) {
                     CustomBurningCropBlock item = (CustomBurningCropBlock) block.get();
-                    event.register(item.getColour(), item.asItem());
+                    event.register(item.getColour().get(), item.asItem());
                     continue;
                 }
 
                 CustomCropBlock item = (CustomCropBlock) block.get();
-                event.register(item.getColour(), item.asItem());
+                event.register(item.getColour().get(), item.asItem());
 
             }
         }

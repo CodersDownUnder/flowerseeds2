@@ -1,4 +1,4 @@
-// 1.20.1	2023-08-28T15:02:33.11971783	Flower Seeds 2 Cyclic Compat data Provider
+// 1.20.1	2023-10-16T11:11:23.653198753	Flower Seeds 2 Cyclic Compat data Provider
 5d119d196b526b45182a068b82bcdd0951d1aa0c data/flowerseedsbop/recipes/compat/botanypots/crop/burning_blossom_seed.json
 223db8c4a89bfc1e8bcc640f9ce5148c74adb595 data/flowerseedsbop/recipes/compat/botanypots/crop/glow_flower_seed.json
 5aeb41e8cac4060bea63f17df518c43bde317827 data/flowerseedsbop/recipes/compat/botanypots/crop/orange_cosmos_seed.json
@@ -21,4 +21,3 @@ e7c3290b3d77be1de4ea36d3106238c6bdef1cd4 data/flowerseedsbop/recipes/compat/meka
 7148374720ddedd24dcbec799b3166eb12f6ec7f data/flowerseedsbop/recipes/compat/mekanism/crushing/wild_flower_seed.json
 086a6135dea94581dd2ded89050b9a68950fe707 data/flowerseedsbop/recipes/compat/mekanism/crushing/wilted_lily_seed.json
 c445410da6b7e87f1c57d1e258b373d129655a4d data/flowerseedsbop/recipes/compat/thermal/insolator/rose_seed.json
-e455305077f33f18e67565fec47b84b2931e145d data/flowerseedsbop/recipes/compat/thermal/insolator/wild_flower_seed.json

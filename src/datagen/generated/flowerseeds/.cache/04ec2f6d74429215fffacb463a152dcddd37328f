@@ -1,4 +1,4 @@
-// 1.20.1	2023-08-28T15:02:33.083683781	Flower Seeds 2 Compat data Provider
+// 1.20.1	2023-10-16T11:00:58.487704294	Flower Seeds 2 Compat data Provider
 146f52f8c482049f351e654f78bd9b6437470f4b data/flowerseeds/recipes/compat/botanypots/crop/allium_seed.json
 3548b71f60b93093e6393761b059616e53e845f9 data/flowerseeds/recipes/compat/botanypots/crop/azure_bluet_seed.json
 569b3a2ae6acf7f9880a5bd18187c2629680c8af data/flowerseeds/recipes/compat/botanypots/crop/blue_orchid_seed.json
@@ -45,8 +45,4 @@ a2efa7e69b965279a8dace20dfefa75e6eae2b66 data/flowerseeds/recipes/compat/mekanis
 eeedd2889e2e0b5bd56ad9b424febb67b8c84f21 data/flowerseeds/recipes/compat/thermal/insolator/dandelion_seed.json
 0c19964ce8b731d18861c05b4daffb1cbe12c4ed data/flowerseeds/recipes/compat/thermal/insolator/lily_of_the_valley_seed.json
 f6afa4c47dd15b3d0c1e76c0745397a207560e87 data/flowerseeds/recipes/compat/thermal/insolator/orange_tulip_seed.json
-6fcd3b3125aad287671b3c5c0b09853a019d23c3 data/flowerseeds/recipes/compat/thermal/insolator/oxeye_daisy_seed.json
 56ef59d41c39eb16fe6ec848804cb746ac58de03 data/flowerseeds/recipes/compat/thermal/insolator/pink_tulip_seed.json
-8f486d7208ec19f7f4f541d4c9c5c0acabf53f8a data/flowerseeds/recipes/compat/thermal/insolator/poppy_seed.json
-8618981f06e0338222e9edb27f0bcd5128700d3a data/flowerseeds/recipes/compat/thermal/insolator/red_tulip_seed.json
-28e7e6d1470ca6000d0e92bd99a6662ffbfafbf2 data/flowerseeds/recipes/compat/thermal/insolator/white_tulip_seed.json

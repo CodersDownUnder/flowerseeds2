@@ -69,7 +69,7 @@ public class FlowerSeeds
         public static void registerItemColor(RegisterColorHandlersEvent.Item event) {
             for (RegistryObject<Block> block : BlockInit.BLOCKS.getEntries()) {
                 CustomCropBlock item = (CustomCropBlock) block.get();
-                event.register(item.getColour(), item.asItem());
+                event.register(item.getColour().get(), item.asItem());
             }
         }
     }

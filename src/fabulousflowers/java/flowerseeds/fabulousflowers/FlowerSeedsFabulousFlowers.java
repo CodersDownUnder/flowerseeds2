@@ -70,71 +70,71 @@ public class FlowerSeedsFabulousFlowers
 
     public static final RegistryObject<Block> BLOOMED_DANDELION_SEED = registerBlock("bloomed_dandelion_seed",
             () -> new CustomCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).sound(SoundType.CROP),
-                    SeedColour.WHITE.get()));
+                    SeedColour.WHITE));
 
     public static final RegistryObject<Block> ORANGE_POPPY_SEED = registerBlock("orange_poppy_seed",
             () -> new CustomCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).sound(SoundType.CROP),
-                    SeedColour.ORANGE.get()));
+                    SeedColour.ORANGE));
 
     public static final RegistryObject<Block> WHITE_POPPY_SEED = registerBlock("white_poppy_seed",
             () -> new CustomCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).sound(SoundType.CROP),
-                    SeedColour.LIGHT_GREY.get()));
+                    SeedColour.LIGHT_GREY));
 
     public static final RegistryObject<Block> YELLOW_POPPY_SEED = registerBlock("yellow_poppy_seed",
             () -> new CustomCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).sound(SoundType.CROP),
-                    SeedColour.YELLOW.get()));
+                    SeedColour.YELLOW));
 
     public static final RegistryObject<Block> PINK_POPPY_SEED = registerBlock("pink_poppy_seed",
             () -> new CustomCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).sound(SoundType.CROP),
-                    SeedColour.PINK.get()));
+                    SeedColour.PINK));
 
     public static final RegistryObject<Block> YELLOW_ORCHID_SEED = registerBlock("yellow_orchid_seed",
                 () -> new CustomCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).sound(SoundType.CROP),
-                        SeedColour.YELLOW.get()));
+                        SeedColour.YELLOW));
     
     public static final RegistryObject<Block> WHITE_ORCHID_SEED = registerBlock("white_orchid_seed",
                 () -> new CustomCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).sound(SoundType.CROP),
-                        SeedColour.LIGHT_GREY.get()));
+                        SeedColour.LIGHT_GREY));
     
     public static final RegistryObject<Block> PINK_ORCHID_SEED = registerBlock("pink_orchid_seed",
                 () -> new CustomCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).sound(SoundType.CROP),
-                        SeedColour.PINK.get()));
+                        SeedColour.PINK));
     
     public static final RegistryObject<Block> PURPLE_ORCHID_SEED = registerBlock("purple_orchid_seed",
                 () -> new CustomCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).sound(SoundType.CROP),
-                        SeedColour.PURPLE.get()));
+                        SeedColour.PURPLE));
     
     public static final RegistryObject<Block> BLUE_ALLIUM_SEED = registerBlock("blue_allium_seed",
                 () -> new CustomCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).sound(SoundType.CROP),
-                        SeedColour.BLUE.get()));
+                        SeedColour.BLUE));
     
     public static final RegistryObject<Block> WHITE_ALLIUM_SEED = registerBlock("white_allium_seed",
                 () -> new CustomCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).sound(SoundType.CROP),
-                        SeedColour.WHITE.get()));
+                        SeedColour.WHITE));
     
     public static final RegistryObject<Block> YELLOW_TULIP_SEED = registerBlock("yellow_tulip_seed",
                 () -> new CustomCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).sound(SoundType.CROP),
-                        SeedColour.YELLOW.get()));
+                        SeedColour.YELLOW));
     
     public static final RegistryObject<Block> PURPLE_TULIP_SEED = registerBlock("purple_tulip_seed",
                 () -> new CustomCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).sound(SoundType.CROP),
-                        SeedColour.PURPLE.get()));
+                        SeedColour.PURPLE));
     
     public static final RegistryObject<Block> BLUE_TULIP_SEED = registerBlock("blue_tulip_seed",
                 () -> new CustomCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).sound(SoundType.CROP),
-                        SeedColour.BLUE.get()));
+                        SeedColour.BLUE));
     
     public static final RegistryObject<Block> BLACK_TULIP_SEED = registerBlock("black_tulip_seed",
                 () -> new CustomCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).sound(SoundType.CROP),
-                        SeedColour.BLACK.get()));
+                        SeedColour.BLACK));
     
     public static final RegistryObject<Block> ASTER_DAISY_SEED = registerBlock("aster_daisy_seed",
                 () -> new CustomCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).sound(SoundType.CROP),
-                        SeedColour.PURPLE.get()));
+                        SeedColour.PURPLE));
     
     public static final RegistryObject<Block> GLORIOSA_DAISY_SEED = registerBlock("gloriosa_daisy_seed",
                 () -> new CustomCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).sound(SoundType.CROP),
-                        SeedColour.ORANGE.get()));
+                        SeedColour.ORANGE));
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
@@ -198,7 +198,7 @@ public class FlowerSeedsFabulousFlowers
         public static void registerItemColor(RegisterColorHandlersEvent.Item event) {
             for (RegistryObject<Block> block : BLOCKS.getEntries()) {
                 CustomCropBlock item = (CustomCropBlock) block.get();
-                event.register(item.getColour(), item.asItem());
+                event.register(item.getColour().get(), item.asItem());
             }
 //            event.register(SeedColour.CYAN.get(), CYAN_ROSE_SEED.get());
 //            event.register(SeedColour.LIME.get(), LIME_CARNATION_SEED.get());

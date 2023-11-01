@@ -22,7 +22,6 @@ import java.util.List;
 @Mod.EventBusSubscriber(modid = FlowerSeeds.MODID)
 public class VillagerTradesEventHandler {
 
-
     @SubscribeEvent
     public static void onVillagerTrades(VillagerTradesEvent pEvent) {
         if (pEvent.getType().equals(VillagerProfession.FARMER)) {

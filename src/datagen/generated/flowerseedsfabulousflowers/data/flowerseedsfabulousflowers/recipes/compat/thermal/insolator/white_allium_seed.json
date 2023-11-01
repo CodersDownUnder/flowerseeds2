@@ -11,17 +11,17 @@
       "recipe": {
         "type": "thermal:insolator",
         "ingredient": {
-          "item": "flowerseeds:red_tulip_seed"
+          "item": "flowerseedsfabulousflowers:white_allium_seed"
         },
         "output": [
           {
             "chance": 4.0,
             "count": 2,
-            "item": "minecraft:red_tulip"
+            "item": "fabulous_flowers:white_allium"
           },
           {
             "chance": 2.0,
-            "item": "flowerseeds:red_tulip_seed"
+            "item": "flowerseedsfabulousflowers:white_allium_seed"
           }
         ]
       }

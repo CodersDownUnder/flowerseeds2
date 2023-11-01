@@ -436,7 +436,7 @@ dependencies {
     //for testing
     runtimeOnly fg.deobf("curse.maven:industrial-foregoing-266515:${foregoing_id}")
     runtimeOnly fg.deobf("curse.maven:titanium-287342:${titanium_id}")
-    runtimeOnly fg.deobf("curse.maven:tagtooltips-899941:${tips_id}")
+    //runtimeOnly fg.deobf("curse.maven:tagtooltips-899941:${tips_id}")
     runtimeOnly fg.deobf("curse.maven:botany-pots-353928:${botanypots_id}")
     runtimeOnly fg.deobf("curse.maven:bookshelf-228525:${bookshelf_id}")
 
@@ -789,13 +789,16 @@ void uploadSecondaryCurseProject(TaskPublishCurseForge task, String projectId, T
     }
 }
 
+def changelog_file = file("changelog.md").getText()
+
+
 if (System.getenv("modrinth_token") != null || project.hasProperty('modrinth_token')) {
     println "Enabling Modrinth config"
 
-    def cyclicModrinth = createSecondaryModrinthUpload("Cyclic", System.getenv("flowerseeds2_cyclic_modrinthid") ?: project.findProperty("flowerseeds2_cyclic_modrinthid"), cyclicJar)
-    def rosesModrinth = createSecondaryModrinthUpload("Roses", System.getenv("flowerseeds2_roses_modrinthid") ?: project.findProperty("flowerseeds2_roses_modrinthid"), rosesJar)
-    def ffModrinth = createSecondaryModrinthUpload("Fabulous Flowers", System.getenv("flowerseeds2_ff_modrinthid") ?: project.findProperty("flowerseeds2_ff_modrinthid"), fabulousflowersJar)
-    def bopModrinth = createSecondaryModrinthUpload("Biomes O Plenty", System.getenv("flowerseeds2_bop_modrinthid") ?: project.findProperty("flowerseeds2_bop_modrinthid"), bopJar)
+    def cyclicModrinth = createSecondaryModrinthUpload("Cyclic", System.getenv("flowerseeds2_cyclic_modrinthid") ?: project.findProperty("flowerseeds2_cyclic_modrinthid") as String, cyclicJar)
+    def rosesModrinth = createSecondaryModrinthUpload("Roses", System.getenv("flowerseeds2_roses_modrinthid") ?: project.findProperty("flowerseeds2_roses_modrinthid") as String, rosesJar)
+    def ffModrinth = createSecondaryModrinthUpload("Fabulous Flowers", System.getenv("flowerseeds2_ff_modrinthid") ?: project.findProperty("flowerseeds2_ff_modrinthid") as String, fabulousflowersJar)
+    def bopModrinth = createSecondaryModrinthUpload("Biomes O Plenty", System.getenv("flowerseeds2_bop_modrinthid") ?: project.findProperty("flowerseeds2_bop_modrinthid") as String, bopJar)
 
     tasks.named('modrinth').configure {
         dependsOn(jar)
@@ -816,7 +819,7 @@ if (System.getenv("modrinth_token") != null || project.hasProperty('modrinth_tok
         //Note: The versionName is set to the versionNumber automatically
         versionNumber = "${mod_version}"
         versionType = "${release_type}"
-        changelog = file("changelog.md").getText()
+        changelog = changelog_file
         uploadFile = jar
         versionName = "FlowerSeeds 2 ${minecraft_version} V${mod_version}"
         //Add that we support forge for now as we currently support both Forge and NeoForge

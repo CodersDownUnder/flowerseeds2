@@ -1,11 +1,14 @@
 package flowerseeds.blocks;
 
 import biomesoplenty.api.block.BOPBlocks;
+import flowerseeds.events.SeedColour;
 import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
@@ -13,18 +16,24 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.IPlantable;
+import org.jetbrains.annotations.NotNull;
 
 public class CustomBurningCropBlock extends CropBlock implements IPlantable {
 
-    private final ItemColor colour;
-    public CustomBurningCropBlock(Properties pProperties, ItemColor colour) {
+    private final SeedColour colour;
+    public CustomBurningCropBlock(Properties pProperties, SeedColour colour) {
         super(pProperties);
         this.colour = colour;
 
     }
 
-    public ItemColor getColour() {
+    public SeedColour getColour() {
         return colour;
+    }
+
+    @Override
+    public @NotNull ItemStack getCloneItemStack(BlockGetter pLevel, BlockPos pPos, BlockState pState) {
+        return this.asItem().getDefaultInstance();
     }
 
     @Override

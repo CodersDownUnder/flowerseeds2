@@ -1,0 +1,44 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "botanypots"
+        }
+      ],
+      "recipe": {
+        "type": "botanypots:crop",
+        "categories": [
+          "dirt",
+          "farmland"
+        ],
+        "display": {
+          "block": "flowerseedsfabulousflowers:aster_daisy_seed",
+          "properties": {
+            "age": 7
+          }
+        },
+        "drops": [
+          {
+            "chance": 1.0,
+            "output": {
+              "item": "fabulous_flowers:aster_daisy"
+            }
+          },
+          {
+            "chance": 1.0,
+            "output": {
+              "item": "flowerseedsfabulousflowers:aster_daisy_seed"
+            }
+          }
+        ],
+        "growthTicks": 1200,
+        "seed": {
+          "item": "flowerseedsfabulousflowers:aster_daisy_seed"
+        }
+      }
+    }
+  ]
+}

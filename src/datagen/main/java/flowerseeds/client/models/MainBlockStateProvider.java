@@ -19,6 +19,8 @@ public class MainBlockStateProvider extends BlockStateProvider {
 
     }
 
+    private final float vertical_offset = -0.06f;
+
     @Override
     public String getName() {
         return "Flower Seeds 2 Main BlockState Provider";
@@ -48,13 +50,13 @@ public class MainBlockStateProvider extends BlockStateProvider {
                 .texture("cross", mcLoc(texture))
                 .customLoader(CompositeModelBuilder::begin)
                 .child("flower0", models().withExistingParent(flower + "0_stage3", mcLoc(model))
-                        .rootTransforms().translation(0.23f, -0.1f, 0.23f).end().renderType("minecraft:cutout_mipped"))
+                        .rootTransforms().translation(0.23f, vertical_offset, 0.23f).end().renderType("minecraft:cutout_mipped"))
                 .child("flower1", models().withExistingParent(flower + "1_stage3", mcLoc(model))
-                        .rootTransforms().translation(-0.23f, -0.1f, 0.23f).end().renderType("minecraft:cutout_mipped"))
+                        .rootTransforms().translation(-0.23f, vertical_offset, 0.23f).end().renderType("minecraft:cutout_mipped"))
                 .child("flower2", models().withExistingParent(flower + "2_stage3", mcLoc(model))
-                        .rootTransforms().translation(-0.23f, -0.1f, -0.23f).end().renderType("minecraft:cutout_mipped"))
+                        .rootTransforms().translation(-0.23f, vertical_offset, -0.23f).end().renderType("minecraft:cutout_mipped"))
                 .child("flower3", models().withExistingParent(flower + "3_stage3", mcLoc(model))
-                        .rootTransforms().translation(0.23f, -0.1f, -0.23f).end().renderType("minecraft:cutout_mipped"))
+                        .rootTransforms().translation(0.23f, vertical_offset, -0.23f).end().renderType("minecraft:cutout_mipped"))
                 .end();
     }
 
@@ -64,16 +66,16 @@ public class MainBlockStateProvider extends BlockStateProvider {
                 .texture("particle", mcLoc(texture))
                 .customLoader(CompositeModelBuilder::begin)
                 .child("flower0", models().singleTexture(flower + "0_stage" + stage, new ResourceLocation(MODID, "block/cross_stage" + stage), "cross", mcLoc(texture))
-                        .rootTransforms().translation(0.23f, -0.1f, 0.23f).end()
+                        .rootTransforms().translation(0.23f, vertical_offset, 0.23f).end()
                         .renderType("minecraft:cutout_mipped"))
                 .child("flower1", models().singleTexture(flower + "1_stage" + stage, new ResourceLocation(MODID, "block/cross_stage" + stage), "cross", mcLoc(texture))
-                        .rootTransforms().translation(-0.23f, -0.1f, 0.23f).end()
+                        .rootTransforms().translation(-0.23f, vertical_offset, 0.23f).end()
                         .renderType("minecraft:cutout_mipped"))
                 .child("flower2", models().singleTexture(flower + "2_stage" + stage, new ResourceLocation(MODID, "block/cross_stage" + stage), "cross", mcLoc(texture))
-                        .rootTransforms().translation(-0.23f, -0.1f, -0.23f).end()
+                        .rootTransforms().translation(-0.23f, vertical_offset, -0.23f).end()
                         .renderType("minecraft:cutout_mipped"))
                 .child("flower3", models().singleTexture(flower + "3_stage" + stage, new ResourceLocation(MODID, "block/cross_stage" + stage), "cross", mcLoc(texture))
-                        .rootTransforms().translation(0.23f, -0.1f, -0.23f).end()
+                        .rootTransforms().translation(0.23f, vertical_offset, -0.23f).end()
                         .renderType("minecraft:cutout_mipped"))
                 .end();
     }
@@ -131,13 +133,13 @@ public class MainBlockStateProvider extends BlockStateProvider {
                 .texture("particle", texture)
                 .customLoader(CompositeModelBuilder::begin)
                 .child("flower0", models().withExistingParent(flower + "0_stage3", new ResourceLocation(modid + ":" + model))
-                        .rootTransforms().translation(0.23f, -0.1f, 0.23f).end().renderType("minecraft:cutout_mipped"))
+                        .rootTransforms().translation(0.23f, vertical_offset, 0.23f).end().renderType("minecraft:cutout_mipped"))
                 .child("flower1", models().withExistingParent(flower + "1_stage3", new ResourceLocation(modid + ":" + model))
-                        .rootTransforms().translation(-0.23f, -0.1f, 0.23f).end().renderType("minecraft:cutout_mipped"))
+                        .rootTransforms().translation(-0.23f, vertical_offset, 0.23f).end().renderType("minecraft:cutout_mipped"))
                 .child("flower2", models().withExistingParent(flower + "2_stage3", new ResourceLocation(modid + ":" + model))
-                        .rootTransforms().translation(-0.23f, -0.1f, -0.23f).end().renderType("minecraft:cutout_mipped"))
+                        .rootTransforms().translation(-0.23f, vertical_offset, -0.23f).end().renderType("minecraft:cutout_mipped"))
                 .child("flower3", models().withExistingParent(flower + "3_stage3", new ResourceLocation(modid + ":" + model))
-                        .rootTransforms().translation(0.23f, -0.1f, -0.23f).end().renderType("minecraft:cutout_mipped"))
+                        .rootTransforms().translation(0.23f, vertical_offset, -0.23f).end().renderType("minecraft:cutout_mipped"))
                 .end();
     }
 
@@ -148,16 +150,16 @@ public class MainBlockStateProvider extends BlockStateProvider {
                 .texture("cross", texture)
                 .customLoader(CompositeModelBuilder::begin)
                 .child("flower0", models().singleTexture(flower + "0_stage" + stage, new ResourceLocation(MODID, "block/cross_stage" + stage), "cross",  texture)
-                        .rootTransforms().translation(0.23f, -0.1f, 0.23f).end()
+                        .rootTransforms().translation(0.23f, vertical_offset, 0.23f).end()
                         .renderType("minecraft:cutout_mipped"))
                 .child("flower1", models().singleTexture(flower + "1_stage" + stage, new ResourceLocation(MODID, "block/cross_stage" + stage), "cross",  texture)
-                        .rootTransforms().translation(-0.23f, -0.1f, 0.23f).end()
+                        .rootTransforms().translation(-0.23f, vertical_offset, 0.23f).end()
                         .renderType("minecraft:cutout_mipped"))
                 .child("flower2", models().singleTexture(flower + "2_stage" + stage, new ResourceLocation(MODID, "block/cross_stage" + stage), "cross",  texture)
-                        .rootTransforms().translation(-0.23f, -0.1f, -0.23f).end()
+                        .rootTransforms().translation(-0.23f, vertical_offset, -0.23f).end()
                         .renderType("minecraft:cutout_mipped"))
                 .child("flower3", models().singleTexture(flower + "3_stage" + stage, new ResourceLocation(MODID, "block/cross_stage" + stage), "cross",  texture)
-                        .rootTransforms().translation(0.23f, -0.1f, -0.23f).end()
+                        .rootTransforms().translation(0.23f, vertical_offset, -0.23f).end()
                         .renderType("minecraft:cutout_mipped"))
                 .end();
     }

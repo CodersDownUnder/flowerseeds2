@@ -11,17 +11,17 @@
       "recipe": {
         "type": "thermal:insolator",
         "ingredient": {
-          "item": "flowerseedsfabulousflowers:pink_orchid_seed"
+          "item": "flowerseedsfabulousflowers:yellow_orchid_seed"
         },
         "output": [
           {
             "chance": 4.0,
             "count": 2,
-            "item": "fabulous_flowers:pink_orchid"
+            "item": "fabulous_flowers:yellow_orchid"
           },
           {
             "chance": 2.0,
-            "item": "flowerseedsfabulousflowers:pink_orchid_seed"
+            "item": "flowerseedsfabulousflowers:yellow_orchid_seed"
           }
         ]
       }

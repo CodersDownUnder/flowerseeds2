@@ -49,16 +49,16 @@ public class FlowerSeedsCyclic
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
 
     public static final RegistryObject<Block> CYAN_ROSE_SEED = registerBlock("cyan_rose_seed",
-            () -> new CustomCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).sound(SoundType.CROP), SeedColour.CYAN.get()));
+            () -> new CustomCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).sound(SoundType.CROP), SeedColour.CYAN));
 
     public static final RegistryObject<Block> PURPLE_TULIP_SEED = registerBlock("purple_tulip_seed",
-            () -> new CustomCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).sound(SoundType.CROP), SeedColour.PURPLE.get()));
+            () -> new CustomCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).sound(SoundType.CROP), SeedColour.PURPLE));
 
     public static final RegistryObject<Block> LIME_CARNATION_SEED = registerBlock("lime_carnation_seed",
-            () -> new CustomCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).sound(SoundType.CROP), SeedColour.LIME.get()));
+            () -> new CustomCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).sound(SoundType.CROP), SeedColour.LIME));
 
     public static final RegistryObject<Block> ABSALON_TULIP_SEED = registerBlock("absalon_tulip_seed",
-            () -> new CustomCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).sound(SoundType.CROP), SeedColour.BROWN.get()));
+            () -> new CustomCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).sound(SoundType.CROP), SeedColour.BROWN));
 
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
@@ -119,7 +119,7 @@ public class FlowerSeedsCyclic
         public static void registerItemColor(RegisterColorHandlersEvent.Item event) {
             for (RegistryObject<Block> block : BLOCKS.getEntries()) {
                 CustomCropBlock item = (CustomCropBlock) block.get();
-                event.register(item.getColour(), item.asItem());
+                event.register(item.getColour().get(), item.asItem());
             }
         }
     }
