@@ -63,7 +63,7 @@
     "flower2",
     "flower3"
   ],
-  "loader": "forge:composite",
+  "loader": "neoforge:composite",
   "textures": {
     "cross": "biomesoplenty:block/orange_cosmos",
     "particle": "biomesoplenty:block/orange_cosmos"

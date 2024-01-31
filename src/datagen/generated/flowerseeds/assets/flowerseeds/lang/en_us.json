@@ -13,6 +13,7 @@
   "block.flowerseeds.white_tulip_seed": "White Tulip",
   "block.flowerseeds.wither_rose_seed": "Wither Rose",
   "flowerseeds.creativetab.name": "Flower Seeds",
+  "flowerseeds.packmeta.description": "Flower Seeds 2 Resource pack",
   "item.flowerseeds.allium_seed": "Allium Seed",
   "item.flowerseeds.azure_bluet_seed": "Azure Bluet",
   "item.flowerseeds.blue_orchid_seed": "Blue Orchid Seed",
@@ -25,6 +26,5 @@
   "item.flowerseeds.poppy_seed": "Poppy Seed",
   "item.flowerseeds.red_tulip_seed": "Red Tulip Seed",
   "item.flowerseeds.white_tulip_seed": "White Tulip Seed",
-  "item.flowerseeds.wither_rose_seed": "Wither Rose Seed",
-  "text.packmeta.description": "Flower Seeds 2 Resource And Datapacks"
+  "item.flowerseeds.wither_rose_seed": "Wither Rose Seed"
 }

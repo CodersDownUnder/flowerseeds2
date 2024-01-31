@@ -1,5 +1,5 @@
-// 1.20.1	2023-08-13T15:05:12.763929076	Loot Tables
-75e54143cf39b109ccd9d8b352496a662f846686 data/flowerseedscyclic/loot_tables/blocks/absalon_tulip_seed.json
-f4fcd4e1e5cecf80c54de0a1d858cf01e403e6a2 data/flowerseedscyclic/loot_tables/blocks/cyan_rose_seed.json
-f49765a69880a44fce789d58eaa63c7241e40e73 data/flowerseedscyclic/loot_tables/blocks/lime_carnation_seed.json
-48655ddd266709afced2bd500c336486bab224b4 data/flowerseedscyclic/loot_tables/blocks/purple_tulip_seed.json
+// 1.20.4	2024-01-30T16:26:19.982090741	Loot Tables
+60836422c0c6626c47e8c9cd850ef5f6ebad1fd1 data/flowerseedscyclic/loot_tables/blocks/absalon_tulip_seed.json
+e607e4de189c981d30ed4b6aeb409bb91ccf8575 data/flowerseedscyclic/loot_tables/blocks/cyan_rose_seed.json
+1e985617dd9a66f07aaeccdf43179b6f84156fb0 data/flowerseedscyclic/loot_tables/blocks/lime_carnation_seed.json
+be57185ab65c1f14bd7bb36f99f31663e785ed9c data/flowerseedscyclic/loot_tables/blocks/purple_tulip_seed.json

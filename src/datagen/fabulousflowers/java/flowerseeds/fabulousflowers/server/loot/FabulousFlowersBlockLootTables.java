@@ -1,8 +1,8 @@
 package flowerseeds.fabulousflowers.server.loot;
 
-import fabulousflowers.init.FabulousFlowersModBlocks;
 import flowerseeds.fabulousflowers.FlowerSeedsFabulousFlowers;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
+import net.minecraft.core.Holder;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
@@ -15,8 +15,7 @@ import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
-import net.minecraftforge.fml.ModList;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Set;
@@ -28,23 +27,27 @@ class FabulousFlowersBlockLootTables extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
-        createLootTable(FlowerSeedsFabulousFlowers.ASTER_DAISY_SEED.get(), FabulousFlowersModBlocks.ASTER_DAISY.get());
-        createLootTable(FlowerSeedsFabulousFlowers.BLACK_TULIP_SEED.get(), FabulousFlowersModBlocks.BLACK_TULIP.get());
-        createLootTable(FlowerSeedsFabulousFlowers.BLOOMED_DANDELION_SEED.get(), FabulousFlowersModBlocks.BLOOMED_DANDELION.get());
-        createLootTable(FlowerSeedsFabulousFlowers.PURPLE_TULIP_SEED.get(), FabulousFlowersModBlocks.PURPLE_TULIP.get());
-        createLootTable(FlowerSeedsFabulousFlowers.BLUE_ALLIUM_SEED.get(), FabulousFlowersModBlocks.BLUE_ALLIUM.get());
-        createLootTable(FlowerSeedsFabulousFlowers.BLUE_TULIP_SEED.get(), FabulousFlowersModBlocks.BLUE_TULIP.get()); 
-        createLootTable(FlowerSeedsFabulousFlowers.GLORIOSA_DAISY_SEED.get(), FabulousFlowersModBlocks.GLORIOSA_DAISY.get());
-        createLootTable(FlowerSeedsFabulousFlowers.PINK_ORCHID_SEED.get(), FabulousFlowersModBlocks.PINK_ORCHID.get());
-        createLootTable(FlowerSeedsFabulousFlowers.ORANGE_POPPY_SEED.get(), FabulousFlowersModBlocks.ORANGE_POPPY.get());
-        createLootTable(FlowerSeedsFabulousFlowers.PINK_POPPY_SEED.get(), FabulousFlowersModBlocks.PINK_POPPY.get());
-        createLootTable(FlowerSeedsFabulousFlowers.PURPLE_ORCHID_SEED.get(), FabulousFlowersModBlocks.PURPLE_ORCHID.get());
-        createLootTable(FlowerSeedsFabulousFlowers.WHITE_ALLIUM_SEED.get(), FabulousFlowersModBlocks.WHITE_ALLIUM.get());
-        createLootTable(FlowerSeedsFabulousFlowers.WHITE_ORCHID_SEED.get(), FabulousFlowersModBlocks.WHITE_ORCHID.get());
-        createLootTable(FlowerSeedsFabulousFlowers.WHITE_POPPY_SEED.get(), FabulousFlowersModBlocks.WHITE_POPPY.get());
-        createLootTable(FlowerSeedsFabulousFlowers.YELLOW_ORCHID_SEED.get(), FabulousFlowersModBlocks.YELLOW_ORCHID.get());
-        createLootTable(FlowerSeedsFabulousFlowers.YELLOW_POPPY_SEED.get(), FabulousFlowersModBlocks.YELLOW_POPPY.get());
-        createLootTable(FlowerSeedsFabulousFlowers.YELLOW_TULIP_SEED.get(), FabulousFlowersModBlocks.YELLOW_TULIP.get());
+//        createLootTable(FlowerSeedsFabulousFlowers.ASTER_DAISY_SEED.get(), FabulousFlowersModBlocks.ASTER_DAISY.get());
+//        createLootTable(FlowerSeedsFabulousFlowers.BLACK_TULIP_SEED.get(), FabulousFlowersModBlocks.BLACK_TULIP.get());
+//        createLootTable(FlowerSeedsFabulousFlowers.BLOOMED_DANDELION_SEED.get(), FabulousFlowersModBlocks.BLOOMED_DANDELION.get());
+//        createLootTable(FlowerSeedsFabulousFlowers.PURPLE_TULIP_SEED.get(), FabulousFlowersModBlocks.PURPLE_TULIP.get());
+//        createLootTable(FlowerSeedsFabulousFlowers.BLUE_ALLIUM_SEED.get(), FabulousFlowersModBlocks.BLUE_ALLIUM.get());
+//        createLootTable(FlowerSeedsFabulousFlowers.BLUE_TULIP_SEED.get(), FabulousFlowersModBlocks.BLUE_TULIP.get());
+//        createLootTable(FlowerSeedsFabulousFlowers.GLORIOSA_DAISY_SEED.get(), FabulousFlowersModBlocks.GLORIOSA_DAISY.get());
+//        createLootTable(FlowerSeedsFabulousFlowers.PINK_ORCHID_SEED.get(), FabulousFlowersModBlocks.PINK_ORCHID.get());
+//        createLootTable(FlowerSeedsFabulousFlowers.ORANGE_POPPY_SEED.get(), FabulousFlowersModBlocks.ORANGE_POPPY.get());
+//        createLootTable(FlowerSeedsFabulousFlowers.PINK_POPPY_SEED.get(), FabulousFlowersModBlocks.PINK_POPPY.get());
+//        createLootTable(FlowerSeedsFabulousFlowers.PURPLE_ORCHID_SEED.get(), FabulousFlowersModBlocks.PURPLE_ORCHID.get());
+//        createLootTable(FlowerSeedsFabulousFlowers.WHITE_ALLIUM_SEED.get(), FabulousFlowersModBlocks.WHITE_ALLIUM.get());
+//        createLootTable(FlowerSeedsFabulousFlowers.WHITE_ORCHID_SEED.get(), FabulousFlowersModBlocks.WHITE_ORCHID.get());
+//        createLootTable(FlowerSeedsFabulousFlowers.WHITE_POPPY_SEED.get(), FabulousFlowersModBlocks.WHITE_POPPY.get());
+//        createLootTable(FlowerSeedsFabulousFlowers.YELLOW_ORCHID_SEED.get(), FabulousFlowersModBlocks.YELLOW_ORCHID.get());
+//        createLootTable(FlowerSeedsFabulousFlowers.YELLOW_POPPY_SEED.get(), FabulousFlowersModBlocks.YELLOW_POPPY.get());
+//        createLootTable(FlowerSeedsFabulousFlowers.YELLOW_TULIP_SEED.get(), FabulousFlowersModBlocks.YELLOW_TULIP.get());
+
+        for (DeferredHolder<Block, ? extends Block> block : FlowerSeedsFabulousFlowers.BLOCKS.getEntries()) {
+            add(block.get(), noDrop());
+        }
     }
 
     protected void createLootTable(Block block, Block block2) {
@@ -64,6 +67,8 @@ class FabulousFlowersBlockLootTables extends BlockLootSubProvider {
 
     @Override
     protected @NotNull Iterable<Block> getKnownBlocks() {
-        return FlowerSeedsFabulousFlowers.BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;
+        return FlowerSeedsFabulousFlowers.BLOCKS.getEntries().stream() // Stream the wrapped objects
+                .map(Holder::value) // Get the object if available
+                ::iterator;
     }
 }

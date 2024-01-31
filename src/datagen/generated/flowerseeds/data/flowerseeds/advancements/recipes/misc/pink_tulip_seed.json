@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_pink_tulip",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_pink_tulip"
     ]
   ],
   "rewards": {
     "recipes": [
       "flowerseeds:pink_tulip_seed"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

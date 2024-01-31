@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_poppy",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_poppy"
     ]
   ],
   "rewards": {
     "recipes": [
       "flowerseeds:poppy_seed"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

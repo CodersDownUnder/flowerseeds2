@@ -43,9 +43,9 @@ description=''''''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
 [[dependencies.flowerseedsroses]] #optional
     # the modid of the dependency
-    modId="forge" #mandatory
+    modId="neoforge" #mandatory
     # Does this dependency have to exist - if not, ordering below must be specified
-    mandatory=true #mandatory
+    type="required" #mandatory
     # The version range of the dependency
     versionRange="${neo_version_range}" #mandatory
     # An ordering relationship for the dependency - BEFORE or AFTER required if the dependency is not mandatory
@@ -57,7 +57,7 @@ description=''''''
 # Here's another dependency
 [[dependencies.flowerseedsroses]]
     modId="minecraft"
-    mandatory=true
+    type="required"
     # This version range declares a minimum of the current minecraft version up to but not including the next major version
     versionRange="${minecraft_version_range}"
     ordering="NONE"
@@ -65,7 +65,7 @@ description=''''''
 
 [[dependencies.flowerseedsroses]]
     modId="flowerseeds"
-    mandatory=true
+    type="required"
     # This version range declares a minimum of the current minecraft version up to but not including the next major version
     versionRange="${mod_version}"
     ordering="AFTER"
@@ -73,7 +73,7 @@ description=''''''
 
 [[dependencies.flowerseedsroses]]
     modId="roses"
-    mandatory=true
+    type="${fsroses_required}"
     # This version range declares a minimum of the current minecraft version up to but not including the next major version
     versionRange="${roses_version}"
     ordering="AFTER"

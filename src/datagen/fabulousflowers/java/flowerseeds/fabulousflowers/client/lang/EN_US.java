@@ -4,7 +4,7 @@ package flowerseeds.fabulousflowers.client.lang;
 import flowerseeds.fabulousflowers.FlowerSeedsFabulousFlowers;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.common.data.LanguageProvider;
+import net.neoforged.neoforge.common.data.LanguageProvider;
 
 public class EN_US extends LanguageProvider
     {

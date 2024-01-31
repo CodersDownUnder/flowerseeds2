@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_dandelion",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_dandelion"
     ]
   ],
   "rewards": {
     "recipes": [
       "flowerseeds:dandelion_seed"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

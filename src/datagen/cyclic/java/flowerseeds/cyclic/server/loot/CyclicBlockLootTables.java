@@ -1,13 +1,14 @@
 package flowerseeds.cyclic.server.loot;
 
-import com.lothrazar.cyclic.registry.BlockRegistry;
 import flowerseeds.cyclic.FlowerSeedsCyclic;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
+import net.minecraft.core.Holder;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
@@ -15,7 +16,6 @@ import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
-import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Set;
@@ -27,10 +27,15 @@ public class CyclicBlockLootTables extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
-        createLootTable(FlowerSeedsCyclic.ABSALON_TULIP_SEED.get(), BlockRegistry.FLOWER_ABSALON_TULIP.get());
-        createLootTable(FlowerSeedsCyclic.PURPLE_TULIP_SEED.get(), BlockRegistry.FLOWER_PURPLE_TULIP.get());
-        createLootTable(FlowerSeedsCyclic.LIME_CARNATION_SEED.get(), BlockRegistry.FLOWER_LIME_CARNATION.get());
-        createLootTable(FlowerSeedsCyclic.CYAN_ROSE_SEED.get(), BlockRegistry.FLOWER_CYAN.get());
+//        createLootTable(FlowerSeedsCyclic.ABSALON_TULIP_SEED.get(), BlockRegistry.FLOWER_ABSALON_TULIP.get());
+//        createLootTable(FlowerSeedsCyclic.PURPLE_TULIP_SEED.get(), BlockRegistry.FLOWER_PURPLE_TULIP.get());
+//        createLootTable(FlowerSeedsCyclic.LIME_CARNATION_SEED.get(), BlockRegistry.FLOWER_LIME_CARNATION.get());
+//        createLootTable(FlowerSeedsCyclic.CYAN_ROSE_SEED.get(), BlockRegistry.FLOWER_CYAN.get());
+
+        createLootTable(FlowerSeedsCyclic.ABSALON_TULIP_SEED.get(), Blocks.DIRT);
+        createLootTable(FlowerSeedsCyclic.PURPLE_TULIP_SEED.get(), Blocks.DIRT);
+        createLootTable(FlowerSeedsCyclic.LIME_CARNATION_SEED.get(), Blocks.DIRT);
+        createLootTable(FlowerSeedsCyclic.CYAN_ROSE_SEED.get(), Blocks.DIRT);
     }
 
     protected void createLootTable(Block block, Block block2) {
@@ -51,6 +56,8 @@ public class CyclicBlockLootTables extends BlockLootSubProvider {
 
     @Override
     protected @NotNull Iterable<Block> getKnownBlocks() {
-        return FlowerSeedsCyclic.BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;
+        return FlowerSeedsCyclic.BLOCKS.getEntries().stream() // Stream the wrapped objects
+                .map(Holder::value) // Get the object if available
+                ::iterator;
     }
 }

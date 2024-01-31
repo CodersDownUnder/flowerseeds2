@@ -51,7 +51,7 @@
     "flower2",
     "flower3"
   ],
-  "loader": "forge:composite",
+  "loader": "neoforge:composite",
   "textures": {
     "cross": "minecraft:block/azure_bluet",
     "particle": "minecraft:block/azure_bluet"

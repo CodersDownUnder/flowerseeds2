@@ -51,7 +51,7 @@
     "flower2",
     "flower3"
   ],
-  "loader": "forge:composite",
+  "loader": "neoforge:composite",
   "textures": {
     "cross": "minecraft:block/orange_tulip",
     "particle": "minecraft:block/orange_tulip"

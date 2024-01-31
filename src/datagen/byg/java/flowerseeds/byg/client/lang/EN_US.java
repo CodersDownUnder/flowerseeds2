@@ -2,7 +2,7 @@ package flowerseeds.byg.client.lang;
 
 import flowerseeds.byg.FlowerSeedsByg;
 import net.minecraft.data.PackOutput;
-import net.minecraftforge.common.data.LanguageProvider;
+import net.neoforged.neoforge.common.data.LanguageProvider;
 
 public class EN_US extends LanguageProvider
     {

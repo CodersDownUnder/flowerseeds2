@@ -2,16 +2,15 @@ package flowerseeds.server.recipes;
 
 import flowerseeds.init.BlockInit;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeCategory;
+import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
-import net.minecraftforge.common.Tags;
-import net.minecraftforge.common.crafting.ConditionalRecipe;
-import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
+import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 
 import java.util.function.Consumer;
 
@@ -24,7 +23,7 @@ public class MainRecipeProvider  extends RecipeProvider implements IConditionBui
 
 
     @Override
-    protected void buildRecipes(Consumer<FinishedRecipe> pWriter) {
+    protected void buildRecipes(RecipeOutput pWriter) {
         flowerSeedRecipe(BlockInit.DANDELION_SEED.get().asItem(), Items.DANDELION, pWriter);
         flowerSeedRecipe(BlockInit.ALLIUM_SEED.get().asItem(), Items.ALLIUM, pWriter);
         flowerSeedRecipe(BlockInit.AZURE_BLUET_SEED.get().asItem(), Items.AZURE_BLUET, pWriter);
@@ -40,7 +39,7 @@ public class MainRecipeProvider  extends RecipeProvider implements IConditionBui
         flowerSeedRecipe(BlockInit.WITHER_ROSE_SEED.get().asItem(), Items.WITHER_ROSE, pWriter);
     }
 
-    protected static void flowerSeedRecipe(Item flowerSeed, Item flower, Consumer<FinishedRecipe> pFinishedRecipeConsumer) {
+    protected static void flowerSeedRecipe(Item flowerSeed, Item flower, RecipeOutput pFinishedRecipeConsumer) {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, flowerSeed, 2)
                 .requires(flower)
                 .requires(Tags.Items.SEEDS)
@@ -48,16 +47,16 @@ public class MainRecipeProvider  extends RecipeProvider implements IConditionBui
                 .save(pFinishedRecipeConsumer);
     }
 
-    public void flowerSeedRecipe(Item flowerSeed, Item flower, Consumer<FinishedRecipe> pFinishedRecipeConsumer, String modid) {
-        ConditionalRecipe.builder()
-                .addCondition(and(modLoaded(modid), not(FALSE())))
-                .addRecipe(
+    public void flowerSeedRecipe(Item flowerSeed, Item flower, RecipeOutput pFinishedRecipeConsumer, String modid) {
                 ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, flowerSeed, 2)
                 .requires(flower)
                 .requires(Tags.Items.SEEDS)
-                .unlockedBy(getHasName(flower), has(flower))::save)
-                .generateAdvancement()
-                .build(pFinishedRecipeConsumer, new ResourceLocation(getHasName(flowerSeed)));
+                .unlockedBy(getHasName(flower), has(flower))
+                .save(pFinishedRecipeConsumer.withConditions(
+                                and(
+                                        not(modLoaded(modid)),
+                                        FALSE())),
+                        new ResourceLocation(getHasName(flowerSeed)));
 
     }
 

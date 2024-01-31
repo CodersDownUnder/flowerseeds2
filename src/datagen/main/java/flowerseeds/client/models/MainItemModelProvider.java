@@ -1,16 +1,15 @@
 package flowerseeds.client.models;
 
-import flowerseeds.FlowerSeeds;
 import flowerseeds.init.BlockInit;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
-import net.minecraftforge.client.model.generators.ItemModelBuilder;
-import net.minecraftforge.client.model.generators.ItemModelProvider;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
+import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 public class MainItemModelProvider extends ItemModelProvider {
 
@@ -45,11 +44,11 @@ public class MainItemModelProvider extends ItemModelProvider {
     }
 
     private void oneLayerItem(final Item item) {
-        withExistingParent(ForgeRegistries.ITEMS.getKey(item.asItem()).getPath(), "item/generated")
+        withExistingParent(BuiltInRegistries.ITEM.getKey(item.asItem()).getPath(), "item/generated")
                 .texture("layer0", modLoc("item/seed"));
     }
 
-    private ItemModelBuilder simpleItem(RegistryObject<Item> item) {
+    private ItemModelBuilder simpleItem(DeferredHolder<Item, ? extends Item> item) {
         return withExistingParent(item.getId().getPath(),
                 new ResourceLocation("item/generated")).texture("layer0",
                 new ResourceLocation(MODID,"item/" + item.getId().getPath()));

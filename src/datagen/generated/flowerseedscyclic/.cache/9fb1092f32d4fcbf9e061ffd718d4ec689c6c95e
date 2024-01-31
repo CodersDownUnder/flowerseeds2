@@ -1,9 +1,1 @@
-// 1.20.1	2023-08-13T15:05:12.764040696	Recipes
-96676e6d388f1124965574d7591f4b516495d560 data/minecraft/advancements/recipes/has_absalon_tulip_seed.json
-fb6b7039a64d04261c0aa8a0ea1b5153afcc35a4 data/minecraft/advancements/recipes/has_cyan_rose_seed.json
-1ba336fa5026f3b7db18f4992c6aca6fcf8d922e data/minecraft/advancements/recipes/has_lime_carnation_seed.json
-0f8a3671352cb68b68f83144d6043e4bdb3ab5b0 data/minecraft/advancements/recipes/has_purple_tulip_seed.json
-35b5a980ae10e183d22f533d8b31312bee159f64 data/minecraft/recipes/has_absalon_tulip_seed.json
-0a20369f76e7727b0488382a1bc53eec44ef9d6f data/minecraft/recipes/has_cyan_rose_seed.json
-f8c27bb67382b17c2e961e2560e6d56b2b4e3957 data/minecraft/recipes/has_lime_carnation_seed.json
-4a1e5a23754e476f7d3e8f8475a00109db2481cd data/minecraft/recipes/has_purple_tulip_seed.json
+// 1.20.4	2024-01-30T16:26:19.982302592	Recipes

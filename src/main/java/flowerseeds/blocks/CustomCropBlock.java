@@ -2,17 +2,14 @@ package flowerseeds.blocks;
 
 import flowerseeds.events.SeedColour;
 import flowerseeds.init.BlockInit;
-import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.common.PlantType;
+import net.neoforged.neoforge.common.IPlantable;
 import org.jetbrains.annotations.NotNull;
 
 public class CustomCropBlock extends CropBlock implements IPlantable {
@@ -29,7 +26,7 @@ public class CustomCropBlock extends CropBlock implements IPlantable {
     }
 
     @Override
-    public @NotNull ItemStack getCloneItemStack(BlockGetter pLevel, BlockPos pPos, BlockState pState) {
+    public @NotNull ItemStack getCloneItemStack(LevelReader p_304482_, BlockPos p_52255_, BlockState p_52256_) {
         return this.asItem().getDefaultInstance();
     }
 

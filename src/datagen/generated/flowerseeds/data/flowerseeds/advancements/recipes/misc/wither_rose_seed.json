@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_wither_rose",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_wither_rose"
     ]
   ],
   "rewards": {
     "recipes": [
       "flowerseeds:wither_rose_seed"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

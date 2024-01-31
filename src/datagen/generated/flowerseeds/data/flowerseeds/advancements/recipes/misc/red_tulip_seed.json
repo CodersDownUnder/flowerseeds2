@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_red_tulip",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_red_tulip"
     ]
   ],
   "rewards": {
     "recipes": [
       "flowerseeds:red_tulip_seed"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

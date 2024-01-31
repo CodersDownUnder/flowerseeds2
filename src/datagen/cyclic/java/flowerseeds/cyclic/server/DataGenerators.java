@@ -4,7 +4,6 @@ import flowerseeds.cyclic.FlowerSeedsCyclic;
 import flowerseeds.cyclic.client.lang.EN_US;
 import flowerseeds.cyclic.client.models.CyclicBlockStateProvider;
 import flowerseeds.cyclic.client.models.CyclicItemModelProvider;
-import flowerseeds.cyclic.server.compat.CyclicCompatDataProvider;
 import flowerseeds.cyclic.server.loot.CyclicLootTableProvider;
 import flowerseeds.cyclic.server.recipes.CyclicRecipeProvider;
 import flowerseeds.cyclic.server.tags.CyclicBlockTagProvider;
@@ -15,15 +14,20 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.metadata.PackMetadataGenerator;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.packs.OverlayMetadataSection;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.metadata.pack.PackMetadataSection;
-import net.minecraftforge.client.model.generators.ItemModelProvider;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.data.event.GatherDataEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraft.util.InclusiveRange;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.data.event.GatherDataEvent;
+
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -40,12 +44,13 @@ public class DataGenerators {
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
         generator.addProvider(true, new PackMetadataGenerator(packOutput)
+                .add(OverlayMetadataSection.TYPE, new OverlayMetadataSection(List.of(
+                        new OverlayMetadataSection.OverlayEntry(new InclusiveRange<>(0, Integer.MAX_VALUE), "pack_overlays_test"))))
                 .add(PackMetadataSection.TYPE, new PackMetadataSection(
-                        Component.translatable("text.packmeta.description"),
+                        Component.translatable("flowerseeds.packmeta.description"),
                         DetectedVersion.BUILT_IN.getPackVersion(PackType.CLIENT_RESOURCES),
-                        Arrays.stream(PackType.values()).collect(Collectors.toMap(Function.identity(), DetectedVersion.BUILT_IN::getPackVersion))
-                ))
-        );
+                        Optional.of(new InclusiveRange<>(0, Integer.MAX_VALUE)))));
+
         generator.addProvider(event.includeClient(), new EN_US(packOutput, MODID));
 
         ItemModelProvider itemModels = new CyclicItemModelProvider(packOutput, MODID, event.getExistingFileHelper());
@@ -58,8 +63,5 @@ public class DataGenerators {
         CyclicBlockTagProvider blockTagGenerator = generator.addProvider(event.includeServer(),
                 new CyclicBlockTagProvider(packOutput, lookupProvider, existingFileHelper, MODID));
         generator.addProvider(event.includeServer(), new CyclicItemTagProvider(packOutput, lookupProvider, blockTagGenerator.contentsGetter(), existingFileHelper, MODID));
-
-        generator.addProvider(event.includeServer(), new CyclicCompatDataProvider(MODID, event));
-        new CyclicCompatDataProvider(MODID, event);
     }
 }

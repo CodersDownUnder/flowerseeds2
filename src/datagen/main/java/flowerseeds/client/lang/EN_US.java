@@ -3,7 +3,7 @@ package flowerseeds.client.lang;
 import flowerseeds.FlowerSeeds;
 import flowerseeds.init.BlockInit;
 import net.minecraft.data.PackOutput;
-import net.minecraftforge.common.data.LanguageProvider;
+import net.neoforged.neoforge.common.data.LanguageProvider;
 
 public class EN_US extends LanguageProvider
     {
@@ -46,7 +46,7 @@ public class EN_US extends LanguageProvider
             add(BlockInit.ALLIUM_SEED.get(), "Allium");
             add(BlockInit.ALLIUM_SEED.get().asItem(), "Allium Seed");
 
-            add("text.packmeta.description", "Flower Seeds 2 Resource And Datapacks");
+            add("flowerseeds.packmeta.description", "Flower Seeds 2 Resource pack");
             add("flowerseeds.creativetab.name", "Flower Seeds");
         }
 }

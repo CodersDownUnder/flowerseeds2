@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_blue_orchid",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_blue_orchid"
     ]
   ],
   "rewards": {
     "recipes": [
       "flowerseeds:blue_orchid_seed"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

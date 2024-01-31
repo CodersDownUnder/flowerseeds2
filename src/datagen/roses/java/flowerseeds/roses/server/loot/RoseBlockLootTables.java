@@ -2,11 +2,13 @@ package flowerseeds.roses.server.loot;
 
 import flowerseeds.roses.FlowerSeedsRoses;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
+import net.minecraft.core.Holder;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
@@ -14,9 +16,7 @@ import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
-import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.NotNull;
-import willatendo.roses.server.block.RosesBlocks;
 
 import java.util.Set;
 
@@ -30,8 +30,8 @@ public class RoseBlockLootTables extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
-        add(FlowerSeedsRoses.ROSE_SEED.get(), FlowerLootTableBuilder(FlowerSeedsRoses.ROSE_SEED.get(), RosesBlocks.ROSE.get().asItem()));
-        add(FlowerSeedsRoses.CYAN_FLOWER_SEED.get(), FlowerLootTableBuilder(FlowerSeedsRoses.CYAN_FLOWER_SEED.get(), RosesBlocks.CYAN_FLOWER.get().asItem()));
+        add(FlowerSeedsRoses.ROSE_SEED.get(), FlowerLootTableBuilder(FlowerSeedsRoses.ROSE_SEED.get(), Blocks.DIRT.asItem()));
+        add(FlowerSeedsRoses.CYAN_FLOWER_SEED.get(), FlowerLootTableBuilder(FlowerSeedsRoses.CYAN_FLOWER_SEED.get(), Blocks.DIRT.asItem()));
     }
 
     protected LootTable.Builder FlowerLootTableBuilder(Block pCropBlock, Item pGrownCropItem) {
@@ -48,6 +48,8 @@ public class RoseBlockLootTables extends BlockLootSubProvider {
 
     @Override
     protected @NotNull Iterable<Block> getKnownBlocks() {
-        return FlowerSeedsRoses.BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;
+        return FlowerSeedsRoses.BLOCKS.getEntries().stream() // Stream the wrapped objects
+                .map(Holder::value) // Get the object if available
+                ::iterator;
     }
 }

@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_lily_of_the_valley",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_lily_of_the_valley"
     ]
   ],
   "rewards": {
     "recipes": [
       "flowerseeds:lily_of_the_valley_seed"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

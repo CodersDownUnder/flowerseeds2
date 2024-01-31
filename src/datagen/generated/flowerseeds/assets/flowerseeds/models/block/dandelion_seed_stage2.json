@@ -63,7 +63,7 @@
     "flower2",
     "flower3"
   ],
-  "loader": "forge:composite",
+  "loader": "neoforge:composite",
   "textures": {
     "particle": "minecraft:block/wither_rose"
   }

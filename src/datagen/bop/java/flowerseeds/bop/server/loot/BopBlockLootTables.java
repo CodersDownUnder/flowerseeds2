@@ -3,6 +3,7 @@ package flowerseeds.bop.server.loot;
 import biomesoplenty.api.block.BOPBlocks;
 import flowerseeds.bop.FlowerSeedsBop;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
+import net.minecraft.core.Holder;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
@@ -15,7 +16,7 @@ import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Set;
@@ -27,13 +28,13 @@ class BopBlockLootTables extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
-        createLootTable(FlowerSeedsBop.ROSE_SEED.get(), BOPBlocks.ROSE.get());
-        createLootTable(FlowerSeedsBop.WILD_FLOWER_SEED.get(), BOPBlocks.WILDFLOWER.get());
-        createLootTable(FlowerSeedsBop.ORANGE_COSMOS_SEED.get(), BOPBlocks.ORANGE_COSMOS.get());
-        createLootTable(FlowerSeedsBop.PINK_DAFFODIL_SEED.get(), BOPBlocks.PINK_DAFFODIL.get());
-        createLootTable(FlowerSeedsBop.GLOW_FLOWER_SEED.get(), BOPBlocks.GLOWFLOWER.get());
-        createLootTable(FlowerSeedsBop.WILTED_LILY_SEED.get(), BOPBlocks.WILTED_LILY.get());
-        createLootTable(FlowerSeedsBop.BURNING_BLOSSOM_SEED.get(), BOPBlocks.BURNING_BLOSSOM.get());
+        createLootTable(FlowerSeedsBop.ROSE_SEED.get(), BOPBlocks.ROSE);
+        createLootTable(FlowerSeedsBop.WILD_FLOWER_SEED.get(), BOPBlocks.WILDFLOWER);
+        createLootTable(FlowerSeedsBop.ORANGE_COSMOS_SEED.get(), BOPBlocks.ORANGE_COSMOS);
+        createLootTable(FlowerSeedsBop.PINK_DAFFODIL_SEED.get(), BOPBlocks.PINK_DAFFODIL);
+        createLootTable(FlowerSeedsBop.GLOW_FLOWER_SEED.get(), BOPBlocks.GLOWFLOWER);
+        createLootTable(FlowerSeedsBop.WILTED_LILY_SEED.get(), BOPBlocks.WILTED_LILY);
+        createLootTable(FlowerSeedsBop.BURNING_BLOSSOM_SEED.get(), BOPBlocks.BURNING_BLOSSOM);
     }
 
     protected void createLootTable(Block block, Block block2) {
@@ -54,6 +55,8 @@ class BopBlockLootTables extends BlockLootSubProvider {
 
     @Override
     protected @NotNull Iterable<Block> getKnownBlocks() {
-        return FlowerSeedsBop.BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;
+        return FlowerSeedsBop.BLOCKS.getEntries().stream() // Stream the wrapped objects
+                .map(Holder::value) // Get the object if available
+                ::iterator;
     }
 }

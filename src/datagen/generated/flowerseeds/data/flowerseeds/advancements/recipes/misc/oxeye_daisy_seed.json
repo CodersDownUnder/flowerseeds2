@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_oxeye_daisy",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_oxeye_daisy"
     ]
   ],
   "rewards": {
     "recipes": [
       "flowerseeds:oxeye_daisy_seed"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

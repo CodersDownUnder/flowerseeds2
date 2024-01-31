@@ -3,7 +3,7 @@
 ---
 
 - Made Stage 0 crop models more visible by moving them up 0.04 of a block
-- Fixed crops giving wheat seeds when middle clicked in creative
+- Fixed crops giving wheat seeds when middle-clicked in creative
 
 ## V1.1.1
 

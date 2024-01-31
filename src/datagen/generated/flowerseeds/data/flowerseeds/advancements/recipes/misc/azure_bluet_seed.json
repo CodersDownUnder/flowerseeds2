@@ -22,14 +22,13 @@
   },
   "requirements": [
     [
-      "has_azure_bluet",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_azure_bluet"
     ]
   ],
   "rewards": {
     "recipes": [
       "flowerseeds:azure_bluet_seed"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

@@ -3,7 +3,7 @@ package flowerseeds.roses.client.lang;
 
 import flowerseeds.roses.FlowerSeedsRoses;
 import net.minecraft.data.PackOutput;
-import net.minecraftforge.common.data.LanguageProvider;
+import net.neoforged.neoforge.common.data.LanguageProvider;
 
 public class EN_US extends LanguageProvider
     {

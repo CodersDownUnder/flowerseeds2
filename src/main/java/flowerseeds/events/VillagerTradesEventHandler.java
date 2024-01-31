@@ -6,16 +6,15 @@ import flowerseeds.init.BlockInit;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.VillagerTrades;
-import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.event.village.VillagerTradesEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.event.village.VillagerTradesEvent;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.List;
 
@@ -28,7 +27,7 @@ public class VillagerTradesEventHandler {
             Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = pEvent.getTrades();
             int villagerLevel = 1;
 
-            for (RegistryObject<Block> block : BlockInit.BLOCKS.getEntries()) {
+            for (DeferredHolder<Block, ? extends Block> block : BlockInit.BLOCKS.getEntries()) {
                 trades.get(villagerLevel).add((trader, rand) -> addTrade(block.get()));
             }
 

@@ -5,8 +5,8 @@ import flowerseeds.data.tags.FlowerSeedsBlockTagsProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -27,7 +27,7 @@ public class BopBlockTagProvider extends FlowerSeedsBlockTagsProvider {
 
         ArrayList<Block> blocks = new ArrayList<Block>();
 
-        for (RegistryObject<Block> block : FlowerSeedsBop.BLOCKS.getEntries()) {
+        for (DeferredHolder<Block, ? extends Block> block : FlowerSeedsBop.BLOCKS.getEntries()) {
             blocks.add(block.get());
         }
 

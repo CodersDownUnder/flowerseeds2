@@ -2,6 +2,7 @@ package flowerseeds.server.loot;
 
 import flowerseeds.init.BlockInit;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
+import net.minecraft.core.Holder;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
@@ -15,7 +16,7 @@ import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.Set;
 
@@ -53,8 +54,12 @@ public class MainBlockLootTables extends BlockLootSubProvider {
         return applyExplosionDecay(pCropBlock, LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(pGrownCropItem).setWeight(2).when(pDropGrownCropCondition).otherwise(LootItem.lootTableItem(pSeedsItem)))).withPool(LootPool.lootPool().when(pDropGrownCropCondition).add(LootItem.lootTableItem(pSeedsItem).apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 3)))));
     }
 
+
     @Override
     protected Iterable<Block> getKnownBlocks() {
-        return BlockInit.BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;
+        return BlockInit.BLOCKS.getEntries() // Get all registered entries
+                .stream() // Stream the wrapped objects
+                .map(Holder::value) // Get the object if available
+                ::iterator; // Create the iterable
     }
 }

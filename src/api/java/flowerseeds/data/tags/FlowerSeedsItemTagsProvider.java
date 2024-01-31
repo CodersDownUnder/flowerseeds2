@@ -9,7 +9,8 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.common.Tags;
+import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,7 +21,7 @@ public abstract class FlowerSeedsItemTagsProvider extends IntrinsicHolderTagsPro
     private final CompletableFuture<TagsProvider.TagLookup<Block>> blockTags;
     private final Map<TagKey<Block>, TagKey<Item>> tagsToCopy = new HashMap<>();
 
-    public FlowerSeedsItemTagsProvider(PackOutput pOutput, CompletableFuture<HolderLookup.Provider> pLookupProvider, CompletableFuture<TagsProvider.TagLookup<Block>> pBlockTags, String modId, @org.jetbrains.annotations.Nullable net.minecraftforge.common.data.ExistingFileHelper existingFileHelper) {
+    public FlowerSeedsItemTagsProvider(PackOutput pOutput, CompletableFuture<HolderLookup.Provider> pLookupProvider, CompletableFuture<TagsProvider.TagLookup<Block>> pBlockTags, String modId, @org.jetbrains.annotations.Nullable ExistingFileHelper existingFileHelper) {
         super(pOutput, Registries.ITEM, pLookupProvider, (p_255790_) -> {
             return p_255790_.builtInRegistryHolder().key();
         }, modId, existingFileHelper);

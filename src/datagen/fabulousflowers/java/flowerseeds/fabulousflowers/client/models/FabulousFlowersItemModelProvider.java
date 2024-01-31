@@ -1,14 +1,14 @@
 package flowerseeds.fabulousflowers.client.models;
 
 import flowerseeds.fabulousflowers.FlowerSeedsFabulousFlowers;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.client.model.generators.ItemModelBuilder;
-import net.minecraftforge.client.model.generators.ItemModelProvider;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
+import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 public class FabulousFlowersItemModelProvider extends ItemModelProvider {
 
@@ -27,17 +27,17 @@ public class FabulousFlowersItemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
 
-        for (RegistryObject<Item> item : FlowerSeedsFabulousFlowers.ITEMS.getEntries()) {
+        for (DeferredHolder<Item, ? extends Item> item : FlowerSeedsFabulousFlowers.ITEMS.getEntries()) {
             oneLayerItem(item.get());
         }
     }
 
     private void oneLayerItem(final Item item) {
-        withExistingParent(ForgeRegistries.ITEMS.getKey(item.asItem()).getPath(), "item/generated")
+        withExistingParent(BuiltInRegistries.ITEM.getKey(item.asItem()).getPath(), "item/generated")
                 .texture("layer0", new ResourceLocation("flowerseeds","item/seed"));
     }
 
-    private ItemModelBuilder simpleItem(RegistryObject<Item> item) {
+    private ItemModelBuilder simpleItem(DeferredHolder<Item, ? extends Item> item) {
         return withExistingParent(item.getId().getPath(),
                 new ResourceLocation("item/generated")).texture("layer0",
                 new ResourceLocation(MODID,"item/" + item.getId().getPath()));
