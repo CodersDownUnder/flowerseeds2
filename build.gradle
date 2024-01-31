@@ -17,7 +17,7 @@ plugins {
     id 'eclipse'
     id 'idea'
     id 'maven-publish'
-    id 'net.neoforged.gradle.userdev' version '7.0.76'//https://projects.neoforged.net/neoforged/neogradle
+    id 'net.neoforged.gradle.userdev' version '7.0.84'//https://projects.neoforged.net/neoforged/neogradle
 }
 
 tasks.named('wrapper', Wrapper).configure {
@@ -257,7 +257,7 @@ def setupTasks(SourceSet sourceSet) {
 }
 
 group = "flowerseeds"
-def basicVersion = "${mod_version}." + (System.env.BUILD_NUMBER ?: "homebaked")
+def basicVersion = "${mod_version}"
 version = "${minecraft_version}-${basicVersion}"
 archivesBaseName = "FlowerSeeds"
 java {
@@ -518,29 +518,29 @@ def bopJar = secondaryJar(sourceSets.bop, 'FlowerSeeds2BiomesOPlenty')
 def rosesJar = secondaryJar(sourceSets.roses, 'FlowerSeeds2Roses')
 def fabulousflowersJar = secondaryJar(sourceSets.fabulousflowers, 'FlowerSeeds2FabulousFlowers')
 
-def allJar = tasks.register('allJar', Jar, {
-    dependsOn(classes, apiClasses, cyclicClasses, bygClasses, bopClasses, rosesClasses, fabulousflowersClasses)
-    mustRunAfter(clean)
-    duplicatesStrategy(DuplicatesStrategy.FAIL)
-    archiveClassifier.set("all")
-    manifest.attributes(getManifestAttributes("MekanismAll"))
-    def combineSets = [sourceSets.main, sourceSets.cyclic, sourceSets.byg, sourceSets.bop, sourceSets.roses, sourceSets.fabulousflowers]
-    doFirst {
-        //Start by generating the merged data
-        MergeJars.merge(project, combineSets)
-    }
-    //Then copy all the files except for ones we are going to include from the merged
-    from(sourceSets.api.output)
-    List<String> baseExcludeData = MergeJars.getGeneralPathsToExclude(project, combineSets)
-    Closure excludeFromMain = MergeJars.createExcludeClosure(baseExcludeData, 'crafttweaker_parameter_names.json')
-    from(sourceSets.main.output, excludeFromMain)
-    Closure excludeFromAll = MergeJars.createExcludeClosure(baseExcludeData, 'logo.png', 'pack.mcmeta')
-    for (String name : secondaryModules) {
-        from(sourceSets.getByName(name).output, excludeFromAll)
-    }
-    //And finally copy over the generated files
-    MergeJars.getGeneratedClosures(versionProperties).each { closure -> from(layout.buildDirectory.dir("generated"), closure) }
-})
+//def allJar = tasks.register('allJar', Jar, {
+//    dependsOn(classes, apiClasses, cyclicClasses, bygClasses, bopClasses, rosesClasses, fabulousflowersClasses)
+//    mustRunAfter(clean)
+//    duplicatesStrategy(DuplicatesStrategy.FAIL)
+//    archiveClassifier.set("all")
+//    manifest.attributes(getManifestAttributes("MekanismAll"))
+//    def combineSets = [sourceSets.main, sourceSets.cyclic, sourceSets.byg, sourceSets.bop, sourceSets.roses, sourceSets.fabulousflowers]
+//    doFirst {
+//        //Start by generating the merged data
+//        MergeJars.merge(project, combineSets)
+//    }
+//    //Then copy all the files except for ones we are going to include from the merged
+//    from(sourceSets.api.output)
+//    List<String> baseExcludeData = MergeJars.getGeneralPathsToExclude(project, combineSets)
+//    Closure excludeFromMain = MergeJars.createExcludeClosure(baseExcludeData, 'crafttweaker_parameter_names.json')
+//    from(sourceSets.main.output, excludeFromMain)
+//    Closure excludeFromAll = MergeJars.createExcludeClosure(baseExcludeData, 'logo.png', 'pack.mcmeta')
+//    for (String name : secondaryModules) {
+//        from(sourceSets.getByName(name).output, excludeFromAll)
+//    }
+//    //And finally copy over the generated files
+//    MergeJars.getGeneratedClosures(versionProperties).each { closure -> from(layout.buildDirectory.dir("generated"), closure) }
+//})
 
 clean {
     //TODO: Try to come up with a slightly better solution to this that deletes more,
