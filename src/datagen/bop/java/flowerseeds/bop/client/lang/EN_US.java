@@ -33,6 +33,6 @@ public class EN_US extends LanguageProvider
 
         protected void addBlockTranslation(Block block, String name) {
             add(block, name);
-            add(block.asItem(), name + " Seed");
+            add(block.asItem(), name + " Seeds");
         }
 }

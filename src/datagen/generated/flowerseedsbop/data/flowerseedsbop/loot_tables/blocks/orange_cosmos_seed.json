@@ -16,11 +16,23 @@
               "type": "minecraft:item",
               "conditions": [
                 {
-                  "block": "flowerseedsbop:orange_cosmos_seed",
-                  "condition": "minecraft:block_state_property",
-                  "properties": {
-                    "age": "7"
-                  }
+                  "condition": "minecraft:any_of",
+                  "terms": [
+                    {
+                      "block": "flowerseedsbop:orange_cosmos_seed",
+                      "condition": "minecraft:block_state_property",
+                      "properties": {
+                        "age": "7"
+                      }
+                    },
+                    {
+                      "block": "flowerseedsbop:orange_cosmos_seed",
+                      "condition": "minecraft:block_state_property",
+                      "properties": {
+                        "age": "6"
+                      }
+                    }
+                  ]
                 }
               ],
               "name": "biomesoplenty:orange_cosmos",
@@ -39,11 +51,23 @@
       "bonus_rolls": 0.0,
       "conditions": [
         {
-          "block": "flowerseedsbop:orange_cosmos_seed",
-          "condition": "minecraft:block_state_property",
-          "properties": {
-            "age": "7"
-          }
+          "condition": "minecraft:any_of",
+          "terms": [
+            {
+              "block": "flowerseedsbop:orange_cosmos_seed",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "age": "7"
+              }
+            },
+            {
+              "block": "flowerseedsbop:orange_cosmos_seed",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "age": "6"
+              }
+            }
+          ]
         }
       ],
       "entries": [

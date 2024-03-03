@@ -64,7 +64,7 @@ description=''''''
     side="BOTH"
 [[dependencies.flowerseedsbop]]
     modId="flowerseeds"
-type="required"
+    type="required"
     # This version range declares a minimum of the current minecraft version up to but not including the next major version
     versionRange="[1.0.0,)"
     ordering="AFTER"

@@ -42,10 +42,13 @@ public class MainBlockLootTables extends BlockLootSubProvider {
         add(BlockInit.WITHER_ROSE_SEED.get(), FlowerLootTableBuilder(BlockInit.WITHER_ROSE_SEED.get(), Items.WITHER_ROSE));
     }
 
+
     protected LootTable.Builder FlowerLootTableBuilder(Block pCropBlock, Item pGrownCropItem) {
         LootItemCondition.Builder lootitemcondition$builder = LootItemBlockStatePropertyCondition
                 .hasBlockStateProperties(pCropBlock).setProperties(StatePropertiesPredicate.Builder
-                        .properties().hasProperty(CropBlock.AGE, 7));
+                        .properties().hasProperty(CropBlock.AGE, 7)).or(
+                        LootItemBlockStatePropertyCondition.hasBlockStateProperties(pCropBlock)
+                                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 6)));
         return FlowerSeedsCropDrops(pCropBlock, pGrownCropItem, pCropBlock.asItem(), lootitemcondition$builder);
     }
 

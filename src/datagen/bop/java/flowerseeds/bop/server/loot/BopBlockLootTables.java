@@ -2,6 +2,7 @@ package flowerseeds.bop.server.loot;
 
 import biomesoplenty.api.block.BOPBlocks;
 import flowerseeds.bop.FlowerSeedsBop;
+import flowerseeds.server.loot.MainBlockLootTables;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.Holder;
 import net.minecraft.data.loot.BlockLootSubProvider;
@@ -44,7 +45,9 @@ class BopBlockLootTables extends BlockLootSubProvider {
     protected LootTable.Builder FlowerLootTableBuilder(Block pCropBlock, Item pGrownCropItem) {
         LootItemCondition.Builder lootitemcondition$builder = LootItemBlockStatePropertyCondition
                 .hasBlockStateProperties(pCropBlock).setProperties(StatePropertiesPredicate.Builder
-                        .properties().hasProperty(CropBlock.AGE, 7));
+                        .properties().hasProperty(CropBlock.AGE, 7)).or(
+                                LootItemBlockStatePropertyCondition.hasBlockStateProperties(pCropBlock)
+                                        .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 6)));
         return FlowerSeedsCropDrops(pCropBlock, pGrownCropItem, pCropBlock.asItem(), lootitemcondition$builder);
     }
 

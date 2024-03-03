@@ -5,6 +5,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.IntrinsicHolderTagsProvider;
 import net.minecraft.data.tags.TagsProvider;
+import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -40,5 +41,6 @@ public abstract class FlowerSeedsItemTagsProvider extends IntrinsicHolderTagsPro
 
         tag(ItemTags.SMALL_FLOWERS)
                 .add(items);
+
     }
 }

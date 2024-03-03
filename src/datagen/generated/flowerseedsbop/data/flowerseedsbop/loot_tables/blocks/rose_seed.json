@@ -16,11 +16,23 @@
               "type": "minecraft:item",
               "conditions": [
                 {
-                  "block": "flowerseedsbop:rose_seed",
-                  "condition": "minecraft:block_state_property",
-                  "properties": {
-                    "age": "7"
-                  }
+                  "condition": "minecraft:any_of",
+                  "terms": [
+                    {
+                      "block": "flowerseedsbop:rose_seed",
+                      "condition": "minecraft:block_state_property",
+                      "properties": {
+                        "age": "7"
+                      }
+                    },
+                    {
+                      "block": "flowerseedsbop:rose_seed",
+                      "condition": "minecraft:block_state_property",
+                      "properties": {
+                        "age": "6"
+                      }
+                    }
+                  ]
                 }
               ],
               "name": "biomesoplenty:rose",
@@ -39,11 +51,23 @@
       "bonus_rolls": 0.0,
       "conditions": [
         {
-          "block": "flowerseedsbop:rose_seed",
-          "condition": "minecraft:block_state_property",
-          "properties": {
-            "age": "7"
-          }
+          "condition": "minecraft:any_of",
+          "terms": [
+            {
+              "block": "flowerseedsbop:rose_seed",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "age": "7"
+              }
+            },
+            {
+              "block": "flowerseedsbop:rose_seed",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "age": "6"
+              }
+            }
+          ]
         }
       ],
       "entries": [

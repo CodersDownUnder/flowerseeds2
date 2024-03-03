@@ -19,7 +19,7 @@
       "model": "flowerseeds:block/dandelion_seed_stage2"
     },
     "age=6": {
-      "model": "flowerseeds:block/dandelion_seed_stage2"
+      "model": "flowerseeds:block/azure_bluet_seed_stage3"
     },
     "age=7": {
       "model": "flowerseeds:block/azure_bluet_seed_stage3"

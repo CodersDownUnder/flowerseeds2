@@ -13,6 +13,7 @@ plugins {
     id 'org.ajoberstar.grgit.service' version '5.2.1'
     id 'net.darkhax.curseforgegradle' version '1.1.18'
     id "com.modrinth.minotaur" version "2.+"
+    id "com.hypherionmc.modutils.modpublisher" version "2.0.5"
     id 'java'
     id 'eclipse'
     id 'idea'
@@ -42,12 +43,15 @@ ext {
                             "loader_version_range": loader_version_range, "byg_version": byg_version_range, "bop_version": bop_version_range,
                             "cyclic_version": cyclic_version_range, "roses_version": roses_version_range, "mod_license": mod_license, "mod_authors": mod_authors,
                             "neo_version_range": neo_version_range, "minecraft_version_range": minecraft_version_range, "mod_id": mod_id, "mod_version": mod_version,
-                            "roses_addon_version": roses_version, "cyclic_addon_version": cyclic_version, "bop_addon_version": bop_version, "byg_addon_version": byg_version,
-                            "ff_addon_version": ff_version, "ff_version_range": ff_version_range, "fsbop_required": fsbop_required, "fsroses_required": fsroses_required,
-                            "fsff_required": fsff_required, "fsc_required": fsc_required]
+                            "roses_addon_version": roses_version, "cyclic_addon_version": cyclic_version,
+                            "bop_addon_version": bop_version, "byg_addon_version": byg_version,
+                            "ff_addon_version": ff_version, "blueskies_addon_version": blueskies_version,
+                            "regions_addon_version": regions_version, "meadow_addon_version": meadow_version,
+                            "ff_version_range": ff_version_range, "fsbop_required": fsbop_required,
+                            "fsroses_required": fsroses_required, "fsff_required": fsff_required, "fsc_required": fsc_required]
 
     jsonPatterns = ["**/*.json", "**/*.mcmeta"]
-    secondaryModules = ['byg', 'cyclic', 'bop', 'roses', 'fabulousflowers']
+    secondaryModules = ['byg', 'cyclic', 'bop', 'roses', 'fabulousflowers', 'blueskies', 'regions', 'meadow']
     extraTypes = ['datagen', 'gameTest']
 }
 
@@ -426,7 +430,9 @@ dependencies {
     //implementation "me.shedaniel:RoughlyEnoughItems-neoforge:${rei_version}"
     //compileOnly "curse.maven:jade-api-324717:${jade_api_id}"
     //runtimeOnly "curse.maven:jade-324717:${jade_id}"
-    //implementation "com.github.minecraftschurlimods:easydatagenlib:${easydatagenlib_version}"
+
+
+    implementation "com.github.minecraftschurlimods:easydatagenlib:${easydatagenlib_version}"
 
 
     compileOnly("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
@@ -488,15 +494,17 @@ tasks.named('jar', Jar).configure {
     duplicatesStrategy(DuplicatesStrategy.FAIL)
     from([sourceSets.api.output, sourceSets.main.output])
     exclude('crafttweaker_parameter_names.json')
-    manifest.attributes(getManifestAttributes("Mekanism"))
+    manifest.attributes(getManifestAttributes("flowerseeds2"))
 }
 
 tasks.named('sourcesJar', Jar).configure {
-    dependsOn(classes, apiClasses, cyclicClasses, bopClasses, bygClasses, rosesClasses, fabulousflowersClasses)
+    dependsOn(classes, apiClasses, cyclicClasses, bopClasses, bygClasses, rosesClasses, fabulousflowersClasses, blueskiesClasses, regionsClasses, meadowClasses)
     duplicatesStrategy(DuplicatesStrategy.FAIL)
     //Note: Already contains main source set's sources by default
-    from(sourceSets.api.allJava, sourceSets.cyclic.allJava, sourceSets.bop.allJava, sourceSets.byg.allJava, sourceSets.roses.allJava, sourceSets.fabulousflowers.allJava)
-    manifest.attributes(getManifestAttributes("Mekanism"))
+    from(sourceSets.api.allJava, sourceSets.cyclic.allJava, sourceSets.bop.allJava,
+            sourceSets.byg.allJava, sourceSets.roses.allJava, sourceSets.fabulousflowers.allJava,
+            sourceSets.blueskies.allJava, sourceSets.regions.allJava, sourceSets.meadow.allJava)
+    manifest.attributes(getManifestAttributes("flowerseeds2"))
 }
 
 def secondaryJar(SourceSet sourceSet, String title) {
@@ -512,11 +520,14 @@ def secondaryJar(SourceSet sourceSet, String title) {
 }
 
 def apiJar = secondaryJar(sourceSets.api, '')
-def cyclicJar = secondaryJar(sourceSets.cyclic, 'FlowerSeeds2Cyclic')
-def bygJar = secondaryJar(sourceSets.byg, 'FlowerSeeds2BYG')
-def bopJar = secondaryJar(sourceSets.bop, 'FlowerSeeds2BiomesOPlenty')
-def rosesJar = secondaryJar(sourceSets.roses, 'FlowerSeeds2Roses')
-def fabulousflowersJar = secondaryJar(sourceSets.fabulousflowers, 'FlowerSeeds2FabulousFlowers')
+def cyclicJar = secondaryJar(sourceSets.cyclic, 'FlowerSeeds2-Cyclic')
+def bygJar = secondaryJar(sourceSets.byg, 'FlowerSeeds2-BYG')
+def bopJar = secondaryJar(sourceSets.bop, 'FlowerSeeds2-BiomesOPlenty')
+def rosesJar = secondaryJar(sourceSets.roses, 'FlowerSeeds2-Roses')
+def fabulousflowersJar = secondaryJar(sourceSets.fabulousflowers, 'FlowerSeeds2-FabulousFlowers')
+def blueskiesJar = secondaryJar(sourceSets.blueskies, 'FlowerSeeds2-BlueSkies')
+def regionsJar = secondaryJar(sourceSets.regions, 'FlowerSeeds2-RegionsUnexplored')
+def meadowJar = secondaryJar(sourceSets.meadow, 'FlowerSeeds2-Meadow')
 
 //def allJar = tasks.register('allJar', Jar, {
 //    dependsOn(classes, apiClasses, cyclicClasses, bygClasses, bopClasses, rosesClasses, fabulousflowersClasses)
@@ -582,6 +593,9 @@ artifacts {
     archives bygJar
     archives rosesJar
     archives fabulousflowersJar
+    archives blueskiesJar
+    archives regionsJar
+    archives meadowJar
     archives sourcesJar
 }
 
@@ -607,7 +621,7 @@ tasks.register('optimizePng').configure {
         //Ensure the logo is minimized (we add this file to each jar)
         minimizePNGFile(file("${projectDir}/logo.png"))
         //Minimize any PNGs in the source sets
-        def sourceSets = [sourceSets.main, sourceSets.additions, sourceSets.generators, sourceSets.defense, sourceSets.tools]
+        def sourceSets = [sourceSets.main, sourceSets.cyclic, sourceSets.roses, sourceSets.fabulousflowers, sourceSets.bop, sourceSets.byg, sourceSets.blueskies, sourceSets.meadow, sourceSets.regions, sourceSets]
         for (def sourceSet : sourceSets) {
             for (dir in sourceSet.resources.srcDirs) {
                 fileTree(dir: dir, includes: pngPatterns).each { minimizePNGFile(it) }
@@ -620,6 +634,45 @@ tasks.withType(GenerateModuleMetadata).configureEach {
     //Disable Gradle 7 module metadata generation as it does not play nicely with FG
     enabled = false
 }
+
+//tasks.register('upload_main').configure {
+//    publisher {
+//        publisher {
+//            apiKeys {
+//                modrinth System.getenv("MODRINTH_TOKEN")
+//                curseforge System.getenv("CURSEFORGE_TOKEN")
+//            }
+//            // Enable Debug mode. When enabled, no files will actually be uploaded
+//            setDebug(true)
+//            setCurseID(System.getenv("FLOWERSEEDS2_CFID"))
+//            setModrinthID(System.getenv("FLOWERSEEDS2_MODRINTHID"))
+//            setVersionType("release")
+//            setChangelog("changelog.md")
+//            setVersion("${minecraft_version}-${mod_version}")
+//            setDisplayName("Flower Seeds 2 - ${project.version}")
+//            setGameVersions("1.20.4")
+//            setLoaders("neoforge")
+//            setCurseEnvironment("both")
+//            setArtifact(jar)
+//            modrinthDepends {
+//                optional 'botany-pots'
+//                optional 'thermal-expansion'
+//                optional 'immersive-engineering'
+//                optional 'mekanism'
+//            }
+//
+//            // Curse Dependencies
+//            curseDepends {
+//                optional 'botany-pots'
+//                optional 'thermal-expansion'
+//                optional 'immersive-engineering'
+//                optional 'mekanism'
+//            }
+//        }
+//    }
+//}
+
+
 
 //properties to put in $HOME/.gradle/gradle.properties
 //def MAVEN_PASSWORD_PROPERTY_NAME = 'mekanismMavenPassword'
@@ -687,7 +740,7 @@ tasks.withType(GenerateModuleMetadata).configureEach {
 //        }
 //    }
 //}
-//
+
 //def resolvedChangelog = null
 //
 ////closure to generate the changelog once, and only when needed by CurseGradle or Modrinth
@@ -742,59 +795,44 @@ tasks.withType(GenerateModuleMetadata).configureEach {
 //    resolvedChangelog = generatedChangelog
 //    return generatedChangelog
 //}
-//
+
 //tasks.register('outputChangelog') {
 //    doLast {
-//        project.file("build/changelog.html").text = changeLogResolver.call()
+//        project.file("changelog.md").text = changeLogResolver.call()
 //    }
 //}
+
+//def mainCfUpload, bopCfUpload;
 //
-//def mainCfUpload, additionsCfUpload, generatorsCfUpload, toolsCfUpload;
-//
-//if (System.getenv("CURSEFORGE_KEY") != null || project.hasProperty('curseforgeKey')) {
+//if (System.getenv("CURSEFORGE_TOKEN") != null || project.hasProperty('curseforge_token')) {
 //    println "Enabling Curseforge config"
-//    tasks.register("curseforge", TaskPublishCurseForge, { task ->
+//    tasks.register("curseforge-main", TaskPublishCurseForge, { task ->
 //        setGroup("publishing")
-//        setDescription("Upload Mekanism to CurseForge")
+//        setDescription("Upload Flower Seeds 2 Main to CurseForge")
 //
-//        apiToken = System.getenv("CURSEFORGE_KEY") ?: project.findProperty("curseforgeKey")
+//        apiToken = System.getenv("curseforge_token") ?: project.hasProperty('curseforge_token')
 //
-//        def changelog = changeLogResolver.call()
+//        def changelog = project.file("changelog.md").text
 //
-//        //Main Mekanism Project
-//        mainCfUpload = task.upload(268560, jar) { main ->
+//        //Main Flower Seeds 2 project
+//        mainCfUpload = task.upload(System.getenv("flowerseeds2_cfid"), jar) { main ->
 //            setGenericCurseArtifactData(main, changelog)
-//            //Include the API jar as a secondary file to the main file
-//            withAdditionalFile(apiJar)
 //            //Add optional deps
 //            addOptional(
-//                    //Computers
-//                    'cc-tweaked', 'oc2',
-//                    //Looking at mods
-//                    'jade', 'the-one-probe', 'wthit-forge',
-//                    //Tweakers
-//                    'crafttweaker', 'jeitweaker',
-//                    //World gen
-//                    'biomes-o-plenty', 'oh-the-biomes-youll-go',
-//                    //Wood types
-//                    'i-like-wood', 'i-like-wood-biomes-o-plenty-plugin', 'i-like-wood-oh-the-biomes-youll-go-plugin',
-//                    //Misc
-//                    'applied-energistics-2', 'ctm', 'curios', 'dark-mode-everywhere', 'farmers-delight', 'female-gender-forge', 'flux-networks',
-//                    'jei', 'json-things', 'perviaminvenire', 'projecte', 'recipe-stages'
+//                    'botany-pots',
+//                    'thermal-expansion',
+//                    'immersive-engineering',
+//                    'mekanism'
 //            )
 //        }
 //
 //        //Secondary modules/projects
-//        additionsCfUpload = uploadSecondaryCurseProject(task, 345425, changelog, additionsJar)
+//        flowerseedsbopCfUpload = uploadSecondaryCurseProject(task, System.getenv("flowerseeds2_bop_cfid"), changelog, additionsJar, "biomes-o-plenty")
 //        //uploadSecondaryCurseProject(task, 376939, changelog, defenseJar)
-//        generatorsCfUpload = uploadSecondaryCurseProject(task, 268566, changelog, generatorsJar)
-//        toolsCfUpload = uploadSecondaryCurseProject(task, 268567, changelog, toolsJar)
 //
 //        doLast {
 //            println("https://www.curseforge.com/minecraft/mc-mods/mekanism/files/${mainCfUpload.curseFileId}")
 //            println("https://www.curseforge.com/minecraft/mc-mods/mekanism-additions/files/${additionsCfUpload.curseFileId}")
-//            println("https://www.curseforge.com/minecraft/mc-mods/mekanism-generators/files/${generatorsCfUpload.curseFileId}")
-//            println("https://www.curseforge.com/minecraft/mc-mods/mekanism-tools/files/${toolsCfUpload.curseFileId}")
 //        }
 //    })
 //}
@@ -805,10 +843,11 @@ tasks.withType(GenerateModuleMetadata).configureEach {
 //    artifact.releaseType = "${release_type}"
 //}
 //
-//UploadArtifact uploadSecondaryCurseProject(TaskPublishCurseForge task, long projectId, String changelog, TaskProvider<Jar> sourceSetJar) {
+//UploadArtifact uploadSecondaryCurseProject(TaskPublishCurseForge task, long projectId, String changelog, TaskProvider<Jar> sourceSetJar, String dependency) {
 //    return task.upload(projectId, sourceSetJar) { artifact ->
 //        setGenericCurseArtifactData(artifact, changelog)
-//        addRequirement('mekanism')
+//        addRequirement('flowerseeds2')
+//        addRequirement(dependency)
 //    }
 //}
 //

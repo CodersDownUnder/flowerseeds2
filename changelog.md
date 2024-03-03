@@ -1,3 +1,11 @@
+## V1.2.0
+
+---
+
+- Updated to 1.20.4
+- Now using Compostables Data Map
+
+
 ## V1.1.2
 
 ---
